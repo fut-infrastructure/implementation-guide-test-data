@@ -1,0 +1,12 @@
+{
+  "name": "ehealth.dk.testdata.template",
+  "version": "1.0.0",
+  "type": "fhir.template",
+  "license": "CC0-1.0",
+  "description": "Template for the FUT test data IG. Overlays the HL7 base template with local fixes.",
+  "author": "ehealth.sundhed.dk",
+  "base": "fhir.base.template",
+  "dependencies": {
+    "fhir.base.template": "current"
+  }
+}

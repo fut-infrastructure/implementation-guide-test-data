@@ -1,0 +1,39 @@
+== Suppressed Messages ==
+
+# The IG Publisher looks for this file by default and reports its absence as an error, so it exists
+# even when it suppresses nothing.
+#
+# IT CANNOT SUPPRESS ERRORS. Entries here only apply to warnings and hints — qa.json reports
+# suppressed-warnings and suppressed-hints and has no equivalent for errors. So the validation
+# errors this guide carries by design cannot be hidden here; they are listed below as a record of
+# which errors are expected and why, not as suppressions.
+#
+# EXPECTED ERRORS, NOT SUPPRESSIBLE:
+#
+#   17x  Unknown code '${EHEALTH_PROGRAM}' / '${COEXISTENCE_TAG}'
+#        Deliberate placeholders. The programme code and the coexistence tag belong to the target
+#        environment, not to the test data, and are substituted at load time. ehealth-program holds
+#        only real programme codes (kpro, telma, fob, ...) and ehealth-system only xa, xb, xc, so
+#        there is no neutral code to use instead. Leaving the elements out would make the resources
+#        unloadable and hide the fact that a value has to be supplied.
+#
+#    4x  None of the codings provided are in the value set 'Activity Definition Code'
+#        ad-saturation, ad-pulse and their two extra-branch twins carry NPU codes (NPU03011,
+#        NPU21692). THESE CODES ARE CORRECT. vs/activitydefinition-code includes vs/observation-
+#        codes, which contains both under urn:oid:1.2.208.176.2.1, and the environment's own
+#        terminology server expands vs/activitydefinition-code to 48 codes including them.
+#        The include lists vs/observation-codes and vs/media-codes in a single include entry, and
+#        R4 defines that as the UNION of the referenced value sets ("If multiple value sets are
+#        specified this includes the union of the contents of all of the referenced value sets" —
+#        ValueSet.compose.include.valueSet). R5 changed the same element to mean the intersection.
+#        The IG Publisher validates through org.hl7.fhir.r5.* internals, so it appears to apply the
+#        R5 rule; those two value sets share no codes, so under R5 semantics the include expands to
+#        nothing and NPU is rejected. Neither this data nor the core IG is wrong.
+#        VERIFY: a full run (no -tx n/a) may resolve these against the terminology server instead.
+#
+# ONLY WHEN RUNNING OFFLINE (scripts/publish.sh --offline, i.e. -tx n/a):
+#
+#    1x  The value provided ('text/markdown') was not found in the value set 'MimeType'
+#        A null-pointer inside the validator when there is no terminology client — the message
+#        carries its own cause: 'Cannot invoke "...TerminologyClientContext.getAddress()" because
+#        "tc" is null'. text/markdown is valid. This error does not occur in a full run.
