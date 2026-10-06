@@ -78,7 +78,7 @@ Description: "COPD monitoring plan with a scheduled mon/wed/fri branch and an un
 * action[0].timingTiming.repeat.dayOfWeek[+] = #fri
 * action[0].timingTiming.repeat.timeOfDay = "08:00:00"
 * action[0].groupingBehavior = #visual-group
-* action[0].definitionCanonical = "http://ehealth.sundhed.dk/fhir/testdata/ActivityDefinition/ad-head"
+* action[0].definitionCanonical = Canonical(ad-head)
 
 * action[0].action[0].id = "a9c477ac-f301-462c-bcf9-e4e44bfd4320"
 * action[0].action[0].extension.url = "http://ehealth.sundhed.dk/fhir/StructureDefinition/ehealth-include-as-extra"
@@ -93,7 +93,7 @@ Description: "COPD monitoring plan with a scheduled mon/wed/fri branch and an un
 * action[0].action[0].timingTiming.repeat.dayOfWeek[+] = #wed
 * action[0].action[0].timingTiming.repeat.dayOfWeek[+] = #fri
 * action[0].action[0].timingTiming.repeat.timeOfDay = "08:00:00"
-* action[0].action[0].definitionCanonical = "http://ehealth.sundhed.dk/fhir/testdata/ActivityDefinition/ad-intro"
+* action[0].action[0].definitionCanonical = Canonical(ad-intro)
 
 * action[0].action[1].id = "7a482753-5424-4d30-a28a-4ab9c120de47"
 * action[0].action[1].extension.url = "http://ehealth.sundhed.dk/fhir/StructureDefinition/ehealth-include-as-extra"
@@ -108,7 +108,7 @@ Description: "COPD monitoring plan with a scheduled mon/wed/fri branch and an un
 * action[0].action[1].timingTiming.repeat.dayOfWeek[+] = #wed
 * action[0].action[1].timingTiming.repeat.dayOfWeek[+] = #fri
 * action[0].action[1].timingTiming.repeat.timeOfDay = "08:00:00"
-* action[0].action[1].definitionCanonical = "http://ehealth.sundhed.dk/fhir/testdata/ActivityDefinition/ad-sat-pulse-intro"
+* action[0].action[1].definitionCanonical = Canonical(ad-sat-pulse-intro)
 
 * action[0].action[2].id = "0fa646b6-b48f-4c09-83fa-ff2b33b1763c"
 * action[0].action[2].extension.url = "http://ehealth.sundhed.dk/fhir/StructureDefinition/ehealth-include-as-extra"
@@ -123,7 +123,7 @@ Description: "COPD monitoring plan with a scheduled mon/wed/fri branch and an un
 * action[0].action[2].timingTiming.repeat.dayOfWeek[+] = #wed
 * action[0].action[2].timingTiming.repeat.dayOfWeek[+] = #fri
 * action[0].action[2].timingTiming.repeat.timeOfDay = "08:00:00"
-* action[0].action[2].definitionCanonical = "http://ehealth.sundhed.dk/fhir/testdata/ActivityDefinition/ad-sat-pulse-prep"
+* action[0].action[2].definitionCanonical = Canonical(ad-sat-pulse-prep)
 
 // The SDG group. Its two observations are both after-start the group rather than after-end
 // each other: one pulse-oximeter reading yields both values at once.
@@ -140,7 +140,7 @@ Description: "COPD monitoring plan with a scheduled mon/wed/fri branch and an un
 * action[0].action[3].timingTiming.repeat.dayOfWeek[+] = #wed
 * action[0].action[3].timingTiming.repeat.dayOfWeek[+] = #fri
 * action[0].action[3].timingTiming.repeat.timeOfDay = "08:00:00"
-* action[0].action[3].definitionCanonical = "http://ehealth.sundhed.dk/fhir/testdata/ActivityDefinition/ad-sat-pulse"
+* action[0].action[3].definitionCanonical = Canonical(ad-sat-pulse)
 
 * action[0].action[3].action[0].id = "701ab1f7-23fe-4ff2-9e4b-d2f2623e22c7"
 * action[0].action[3].action[0].extension.url = "http://ehealth.sundhed.dk/fhir/StructureDefinition/ehealth-include-as-extra"
@@ -155,7 +155,7 @@ Description: "COPD monitoring plan with a scheduled mon/wed/fri branch and an un
 * action[0].action[3].action[0].timingTiming.repeat.dayOfWeek[+] = #wed
 * action[0].action[3].action[0].timingTiming.repeat.dayOfWeek[+] = #fri
 * action[0].action[3].action[0].timingTiming.repeat.timeOfDay = "08:00:00"
-* action[0].action[3].action[0].definitionCanonical = "http://ehealth.sundhed.dk/fhir/testdata/ActivityDefinition/ad-saturation"
+* action[0].action[3].action[0].definitionCanonical = Canonical(ad-saturation)
 
 * action[0].action[3].action[1].id = "6a152290-db57-4f13-b7bf-92f09e0f09e7"
 * action[0].action[3].action[1].extension.url = "http://ehealth.sundhed.dk/fhir/StructureDefinition/ehealth-include-as-extra"
@@ -170,7 +170,7 @@ Description: "COPD monitoring plan with a scheduled mon/wed/fri branch and an un
 * action[0].action[3].action[1].timingTiming.repeat.dayOfWeek[+] = #wed
 * action[0].action[3].action[1].timingTiming.repeat.dayOfWeek[+] = #fri
 * action[0].action[3].action[1].timingTiming.repeat.timeOfDay = "08:00:00"
-* action[0].action[3].action[1].definitionCanonical = "http://ehealth.sundhed.dk/fhir/testdata/ActivityDefinition/ad-pulse"
+* action[0].action[3].action[1].definitionCanonical = Canonical(ad-pulse)
 
 * action[0].action[4].id = "5dbb9ca9-01fa-42d5-afcf-b42dff5fc78b"
 * action[0].action[4].extension.url = "http://ehealth.sundhed.dk/fhir/StructureDefinition/ehealth-include-as-extra"
@@ -185,7 +185,7 @@ Description: "COPD monitoring plan with a scheduled mon/wed/fri branch and an un
 * action[0].action[4].timingTiming.repeat.dayOfWeek[+] = #wed
 * action[0].action[4].timingTiming.repeat.dayOfWeek[+] = #fri
 * action[0].action[4].timingTiming.repeat.timeOfDay = "08:00:00"
-* action[0].action[4].definitionCanonical = "http://ehealth.sundhed.dk/fhir/testdata/ActivityDefinition/ad-questionnaire"
+* action[0].action[4].definitionCanonical = Canonical(ad-questionnaire)
 
 * action[0].action[5].id = "de176506-1b2e-4736-a30f-98839969c5d7"
 * action[0].action[5].extension.url = "http://ehealth.sundhed.dk/fhir/StructureDefinition/ehealth-include-as-extra"
@@ -200,7 +200,7 @@ Description: "COPD monitoring plan with a scheduled mon/wed/fri branch and an un
 * action[0].action[5].timingTiming.repeat.dayOfWeek[+] = #wed
 * action[0].action[5].timingTiming.repeat.dayOfWeek[+] = #fri
 * action[0].action[5].timingTiming.repeat.timeOfDay = "08:00:00"
-* action[0].action[5].definitionCanonical = "http://ehealth.sundhed.dk/fhir/testdata/ActivityDefinition/ad-closing"
+* action[0].action[5].definitionCanonical = Canonical(ad-closing)
 
 // (2) EXTRA branch — NO timing on any action. Submissions go here, so that
 //     missing-measurement can derive no expected occurrence and nothing falls overdue.
@@ -210,7 +210,7 @@ Description: "COPD monitoring plan with a scheduled mon/wed/fri branch and an un
 * action[1].extension.valueBoolean = false
 * action[1].title = "Ekstra målinger og spørgeskema"
 * action[1].groupingBehavior = #visual-group
-* action[1].definitionCanonical = "http://ehealth.sundhed.dk/fhir/testdata/ActivityDefinition/ad-extra-head"
+* action[1].definitionCanonical = Canonical(ad-extra-head)
 
 * action[1].action[0].id = "8d76df58-da9f-4096-8e05-a66ebcc13af4"
 * action[1].action[0].extension.url = "http://ehealth.sundhed.dk/fhir/StructureDefinition/ehealth-include-as-extra"
@@ -218,7 +218,7 @@ Description: "COPD monitoring plan with a scheduled mon/wed/fri branch and an un
 * action[1].action[0].title = "Iltmætning og pulsmåling"
 * action[1].action[0].relatedAction.actionId = "0ee4c15b-a7b1-40dd-9e44-c1c4238a1dda"
 * action[1].action[0].relatedAction.relationship = #after-start
-* action[1].action[0].definitionCanonical = "http://ehealth.sundhed.dk/fhir/testdata/ActivityDefinition/ad-extra-sat-pulse"
+* action[1].action[0].definitionCanonical = Canonical(ad-extra-sat-pulse)
 
 * action[1].action[0].action[0].id = "404a936e-89b2-4a6a-ae55-0a54bcea27db"
 * action[1].action[0].action[0].extension.url = "http://ehealth.sundhed.dk/fhir/StructureDefinition/ehealth-include-as-extra"
@@ -226,7 +226,7 @@ Description: "COPD monitoring plan with a scheduled mon/wed/fri branch and an un
 * action[1].action[0].action[0].title = "Iltmætning"
 * action[1].action[0].action[0].relatedAction.actionId = "8d76df58-da9f-4096-8e05-a66ebcc13af4"
 * action[1].action[0].action[0].relatedAction.relationship = #after-start
-* action[1].action[0].action[0].definitionCanonical = "http://ehealth.sundhed.dk/fhir/testdata/ActivityDefinition/ad-extra-saturation"
+* action[1].action[0].action[0].definitionCanonical = Canonical(ad-extra-saturation)
 
 * action[1].action[0].action[1].id = "18dc30db-88f6-4235-b08a-4cfabed13ee7"
 * action[1].action[0].action[1].extension.url = "http://ehealth.sundhed.dk/fhir/StructureDefinition/ehealth-include-as-extra"
@@ -234,7 +234,7 @@ Description: "COPD monitoring plan with a scheduled mon/wed/fri branch and an un
 * action[1].action[0].action[1].title = "Puls"
 * action[1].action[0].action[1].relatedAction.actionId = "8d76df58-da9f-4096-8e05-a66ebcc13af4"
 * action[1].action[0].action[1].relatedAction.relationship = #after-start
-* action[1].action[0].action[1].definitionCanonical = "http://ehealth.sundhed.dk/fhir/testdata/ActivityDefinition/ad-extra-pulse"
+* action[1].action[0].action[1].definitionCanonical = Canonical(ad-extra-pulse)
 
 * action[1].action[1].id = "53ffbcbf-5467-41ee-82fb-bde6ea4d0d07"
 * action[1].action[1].extension.url = "http://ehealth.sundhed.dk/fhir/StructureDefinition/ehealth-include-as-extra"
@@ -242,4 +242,4 @@ Description: "COPD monitoring plan with a scheduled mon/wed/fri branch and an un
 * action[1].action[1].title = "Spørgeskema om tilstand og symptomer"
 * action[1].action[1].relatedAction.actionId = "8d76df58-da9f-4096-8e05-a66ebcc13af4"
 * action[1].action[1].relatedAction.relationship = #after-end
-* action[1].action[1].definitionCanonical = "http://ehealth.sundhed.dk/fhir/testdata/ActivityDefinition/ad-extra-questionnaire"
+* action[1].action[1].definitionCanonical = Canonical(ad-extra-questionnaire)

@@ -110,6 +110,8 @@ Alias: $practitioner-uid = urn:oid:0.9.2342.19200300.100.1.1
 // practitioner.fsh for why that slice cannot be used anonymously.
 Alias: $profession-group = http://hl7.dk/fhir/core/CodeSystem/DkCoreProfessionGroupCodes
 Alias: $careteam-participant-role = http://ehealth.sundhed.dk/cs/careteam-participant-role
+// CarePlan.status, and the status recorded in each careplan statusHistory entry
+Alias: $request-status = http://hl7.org/fhir/request-status
 // The aliases for municipality codes, ISO 3166-2 subdivisions and marital status were dropped
 // along with the elements that used them: all three are coded, so they could not take a
 // placeholder, and all three identify a person. See patient.fsh.

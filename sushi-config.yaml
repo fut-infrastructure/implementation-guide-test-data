@@ -92,6 +92,36 @@ groups:
     name: "Clinical.Care Provision"
     description: "The plan as delivered: care plan, service requests, goals, care team."
     resources:
+      - CarePlan/careplan
+      - CarePlan/careplan-completed
+      - ServiceRequest/sr-closing
+      - ServiceRequest/sr-completed-closing
+      - ServiceRequest/sr-completed-extra-head
+      - ServiceRequest/sr-completed-extra-pulse
+      - ServiceRequest/sr-completed-extra-questionnaire
+      - ServiceRequest/sr-completed-extra-sat-pulse
+      - ServiceRequest/sr-completed-extra-saturation
+      - ServiceRequest/sr-completed-head
+      - ServiceRequest/sr-completed-intro
+      - ServiceRequest/sr-completed-pulse
+      - ServiceRequest/sr-completed-questionnaire
+      - ServiceRequest/sr-completed-sat-pulse
+      - ServiceRequest/sr-completed-sat-pulse-intro
+      - ServiceRequest/sr-completed-sat-pulse-prep
+      - ServiceRequest/sr-completed-saturation
+      - ServiceRequest/sr-extra-head
+      - ServiceRequest/sr-extra-pulse
+      - ServiceRequest/sr-extra-questionnaire
+      - ServiceRequest/sr-extra-sat-pulse
+      - ServiceRequest/sr-extra-saturation
+      - ServiceRequest/sr-head
+      - ServiceRequest/sr-intro
+      - ServiceRequest/sr-pulse
+      - ServiceRequest/sr-questionnaire
+      - ServiceRequest/sr-sat-pulse
+      - ServiceRequest/sr-sat-pulse-intro
+      - ServiceRequest/sr-sat-pulse-prep
+      - ServiceRequest/sr-saturation
       - CareTeam/careteam
   SpecializedDefinitionalArtifacts:
     name: "Specialized.Definitional Artifacts"

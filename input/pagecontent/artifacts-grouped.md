@@ -67,9 +67,53 @@ The diagnosis the episode addresses, and the reason the plan is in place.
 
 The plan as delivered: care plan, service requests, goals, care team.
 
+#### CarePlans
+
+The plan definition as delivered to the patient, one per episode. Normally created by $apply, which would also create one ServiceRequest per activity.
+
+|Name|Description|
+|---|---|
+|[Care plan (active)](CarePlan-careplan.html)|The monitoring plan as delivered under the open episode of care. Normally created by $apply, which would also create one ServiceRequest per activity.|
+|[Care plan (completed)](CarePlan-careplan-completed.html)|The monitoring plan as delivered under the completed episode of care, which ran from March to June 2025. Status completed, with the full status history and — following the environment's behaviour — a period that is left open.|
+
+#### ServiceRequests
+
+One per activity of a care plan, created by $apply alongside it. A measurement or questionnaire response is submitted against one of these, and the measurement ones carry the reference ranges triage compares a value against.
+
+|Name|Description|
+|---|---|
+|[Closing (scheduled)](ServiceRequest-sr-closing.html)|Guidance screen shown after the scheduled round is complete.|
+|[Closing (scheduled) — completed](ServiceRequest-sr-completed-closing.html)|Guidance screen shown after the scheduled round is complete.|
+|[Head activity (extra) — completed](ServiceRequest-sr-completed-extra-head.html)|The container for the unscheduled branch.|
+|[Pulse (extra) — completed](ServiceRequest-sr-completed-extra-pulse.html)|The unscheduled pulse measurement, with the same four absolute reference ranges as the scheduled one.|
+|[Questionnaire (extra) — completed](ServiceRequest-sr-completed-extra-questionnaire.html)|The unscheduled symptom questionnaire. This is the request a test questionnaire response is most easily submitted against, since it is not bound to a window.|
+|[Saturation and pulse device group (extra) — completed](ServiceRequest-sr-completed-extra-sat-pulse.html)|Groups the unscheduled saturation and pulse measurements as one device group.|
+|[Oxygen saturation (extra) — completed](ServiceRequest-sr-completed-extra-saturation.html)|The unscheduled oxygen saturation measurement, with the same absolute reference ranges as the scheduled one. A submission against this request can be made at any time.|
+|[Head activity (scheduled) — completed](ServiceRequest-sr-completed-head.html)|The container for the scheduled branch. Nothing is submitted against it; it groups the activities below.|
+|[Introduction (scheduled) — completed](ServiceRequest-sr-completed-intro.html)|Guidance screen shown at the start of the scheduled measurement round.|
+|[Pulse (scheduled) — completed](ServiceRequest-sr-completed-pulse.html)|The scheduled pulse measurement. Carries four absolute reference ranges, so both a low and a high value triage red: red at or below 50/min and at or above 130/min, yellow in between.|
+|[Questionnaire (scheduled) — completed](ServiceRequest-sr-completed-questionnaire.html)|The scheduled symptom questionnaire. A questionnaire response is submitted against this request and triaged on its answer significance.|
+|[Saturation and pulse device group (scheduled) — completed](ServiceRequest-sr-completed-sat-pulse.html)|Groups the saturation and pulse measurements as one device group, so both are taken from the same device in one go.|
+|[Saturation and pulse introduction (scheduled) — completed](ServiceRequest-sr-completed-sat-pulse-intro.html)|Guidance screen introducing the saturation and pulse measurements.|
+|[Saturation and pulse preparation (scheduled) — completed](ServiceRequest-sr-completed-sat-pulse-prep.html)|Guidance screen telling the patient how to prepare before measuring.|
+|[Oxygen saturation (scheduled) — completed](ServiceRequest-sr-completed-saturation.html)|The scheduled oxygen saturation measurement. Carries the absolute reference ranges its triage rule compares a submitted value against: red at or below 85%, yellow from 85% to 88%.|
+|[Head activity (extra)](ServiceRequest-sr-extra-head.html)|The container for the unscheduled branch.|
+|[Pulse (extra)](ServiceRequest-sr-extra-pulse.html)|The unscheduled pulse measurement, with the same four absolute reference ranges as the scheduled one.|
+|[Questionnaire (extra)](ServiceRequest-sr-extra-questionnaire.html)|The unscheduled symptom questionnaire. This is the request a test questionnaire response is most easily submitted against, since it is not bound to a window.|
+|[Saturation and pulse device group (extra)](ServiceRequest-sr-extra-sat-pulse.html)|Groups the unscheduled saturation and pulse measurements as one device group.|
+|[Oxygen saturation (extra)](ServiceRequest-sr-extra-saturation.html)|The unscheduled oxygen saturation measurement, with the same absolute reference ranges as the scheduled one. A submission against this request can be made at any time.|
+|[Head activity (scheduled)](ServiceRequest-sr-head.html)|The container for the scheduled branch. Nothing is submitted against it; it groups the activities below.|
+|[Introduction (scheduled)](ServiceRequest-sr-intro.html)|Guidance screen shown at the start of the scheduled measurement round.|
+|[Pulse (scheduled)](ServiceRequest-sr-pulse.html)|The scheduled pulse measurement. Carries four absolute reference ranges, so both a low and a high value triage red: red at or below 50/min and at or above 130/min, yellow in between.|
+|[Questionnaire (scheduled)](ServiceRequest-sr-questionnaire.html)|The scheduled symptom questionnaire. A questionnaire response is submitted against this request and triaged on its answer significance.|
+|[Saturation and pulse device group (scheduled)](ServiceRequest-sr-sat-pulse.html)|Groups the saturation and pulse measurements as one device group, so both are taken from the same device in one go.|
+|[Saturation and pulse introduction (scheduled)](ServiceRequest-sr-sat-pulse-intro.html)|Guidance screen introducing the saturation and pulse measurements.|
+|[Saturation and pulse preparation (scheduled)](ServiceRequest-sr-sat-pulse-prep.html)|Guidance screen telling the patient how to prepare before measuring.|
+|[Oxygen saturation (scheduled)](ServiceRequest-sr-saturation.html)|The scheduled oxygen saturation measurement. Carries the absolute reference ranges its triage rule compares a submitted value against: red at or below 85%, yellow from 85% to 88%.|
+
 #### CareTeams
 
-The clinicians responsible for the episode. Resolved on the target environment, never created there, and carrying no participants.
+The clinicians responsible for the episode. Resolved on the target environment, never created there.
 
 |Name|Description|
 |---|---|

@@ -201,7 +201,7 @@ Description: "Oxygen saturation, triaged against absolute thresholds: red at or 
 * identifier.system = "urn:ietf:rfc:3986"
 * identifier.value = "urn:uuid:9a7aee2f-18c0-412a-af8b-748c0e4f90ad"
 * title = "Iltmætning"
-* library = "http://ehealth.sundhed.dk/fhir/testdata/Library/library-observation-absolute-triage"
+* library = Canonical(library-observation-absolute-triage)
 * code = $npu#NPU03011 "Hb(Fe; O2-bind.; aB)—Oxygen(O2); mætn. = ?"
 
 Instance: ad-pulse
@@ -221,7 +221,7 @@ Description: "Heart rate, triaged against absolute thresholds: red at or below 5
 * identifier.system = "urn:ietf:rfc:3986"
 * identifier.value = "urn:uuid:fab3ffd6-b78e-4783-8f5c-b5a253bb1991"
 * title = "Puls"
-* library = "http://ehealth.sundhed.dk/fhir/testdata/Library/library-observation-absolute-triage"
+* library = Canonical(library-observation-absolute-triage)
 * code = $npu#NPU21692 "Hjerte—Systole; frekv. = ? × 1/min"
 
 Instance: ad-questionnaire
@@ -242,8 +242,8 @@ Description: "Master Questionnaire activity presenting the symptom questionnaire
 * title = "Spørgeskema om tilstand og symptomer"
 * relatedArtifact.type = #composed-of
 * relatedArtifact.display = "410_KOL spørgeskema"
-* relatedArtifact.resource = "http://ehealth.sundhed.dk/fhir/testdata/Questionnaire/questionnaire"
-* library = "http://ehealth.sundhed.dk/fhir/testdata/Library/library-questionnaire-triage"
+* relatedArtifact.resource = Canonical(questionnaire)
+* library = Canonical(library-questionnaire-triage)
 * code = $activitydefinition-code#273586006
 
 Instance: ad-closing
@@ -324,7 +324,7 @@ Description: "Unscheduled oxygen saturation, with the same absolute thresholds a
 * identifier.system = "urn:ietf:rfc:3986"
 * identifier.value = "urn:uuid:d7cb19bd-e35b-4c1d-bbe7-6255a6be51b7"
 * title = "Iltmætning"
-* library = "http://ehealth.sundhed.dk/fhir/testdata/Library/library-observation-absolute-triage"
+* library = Canonical(library-observation-absolute-triage)
 * code = $npu#NPU03011 "Hb(Fe; O2-bind.; aB)—Oxygen(O2); mætn. = ?"
 
 Instance: ad-extra-pulse
@@ -344,7 +344,7 @@ Description: "Unscheduled heart rate, with the same absolute thresholds as the s
 * identifier.system = "urn:ietf:rfc:3986"
 * identifier.value = "urn:uuid:bd0067fe-5204-48ed-b67c-5fab075c81e1"
 * title = "Puls"
-* library = "http://ehealth.sundhed.dk/fhir/testdata/Library/library-observation-absolute-triage"
+* library = Canonical(library-observation-absolute-triage)
 * code = $npu#NPU21692 "Hjerte—Systole; frekv. = ? × 1/min"
 
 Instance: ad-extra-questionnaire
@@ -365,6 +365,6 @@ Description: "Unscheduled Master Questionnaire activity, composed of the same qu
 * title = "Spørgeskema om tilstand og symptomer"
 * relatedArtifact.type = #composed-of
 * relatedArtifact.display = "410_KOL spørgeskema"
-* relatedArtifact.resource = "http://ehealth.sundhed.dk/fhir/testdata/Questionnaire/questionnaire"
-* library = "http://ehealth.sundhed.dk/fhir/testdata/Library/library-questionnaire-triage"
+* relatedArtifact.resource = Canonical(questionnaire)
+* library = Canonical(library-questionnaire-triage)
 * code = $activitydefinition-code#273586006
