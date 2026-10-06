@@ -116,6 +116,14 @@ Alias: $request-status = http://hl7.org/fhir/request-status
 // Codes: Resolved, Unresolved, Adhoc, Extra — a submission against the unscheduled branch is Extra
 Alias: $resolved-timing-type = http://ehealth.sundhed.dk/cs/resolved-timing-type
 Alias: $ehealth-identifier = http://ehealth.sundhed.dk/id/ehealth-identifier
+
+// Automated-processing results: what triage writes when a submission arrives
+Alias: $sct = http://snomed.info/sct
+Alias: $clinicalimpression-codes = http://ehealth.sundhed.dk/cs/clinicalimpression-codes
+Alias: $clinicalimpression-finding-codes = http://ehealth.sundhed.dk/cs/clinicalimpression-finding-codes
+Alias: $clinicalimpression-investigation-item-codes = http://ehealth.sundhed.dk/cs/clinicalimpression-investigation-item-codes
+Alias: $task-category = http://ehealth.sundhed.dk/cs/task-category
+Alias: $restriction-category = http://ehealth.sundhed.dk/cs/restriction-category
 // The aliases for municipality codes, ISO 3166-2 subdivisions and marital status were dropped
 // along with the elements that used them: all three are coded, so they could not take a
 // placeholder, and all three identify a person. See patient.fsh.

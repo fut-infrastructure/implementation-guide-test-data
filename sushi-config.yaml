@@ -84,10 +84,16 @@ groups:
       - EpisodeOfCare/episodeofcare-completed
   ClinicalSummary:
     name: "Clinical.Summary"
-    description: "The clinical record: diagnoses."
+    description: "The clinical record: the diagnoses, and the triage result of each submission. The impressions are not loaded — automated processing creates them, and the ones here record what it should produce."
     resources:
       - Condition/condition
       - Condition/condition-completed
+      - ClinicalImpression/clinicalimpression-pulse
+      - ClinicalImpression/clinicalimpression-pulse-completed
+      - ClinicalImpression/clinicalimpression-questionnaireresponse
+      - ClinicalImpression/clinicalimpression-questionnaireresponse-completed
+      - ClinicalImpression/clinicalimpression-saturation
+      - ClinicalImpression/clinicalimpression-saturation-completed
   ClinicalCareProvision:
     name: "Clinical.Care Provision"
     description: "The plan as delivered: care plan, service requests, goals, care team."
@@ -139,6 +145,16 @@ groups:
     resources:
       - Provenance/provenance
       - Provenance/provenance-completed
+  BaseWorkflow:
+    name: "Base.Workflow"
+    description: "The assessment tasks raised by automated processing. Not loaded either: each accompanies a triage result, and its priority is the triage colour."
+    resources:
+      - Task/task-pulse
+      - Task/task-pulse-completed
+      - Task/task-questionnaireresponse
+      - Task/task-questionnaireresponse-completed
+      - Task/task-saturation
+      - Task/task-saturation-completed
   SpecializedDefinitionalArtifacts:
     name: "Specialized.Definitional Artifacts"
     description: "The plan, the activities it is built from, the questionnaire and the automated-processing rules."

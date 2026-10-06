@@ -31,7 +31,11 @@ InstanceOf: ehealth-questionnaire
 Usage: #example
 Title: "KOL spørgeskema"
 Description: "COPD symptom questionnaire: treatment status, three symptom scales, sputum colour and a conditional comment. Eighteen answer-significance mappings across green, yellow and red."
-* extension[type].valueCodeableConcept = $questionnaire-types#TBD
+// QR, "Questionnaire with Rules" — which is what this is: the answerSignificance mappings below
+// are rules the triage library reads. The production questionnaire this was converted from carries
+// TBD instead, whose own definition in the code system is "Example value - Under construction".
+// The other options are QQ (Quality Questionnaire) and TBD2, equally a non-value.
+* extension[type].valueCodeableConcept = $questionnaire-types#QR "Questionnaire with Rules"
 * extension[modifierRole][0].extension[reference].valueReference = Reference(org-region-midtjylland)
 * extension[modifierRole][0].extension[role].valueCodeableConcept = $modifier-role#owner
 * extension[employeeTitle].valueString = "KOL spørgeskema"

@@ -38,14 +38,14 @@ const CATEGORY_ORDER = [
   ['Base.Individuals', 'The people the test data is about.'],
   ['Base.Entities', 'Organizations the definitions refer to.'],
   ['Base.Management', 'The episode of care the plan is delivered under, and that every record of care refers back to.'],
-  ['Clinical.Summary', 'The clinical record: diagnoses.'],
+  ['Clinical.Summary', 'The clinical record: the diagnoses, and the triage result of each submission. The impressions are not loaded — automated processing creates them, and the ones here record what it should produce.'],
   ['Clinical.Care Provision', 'The plan as delivered: care plan, service requests, goals, care team.'],
   ['Clinical.Diagnostics', 'Measurements and questionnaire responses.'],
   // Provenance lands here by the spec's taxonomy rather than by feel. It sits next to the
   // measurements because that is what it records: one per submission, and the trigger that makes
   // automated processing run over them.
   ['Foundation.Security', 'Submission records for the measurements.'],
-  ['Base.Workflow', 'Tasks raised by automated processing.'],
+  ['Base.Workflow', 'The assessment tasks raised by automated processing. Not loaded either: each accompanies a triage result, and its priority is the triage colour.'],
   ['Specialized.Definitional Artifacts', 'The plan, the activities it is built from, the questionnaire and the automated-processing rules.'],
 ];
 
@@ -74,6 +74,8 @@ const TYPE_ORDER = [
   ['Observation', 'The measurements submitted, two per submission. Their values are chosen to produce a known triage colour against the reference ranges they carry.'],
   ['QuestionnaireResponse', 'The questionnaire answered as part of each submission. The answers are chosen to produce a known triage colour through the answer significance the questionnaire defines.'],
   ['Provenance', 'One per submission, naming the resources submitted together. This is what triggers automated processing, so triage runs because one of these appeared.'],
+  ['ClinicalImpression', 'The triage result for each submitted resource. NOT loaded — automated processing creates these, and the ones here record what it should produce.'],
+  ['Task', 'The assessment task raised with each triage result. NOT loaded either; its priority is the triage colour, so red gives asap and yellow urgent.'],
   ['PlanDefinition', 'The monitoring plan: its branches, how each is scheduled, and the order its activities run in.'],
   ['ActivityDefinition', 'One per step of the plan — the containers that group them, the guidance screens, the measurements and the questionnaire activity.'],
   ['Questionnaire', 'The questionnaire the plan collects, carrying the answer significance its triage rule reads.'],

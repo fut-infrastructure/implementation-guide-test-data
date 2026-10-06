@@ -52,7 +52,7 @@ The episode everything patient-specific hangs off: the plan is delivered under i
 
 ### Clinical.Summary
 
-The clinical record: diagnoses.
+The clinical record: the diagnoses, and the triage result of each submission. The impressions are not loaded — automated processing creates them, and the ones here record what it should produce.
 
 #### Conditions
 
@@ -62,6 +62,19 @@ The diagnosis the episode addresses, and the reason the plan is in place.
 |---|---|
 |[Kronisk obstruktiv lungesygdom](Condition-condition.html)|The COPD diagnosis the episode of care addresses and the monitoring plan responds to.|
 |[Kronisk obstruktiv lungesygdom (completed episode)](Condition-condition-completed.html)|The COPD diagnosis as recorded under the completed episode of care. The same diagnosis as the other Condition: each episode carries its own, because a Condition can reference only one episode.|
+
+#### ClinicalImpressions
+
+The triage result for each submitted resource. NOT loaded — automated processing creates these, and the ones here record what it should produce.
+
+|Name|Description|
+|---|---|
+|[Triage of pulse 72/min — green](ClinicalImpression-clinicalimpression-pulse.html)|Expected triage result for the pulse submitted under the open episode. 72/min falls between the low and high alarm ranges, so the finding is 'within reference range' and the overall assessment green.|
+|[Triage of pulse 118/min — yellow](ClinicalImpression-clinicalimpression-pulse-completed.html)|Expected triage result for the pulse submitted under the completed episode. 118/min falls in the upper yellow range of 110 to 130, so the finding is 'outside reference range' with the GAL coding, and the overall assessment yellow.|
+|[Triage of the questionnaire response — green](ClinicalImpression-clinicalimpression-questionnaireresponse.html)|Expected triage result for the questionnaire response submitted under the open episode. Four scored answers, all green, so the overall assessment is green. Carries no description: the questionnaire rule does not set one.|
+|[Triage of the questionnaire response — red](ClinicalImpression-clinicalimpression-questionnaireresponse-completed.html)|Expected triage result for the questionnaire response submitted under the completed episode. Five scored answers, three red and two yellow; the rule takes the highest, so the overall assessment is red.|
+|[Triage of saturation 96% — green](ClinicalImpression-clinicalimpression-saturation.html)|Expected triage result for the saturation submitted under the open episode. 96% is within every absolute range, so the finding is 'within reference range' and the overall assessment green.|
+|[Triage of saturation 84% — red](ClinicalImpression-clinicalimpression-saturation-completed.html)|Expected triage result for the saturation submitted under the completed episode. 84% is at or below the red alarm range of 85%, so the finding is 'outside reference range' with the RAL coding, and the overall assessment red.|
 
 ### Clinical.Care Provision
 
@@ -155,6 +168,23 @@ One per submission, naming the resources submitted together. This is what trigge
 |---|---|
 |[Submission under the open episode](Provenance-provenance.html)|The submit record for the open episode: one questionnaire response and two observations, submitted together against the unscheduled branch. This is what triggers automated processing, which should triage all three green with routine tasks.|
 |[Submission under the completed episode](Provenance-provenance-completed.html)|The submit record for the completed episode, made while the plan was still active in May 2025. Triage should return red for the saturation and the questionnaire, and yellow for the pulse.|
+
+### Base.Workflow
+
+The assessment tasks raised by automated processing. Not loaded either: each accompanies a triage result, and its priority is the triage colour.
+
+#### Tasks
+
+The assessment task raised with each triage result. NOT loaded either; its priority is the triage colour, so red gives asap and yellow urgent.
+
+|Name|Description|
+|---|---|
+|[Assess pulse triage — routine](Task-task-pulse.html)|Expected task for the green pulse result under the open episode. Priority routine, because triage returned green.|
+|[Assess pulse triage — urgent](Task-task-pulse-completed.html)|Expected task for the yellow pulse result under the completed episode. Priority urgent, because the value fell in a GAL range.|
+|[Evaluate questionnaire response triage — routine](Task-task-questionnaireresponse.html)|Expected task for the green questionnaire result under the open episode. Carries the questionnaire wording rather than the measurement wording.|
+|[Evaluate questionnaire response triage — asap](Task-task-questionnaireresponse-completed.html)|Expected task for the red questionnaire result under the completed episode. Priority asap, because the highest answer significance was red.|
+|[Assess saturation triage — routine](Task-task-saturation.html)|Expected task for the green saturation result under the open episode. Priority routine, because triage returned green.|
+|[Assess saturation triage — asap](Task-task-saturation-completed.html)|Expected task for the red saturation result under the completed episode. Priority asap, because the value fell in a RAL range.|
 
 ### Specialized.Definitional Artifacts
 
