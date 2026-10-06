@@ -123,6 +123,22 @@ groups:
       - ServiceRequest/sr-sat-pulse-prep
       - ServiceRequest/sr-saturation
       - CareTeam/careteam
+  ClinicalDiagnostics:
+    name: "Clinical.Diagnostics"
+    description: "Measurements and questionnaire responses."
+    resources:
+      - Observation/observation-pulse
+      - Observation/observation-pulse-completed
+      - Observation/observation-saturation
+      - Observation/observation-saturation-completed
+      - QuestionnaireResponse/questionnaireresponse
+      - QuestionnaireResponse/questionnaireresponse-completed
+  FoundationSecurity:
+    name: "Foundation.Security"
+    description: "Submission records for the measurements."
+    resources:
+      - Provenance/provenance
+      - Provenance/provenance-completed
   SpecializedDefinitionalArtifacts:
     name: "Specialized.Definitional Artifacts"
     description: "The plan, the activities it is built from, the questionnaire and the automated-processing rules."

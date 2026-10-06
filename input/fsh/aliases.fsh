@@ -112,6 +112,10 @@ Alias: $profession-group = http://hl7.dk/fhir/core/CodeSystem/DkCoreProfessionGr
 Alias: $careteam-participant-role = http://ehealth.sundhed.dk/cs/careteam-participant-role
 // CarePlan.status, and the status recorded in each careplan statusHistory entry
 Alias: $request-status = http://hl7.org/fhir/request-status
+// Submitted measurements and responses
+// Codes: Resolved, Unresolved, Adhoc, Extra — a submission against the unscheduled branch is Extra
+Alias: $resolved-timing-type = http://ehealth.sundhed.dk/cs/resolved-timing-type
+Alias: $ehealth-identifier = http://ehealth.sundhed.dk/id/ehealth-identifier
 // The aliases for municipality codes, ISO 3166-2 subdivisions and marital status were dropped
 // along with the elements that used them: all three are coded, so they could not take a
 // placeholder, and all three identify a person. See patient.fsh.

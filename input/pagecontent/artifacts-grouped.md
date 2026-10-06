@@ -119,6 +119,43 @@ The clinicians responsible for the episode. Resolved on the target environment, 
 |---|---|
 |[KOL care team](CareTeam-careteam.html)|The care team responsible for the COPD monitoring. Expected to pre-exist on the target environment; resolved by identifier. Its one participant's role is administered by Keycloak, not by this guide.|
 
+### Clinical.Diagnostics
+
+Measurements and questionnaire responses.
+
+#### Observations
+
+The measurements submitted, two per submission. Their values are chosen to produce a known triage colour against the reference ranges they carry.
+
+|Name|Description|
+|---|---|
+|[Pulse 72/min (open episode)](Observation-observation-pulse.html)|Pulse submitted against the unscheduled branch of the open episode's care plan. 72/min falls between the low and high ranges, so triage returns green and the resulting task is routine.|
+|[Pulse 118/min (completed episode)](Observation-observation-pulse-completed.html)|Pulse submitted under the completed episode. 118/min falls in the upper yellow range of 110 to 130, so triage returns yellow and raises a task with priority urgent.|
+|[Oxygen saturation 96% (open episode)](Observation-observation-saturation.html)|Oxygen saturation submitted against the unscheduled branch of the open episode's care plan. 96% is above every absolute range, so triage returns green and the resulting task is routine.|
+|[Oxygen saturation 84% (completed episode)](Observation-observation-saturation-completed.html)|Oxygen saturation submitted under the completed episode. 84% is at or below the red absolute range of 85%, so triage returns red and raises a task with priority asap.|
+
+#### QuestionnaireResponses
+
+The questionnaire answered as part of each submission. The answers are chosen to produce a known triage colour through the answer significance the questionnaire defines.
+
+|Name|Description|
+|---|---|
+|[Questionnaire response, no symptoms (open episode)](QuestionnaireResponse-questionnaireresponse.html)|A symptom questionnaire answered under the open episode with no symptoms reported. Every answer carries green significance, so triage returns green and the resulting task is routine.|
+|[Questionnaire response, exacerbation (completed episode)](QuestionnaireResponse-questionnaireresponse-completed.html)|A symptom questionnaire answered under the completed episode during an exacerbation. Breathlessness 'En del' and greenish sputum both carry red significance, so triage returns red and raises a task with priority asap.|
+
+### Foundation.Security
+
+Submission records for the measurements.
+
+#### Provenances
+
+One per submission, naming the resources submitted together. This is what triggers automated processing, so triage runs because one of these appeared.
+
+|Name|Description|
+|---|---|
+|[Submission under the open episode](Provenance-provenance.html)|The submit record for the open episode: one questionnaire response and two observations, submitted together against the unscheduled branch. This is what triggers automated processing, which should triage all three green with routine tasks.|
+|[Submission under the completed episode](Provenance-provenance-completed.html)|The submit record for the completed episode, made while the plan was still active in May 2025. Triage should return red for the saturation and the questionnaire, and yellow for the pulse.|
+
 ### Specialized.Definitional Artifacts
 
 The plan, the activities it is built from, the questionnaire and the automated-processing rules.
