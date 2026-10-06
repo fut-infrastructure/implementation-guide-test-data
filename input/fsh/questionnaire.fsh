@@ -114,7 +114,7 @@ Description: "COPD symptom questionnaire: treatment status, three symptom scales
 * item[2].answerOption[3].valueString.extension[xhtml].valueString = "<p>Meget</p>"
 
 // S05 — Oplever du mere hoste inden for de seneste 24 timer?
-* item[3].extension[shortText].valueString = " Oplever du mere hoste inden for de seneste 24 timer?"
+* item[3].extension[shortText].valueString = "Oplever du mere hoste inden for de seneste 24 timer?"
 * item[3].extension[answerSignificance][0].extension[answerCondition][0].extension[value].valueString = "Slet ikke"
 * item[3].extension[answerSignificance][0].extension[answerCondition][0].extension[operator].valueCode = #=
 * item[3].extension[answerSignificance][0].extension[significance].valueCoding = $questionnaire-item-significance-indicator#green
