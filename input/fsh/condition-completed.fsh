@@ -14,14 +14,14 @@
 // ended in June 2025, the disease did not. Marking it resolved would say something untrue about
 // the patient, and nothing in the profile ties clinicalStatus to the episode's status.
 
-Instance: condition-completed
+Instance: p01-eoc1-cond
 InstanceOf: ehealth-condition
 Usage: #example
 Title: "Kronisk obstruktiv lungesygdom (completed episode)"
 Description: "The COPD diagnosis as recorded under the completed episode of care. The same diagnosis as the other Condition: each episode carries its own, because a Condition can reference only one episode."
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
-* extension[episodeOfCare].valueReference = Reference(episodeofcare-completed)
+* extension[episodeOfCare].valueReference = Reference(p01-eoc1)
 * clinicalStatus = $condition-clinical#active "active"
 * code = $sks#DJ44 "Kronisk obstruktiv lungesygdom"
-* subject = Reference(patient)
+* subject = Reference(p01)

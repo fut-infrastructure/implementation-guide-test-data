@@ -36,7 +36,7 @@
 // in June 2025, with status finished and a full status history. Two episodes per patient is what
 // the customer's dataset requires, and this is the open one of the pair.
 
-Instance: episodeofcare
+Instance: p01-eoc2
 InstanceOf: ehealth-episodeofcare
 Usage: #example
 Title: "Episode of care"
@@ -54,7 +54,7 @@ Description: "The open episode of care the monitoring plan is delivered under, a
 * statusHistory[=].period.end = "2026-01-08T09:05:00+00:00"
 * statusHistory[+].status = #active
 * statusHistory[=].period.start = "2026-01-08T09:05:00+00:00"
-* diagnosis.condition = Reference(condition)
-* patient = Reference(patient)
+* diagnosis.condition = Reference(p01-eoc2-cond)
+* patient = Reference(p01)
 * period.start = "2026-01-08T09:00:00+00:00"
 * team = Reference(careteam)

@@ -10,11 +10,20 @@ The people the test data is about.
 
 #### Patients
 
-The patient the test data is about. Resolved on the target environment by CPR identifier, never created there.
+The ten patients the test data is about, each a concrete test identity from the target environment. Resolved there by CPR identifier, never created. patient-01 carries the full scenario; the rest are patients only.
 
 |Name|Description|
 |---|---|
-|[Patient (template)](Patient-patient.html)|Template for a test patient. Carries no personal data: the loader substitutes a CPR and the remaining details for each patient it creates. Expected to pre-exist on the target environment; resolved by CPR identifier.|
+|[Hakob Joumøller](Patient-p01.html)|Test patient 01, CPR 0908899393. Expected to pre-exist on the target environment; resolved by CPR identifier.|
+|[Stine Rasmussen](Patient-p02.html)|Test patient 02, CPR 2406799436. Expected to pre-exist on the target environment; resolved by CPR identifier.|
+|[Fie Møller](Patient-p03.html)|Test patient 03, CPR 2105018404. Expected to pre-exist on the target environment; resolved by CPR identifier.|
+|[Line Rasmussen](Patient-p04.html)|Test patient 04, CPR 1007850448. Expected to pre-exist on the target environment; resolved by CPR identifier.|
+|[Adrian Bach](Patient-p05.html)|Test patient 05, CPR 0108720417. Expected to pre-exist on the target environment; resolved by CPR identifier.|
+|[Bente Bach](Patient-p06.html)|Test patient 06, CPR 1406612674. Expected to pre-exist on the target environment; resolved by CPR identifier.|
+|[Anne Pedersen](Patient-p07.html)|Test patient 07, CPR 2307684902. Expected to pre-exist on the target environment; resolved by CPR identifier.|
+|[Jeppe Jørgensen](Patient-p08.html)|Test patient 08, CPR 1210669643. Expected to pre-exist on the target environment; resolved by CPR identifier.|
+|[Jakob Rasmussen](Patient-p09.html)|Test patient 09, CPR 0209723123. Expected to pre-exist on the target environment; resolved by CPR identifier.|
+|[Ina Pedersen](Patient-p10.html)|Test patient 10, CPR 0306909622. Expected to pre-exist on the target environment; resolved by CPR identifier.|
 
 #### Practitioners
 
@@ -47,8 +56,8 @@ The episode everything patient-specific hangs off: the plan is delivered under i
 
 |Name|Description|
 |---|---|
-|[Episode of care](EpisodeOfCare-episodeofcare.html)|The open episode of care the monitoring plan is delivered under, addressing the COPD diagnosis.|
-|[Episode of care (completed)](EpisodeOfCare-episodeofcare-completed.html)|A completed episode of care for the same patient and the same COPD diagnosis, which ran from March to June 2025. Shows the closed period and the full status history that a finished episode carries.|
+|[Episode of care (completed)](EpisodeOfCare-p01-eoc1.html)|A completed episode of care for the same patient and the same COPD diagnosis, which ran from March to June 2025. Shows the closed period and the full status history that a finished episode carries.|
+|[Episode of care](EpisodeOfCare-p01-eoc2.html)|The open episode of care the monitoring plan is delivered under, addressing the COPD diagnosis.|
 
 ### Clinical.Summary
 
@@ -60,8 +69,8 @@ The diagnosis the episode addresses, and the reason the plan is in place.
 
 |Name|Description|
 |---|---|
-|[Kronisk obstruktiv lungesygdom](Condition-condition.html)|The COPD diagnosis the episode of care addresses and the monitoring plan responds to.|
-|[Kronisk obstruktiv lungesygdom (completed episode)](Condition-condition-completed.html)|The COPD diagnosis as recorded under the completed episode of care. The same diagnosis as the other Condition: each episode carries its own, because a Condition can reference only one episode.|
+|[Kronisk obstruktiv lungesygdom (completed episode)](Condition-p01-eoc1-cond.html)|The COPD diagnosis as recorded under the completed episode of care. The same diagnosis as the other Condition: each episode carries its own, because a Condition can reference only one episode.|
+|[Kronisk obstruktiv lungesygdom](Condition-p01-eoc2-cond.html)|The COPD diagnosis the episode of care addresses and the monitoring plan responds to.|
 
 #### ClinicalImpressions
 
@@ -69,12 +78,12 @@ The triage result for each submitted resource. NOT loaded — automated processi
 
 |Name|Description|
 |---|---|
-|[Triage of pulse 72/min — green](ClinicalImpression-clinicalimpression-pulse.html)|Expected triage result for the pulse submitted under the open episode. 72/min falls between the low and high alarm ranges, so the finding is 'within reference range' and the overall assessment green.|
-|[Triage of pulse 118/min — yellow](ClinicalImpression-clinicalimpression-pulse-completed.html)|Expected triage result for the pulse submitted under the completed episode. 118/min falls in the upper yellow range of 110 to 130, so the finding is 'outside reference range' with the GAL coding, and the overall assessment yellow.|
-|[Triage of the questionnaire response — green](ClinicalImpression-clinicalimpression-questionnaireresponse.html)|Expected triage result for the questionnaire response submitted under the open episode. Four scored answers, all green, so the overall assessment is green. Carries no description: the questionnaire rule does not set one.|
-|[Triage of the questionnaire response — red](ClinicalImpression-clinicalimpression-questionnaireresponse-completed.html)|Expected triage result for the questionnaire response submitted under the completed episode. Five scored answers, three red and two yellow; the rule takes the highest, so the overall assessment is red.|
-|[Triage of saturation 96% — green](ClinicalImpression-clinicalimpression-saturation.html)|Expected triage result for the saturation submitted under the open episode. 96% is within every absolute range, so the finding is 'within reference range' and the overall assessment green.|
-|[Triage of saturation 84% — red](ClinicalImpression-clinicalimpression-saturation-completed.html)|Expected triage result for the saturation submitted under the completed episode. 84% is at or below the red alarm range of 85%, so the finding is 'outside reference range' with the RAL coding, and the overall assessment red.|
+|[Triage of pulse 118/min — yellow](ClinicalImpression-p01-cp1-ci-pulse.html)|Expected triage result for the pulse submitted under the completed episode. 118/min falls in the upper yellow range of 110 to 130, so the finding is 'outside reference range' with the GAL coding, and the overall assessment yellow.|
+|[Triage of the questionnaire response — red](ClinicalImpression-p01-cp1-ci-qr.html)|Expected triage result for the questionnaire response submitted under the completed episode. Five scored answers, three red and two yellow; the rule takes the highest, so the overall assessment is red.|
+|[Triage of saturation 84% — red](ClinicalImpression-p01-cp1-ci-sat.html)|Expected triage result for the saturation submitted under the completed episode. 84% is at or below the red alarm range of 85%, so the finding is 'outside reference range' with the RAL coding, and the overall assessment red.|
+|[Triage of pulse 72/min — green](ClinicalImpression-p01-cp2-ci-pulse.html)|Expected triage result for the pulse submitted under the open episode. 72/min falls between the low and high alarm ranges, so the finding is 'within reference range' and the overall assessment green.|
+|[Triage of the questionnaire response — green](ClinicalImpression-p01-cp2-ci-qr.html)|Expected triage result for the questionnaire response submitted under the open episode. Four scored answers, all green, so the overall assessment is green. Carries no description: the questionnaire rule does not set one.|
+|[Triage of saturation 96% — green](ClinicalImpression-p01-cp2-ci-sat.html)|Expected triage result for the saturation submitted under the open episode. 96% is within every absolute range, so the finding is 'within reference range' and the overall assessment green.|
 
 ### Clinical.Care Provision
 
@@ -86,8 +95,8 @@ The plan definition as delivered to the patient, one per episode. Normally creat
 
 |Name|Description|
 |---|---|
-|[Care plan (active)](CarePlan-careplan.html)|The monitoring plan as delivered under the open episode of care. Normally created by $apply, which would also create one ServiceRequest per activity.|
-|[Care plan (completed)](CarePlan-careplan-completed.html)|The monitoring plan as delivered under the completed episode of care, which ran from March to June 2025. Status completed, with the full status history and — following the environment's behaviour — a period that is left open.|
+|[Care plan (completed)](CarePlan-p01-cp1.html)|The monitoring plan as delivered under the completed episode of care, which ran from March to June 2025. Status completed, with the full status history and — following the environment's behaviour — a period that is left open.|
+|[Care plan (active)](CarePlan-p01-cp2.html)|The monitoring plan as delivered under the open episode of care. Normally created by $apply, which would also create one ServiceRequest per activity.|
 
 #### ServiceRequests
 
@@ -95,34 +104,34 @@ One per activity of a care plan, created by $apply alongside it. A measurement o
 
 |Name|Description|
 |---|---|
-|[Closing (scheduled)](ServiceRequest-sr-closing.html)|Guidance screen shown after the scheduled round is complete.|
-|[Closing (scheduled) — completed](ServiceRequest-sr-completed-closing.html)|Guidance screen shown after the scheduled round is complete.|
-|[Head activity (extra) — completed](ServiceRequest-sr-completed-extra-head.html)|The container for the unscheduled branch.|
-|[Pulse (extra) — completed](ServiceRequest-sr-completed-extra-pulse.html)|The unscheduled pulse measurement, with the same four absolute reference ranges as the scheduled one.|
-|[Questionnaire (extra) — completed](ServiceRequest-sr-completed-extra-questionnaire.html)|The unscheduled symptom questionnaire. This is the request a test questionnaire response is most easily submitted against, since it is not bound to a window.|
-|[Saturation and pulse device group (extra) — completed](ServiceRequest-sr-completed-extra-sat-pulse.html)|Groups the unscheduled saturation and pulse measurements as one device group.|
-|[Oxygen saturation (extra) — completed](ServiceRequest-sr-completed-extra-saturation.html)|The unscheduled oxygen saturation measurement, with the same absolute reference ranges as the scheduled one. A submission against this request can be made at any time.|
-|[Head activity (scheduled) — completed](ServiceRequest-sr-completed-head.html)|The container for the scheduled branch. Nothing is submitted against it; it groups the activities below.|
-|[Introduction (scheduled) — completed](ServiceRequest-sr-completed-intro.html)|Guidance screen shown at the start of the scheduled measurement round.|
-|[Pulse (scheduled) — completed](ServiceRequest-sr-completed-pulse.html)|The scheduled pulse measurement. Carries four absolute reference ranges, so both a low and a high value triage red: red at or below 50/min and at or above 130/min, yellow in between.|
-|[Questionnaire (scheduled) — completed](ServiceRequest-sr-completed-questionnaire.html)|The scheduled symptom questionnaire. A questionnaire response is submitted against this request and triaged on its answer significance.|
-|[Saturation and pulse device group (scheduled) — completed](ServiceRequest-sr-completed-sat-pulse.html)|Groups the saturation and pulse measurements as one device group, so both are taken from the same device in one go.|
-|[Saturation and pulse introduction (scheduled) — completed](ServiceRequest-sr-completed-sat-pulse-intro.html)|Guidance screen introducing the saturation and pulse measurements.|
-|[Saturation and pulse preparation (scheduled) — completed](ServiceRequest-sr-completed-sat-pulse-prep.html)|Guidance screen telling the patient how to prepare before measuring.|
-|[Oxygen saturation (scheduled) — completed](ServiceRequest-sr-completed-saturation.html)|The scheduled oxygen saturation measurement. Carries the absolute reference ranges its triage rule compares a submitted value against: red at or below 85%, yellow from 85% to 88%.|
-|[Head activity (extra)](ServiceRequest-sr-extra-head.html)|The container for the unscheduled branch.|
-|[Pulse (extra)](ServiceRequest-sr-extra-pulse.html)|The unscheduled pulse measurement, with the same four absolute reference ranges as the scheduled one.|
-|[Questionnaire (extra)](ServiceRequest-sr-extra-questionnaire.html)|The unscheduled symptom questionnaire. This is the request a test questionnaire response is most easily submitted against, since it is not bound to a window.|
-|[Saturation and pulse device group (extra)](ServiceRequest-sr-extra-sat-pulse.html)|Groups the unscheduled saturation and pulse measurements as one device group.|
-|[Oxygen saturation (extra)](ServiceRequest-sr-extra-saturation.html)|The unscheduled oxygen saturation measurement, with the same absolute reference ranges as the scheduled one. A submission against this request can be made at any time.|
-|[Head activity (scheduled)](ServiceRequest-sr-head.html)|The container for the scheduled branch. Nothing is submitted against it; it groups the activities below.|
-|[Introduction (scheduled)](ServiceRequest-sr-intro.html)|Guidance screen shown at the start of the scheduled measurement round.|
-|[Pulse (scheduled)](ServiceRequest-sr-pulse.html)|The scheduled pulse measurement. Carries four absolute reference ranges, so both a low and a high value triage red: red at or below 50/min and at or above 130/min, yellow in between.|
-|[Questionnaire (scheduled)](ServiceRequest-sr-questionnaire.html)|The scheduled symptom questionnaire. A questionnaire response is submitted against this request and triaged on its answer significance.|
-|[Saturation and pulse device group (scheduled)](ServiceRequest-sr-sat-pulse.html)|Groups the saturation and pulse measurements as one device group, so both are taken from the same device in one go.|
-|[Saturation and pulse introduction (scheduled)](ServiceRequest-sr-sat-pulse-intro.html)|Guidance screen introducing the saturation and pulse measurements.|
-|[Saturation and pulse preparation (scheduled)](ServiceRequest-sr-sat-pulse-prep.html)|Guidance screen telling the patient how to prepare before measuring.|
-|[Oxygen saturation (scheduled)](ServiceRequest-sr-saturation.html)|The scheduled oxygen saturation measurement. Carries the absolute reference ranges its triage rule compares a submitted value against: red at or below 85%, yellow from 85% to 88%.|
+|[Closing (scheduled) — completed](ServiceRequest-p01-cp1-sr-closing.html)|Guidance screen shown after the scheduled round is complete.|
+|[Head activity (extra) — completed](ServiceRequest-p01-cp1-sr-extra-head.html)|The container for the unscheduled branch.|
+|[Pulse (extra) — completed](ServiceRequest-p01-cp1-sr-extra-pulse.html)|The unscheduled pulse measurement, with the same four absolute reference ranges as the scheduled one.|
+|[Questionnaire (extra) — completed](ServiceRequest-p01-cp1-sr-extra-questionnaire.html)|The unscheduled symptom questionnaire. This is the request a test questionnaire response is most easily submitted against, since it is not bound to a window.|
+|[Saturation and pulse device group (extra) — completed](ServiceRequest-p01-cp1-sr-extra-sat-pulse.html)|Groups the unscheduled saturation and pulse measurements as one device group.|
+|[Oxygen saturation (extra) — completed](ServiceRequest-p01-cp1-sr-extra-saturation.html)|The unscheduled oxygen saturation measurement, with the same absolute reference ranges as the scheduled one. A submission against this request can be made at any time.|
+|[Head activity (scheduled) — completed](ServiceRequest-p01-cp1-sr-head.html)|The container for the scheduled branch. Nothing is submitted against it; it groups the activities below.|
+|[Introduction (scheduled) — completed](ServiceRequest-p01-cp1-sr-intro.html)|Guidance screen shown at the start of the scheduled measurement round.|
+|[Pulse (scheduled) — completed](ServiceRequest-p01-cp1-sr-pulse.html)|The scheduled pulse measurement. Carries four absolute reference ranges, so both a low and a high value triage red: red at or below 50/min and at or above 130/min, yellow in between.|
+|[Questionnaire (scheduled) — completed](ServiceRequest-p01-cp1-sr-questionnaire.html)|The scheduled symptom questionnaire. A questionnaire response is submitted against this request and triaged on its answer significance.|
+|[Saturation and pulse device group (scheduled) — completed](ServiceRequest-p01-cp1-sr-sat-pulse.html)|Groups the saturation and pulse measurements as one device group, so both are taken from the same device in one go.|
+|[Saturation and pulse introduction (scheduled) — completed](ServiceRequest-p01-cp1-sr-sat-pulse-intro.html)|Guidance screen introducing the saturation and pulse measurements.|
+|[Saturation and pulse preparation (scheduled) — completed](ServiceRequest-p01-cp1-sr-sat-pulse-prep.html)|Guidance screen telling the patient how to prepare before measuring.|
+|[Oxygen saturation (scheduled) — completed](ServiceRequest-p01-cp1-sr-saturation.html)|The scheduled oxygen saturation measurement. Carries the absolute reference ranges its triage rule compares a submitted value against: red at or below 85%, yellow from 85% to 88%.|
+|[Closing (scheduled)](ServiceRequest-p01-cp2-sr-closing.html)|Guidance screen shown after the scheduled round is complete.|
+|[Head activity (extra)](ServiceRequest-p01-cp2-sr-extra-head.html)|The container for the unscheduled branch.|
+|[Pulse (extra)](ServiceRequest-p01-cp2-sr-extra-pulse.html)|The unscheduled pulse measurement, with the same four absolute reference ranges as the scheduled one.|
+|[Questionnaire (extra)](ServiceRequest-p01-cp2-sr-extra-questionnaire.html)|The unscheduled symptom questionnaire. This is the request a test questionnaire response is most easily submitted against, since it is not bound to a window.|
+|[Saturation and pulse device group (extra)](ServiceRequest-p01-cp2-sr-extra-sat-pulse.html)|Groups the unscheduled saturation and pulse measurements as one device group.|
+|[Oxygen saturation (extra)](ServiceRequest-p01-cp2-sr-extra-saturation.html)|The unscheduled oxygen saturation measurement, with the same absolute reference ranges as the scheduled one. A submission against this request can be made at any time.|
+|[Head activity (scheduled)](ServiceRequest-p01-cp2-sr-head.html)|The container for the scheduled branch. Nothing is submitted against it; it groups the activities below.|
+|[Introduction (scheduled)](ServiceRequest-p01-cp2-sr-intro.html)|Guidance screen shown at the start of the scheduled measurement round.|
+|[Pulse (scheduled)](ServiceRequest-p01-cp2-sr-pulse.html)|The scheduled pulse measurement. Carries four absolute reference ranges, so both a low and a high value triage red: red at or below 50/min and at or above 130/min, yellow in between.|
+|[Questionnaire (scheduled)](ServiceRequest-p01-cp2-sr-questionnaire.html)|The scheduled symptom questionnaire. A questionnaire response is submitted against this request and triaged on its answer significance.|
+|[Saturation and pulse device group (scheduled)](ServiceRequest-p01-cp2-sr-sat-pulse.html)|Groups the saturation and pulse measurements as one device group, so both are taken from the same device in one go.|
+|[Saturation and pulse introduction (scheduled)](ServiceRequest-p01-cp2-sr-sat-pulse-intro.html)|Guidance screen introducing the saturation and pulse measurements.|
+|[Saturation and pulse preparation (scheduled)](ServiceRequest-p01-cp2-sr-sat-pulse-prep.html)|Guidance screen telling the patient how to prepare before measuring.|
+|[Oxygen saturation (scheduled)](ServiceRequest-p01-cp2-sr-saturation.html)|The scheduled oxygen saturation measurement. Carries the absolute reference ranges its triage rule compares a submitted value against: red at or below 85%, yellow from 85% to 88%.|
 
 #### CareTeams
 
@@ -142,10 +151,10 @@ The measurements submitted, two per submission. Their values are chosen to produ
 
 |Name|Description|
 |---|---|
-|[Pulse 72/min (open episode)](Observation-observation-pulse.html)|Pulse submitted against the unscheduled branch of the open episode's care plan. 72/min falls between the low and high ranges, so triage returns green and the resulting task is routine.|
-|[Pulse 118/min (completed episode)](Observation-observation-pulse-completed.html)|Pulse submitted under the completed episode. 118/min falls in the upper yellow range of 110 to 130, so triage returns yellow and raises a task with priority urgent.|
-|[Oxygen saturation 96% (open episode)](Observation-observation-saturation.html)|Oxygen saturation submitted against the unscheduled branch of the open episode's care plan. 96% is above every absolute range, so triage returns green and the resulting task is routine.|
-|[Oxygen saturation 84% (completed episode)](Observation-observation-saturation-completed.html)|Oxygen saturation submitted under the completed episode. 84% is at or below the red absolute range of 85%, so triage returns red and raises a task with priority asap.|
+|[Pulse 118/min (completed episode)](Observation-p01-cp1-pulse.html)|Pulse submitted under the completed episode. 118/min falls in the upper yellow range of 110 to 130, so triage returns yellow and raises a task with priority urgent.|
+|[Oxygen saturation 84% (completed episode)](Observation-p01-cp1-sat.html)|Oxygen saturation submitted under the completed episode. 84% is at or below the red absolute range of 85%, so triage returns red and raises a task with priority asap.|
+|[Pulse 72/min (open episode)](Observation-p01-cp2-pulse.html)|Pulse submitted against the unscheduled branch of the open episode's care plan. 72/min falls between the low and high ranges, so triage returns green and the resulting task is routine.|
+|[Oxygen saturation 96% (open episode)](Observation-p01-cp2-sat.html)|Oxygen saturation submitted against the unscheduled branch of the open episode's care plan. 96% is above every absolute range, so triage returns green and the resulting task is routine.|
 
 #### QuestionnaireResponses
 
@@ -153,8 +162,8 @@ The questionnaire answered as part of each submission. The answers are chosen to
 
 |Name|Description|
 |---|---|
-|[Questionnaire response, no symptoms (open episode)](QuestionnaireResponse-questionnaireresponse.html)|A symptom questionnaire answered under the open episode with no symptoms reported. Every answer carries green significance, so triage returns green and the resulting task is routine.|
-|[Questionnaire response, exacerbation (completed episode)](QuestionnaireResponse-questionnaireresponse-completed.html)|A symptom questionnaire answered under the completed episode during an exacerbation. Breathlessness 'En del' and greenish sputum both carry red significance, so triage returns red and raises a task with priority asap.|
+|[Questionnaire response, exacerbation (completed episode)](QuestionnaireResponse-p01-cp1-qr.html)|A symptom questionnaire answered under the completed episode during an exacerbation. Breathlessness 'En del' and greenish sputum both carry red significance, so triage returns red and raises a task with priority asap.|
+|[Questionnaire response, no symptoms (open episode)](QuestionnaireResponse-p01-cp2-qr.html)|A symptom questionnaire answered under the open episode with no symptoms reported. Every answer carries green significance, so triage returns green and the resulting task is routine.|
 
 ### Foundation.Security
 
@@ -166,8 +175,8 @@ One per submission, naming the resources submitted together. This is what trigge
 
 |Name|Description|
 |---|---|
-|[Submission under the open episode](Provenance-provenance.html)|The submit record for the open episode: one questionnaire response and two observations, submitted together against the unscheduled branch. This is what triggers automated processing, which should triage all three green with routine tasks.|
-|[Submission under the completed episode](Provenance-provenance-completed.html)|The submit record for the completed episode, made while the plan was still active in May 2025. Triage should return red for the saturation and the questionnaire, and yellow for the pulse.|
+|[Submission under the completed episode](Provenance-p01-cp1-prov.html)|The submit record for the completed episode, made while the plan was still active in May 2025. Triage should return red for the saturation and the questionnaire, and yellow for the pulse.|
+|[Submission under the open episode](Provenance-p01-cp2-prov.html)|The submit record for the open episode: one questionnaire response and two observations, submitted together against the unscheduled branch. This is what triggers automated processing, which should triage all three green with routine tasks.|
 
 ### Base.Workflow
 
@@ -179,12 +188,12 @@ The assessment task raised with each triage result. NOT loaded either; its prior
 
 |Name|Description|
 |---|---|
-|[Assess pulse triage — routine](Task-task-pulse.html)|Expected task for the green pulse result under the open episode. Priority routine, because triage returned green.|
-|[Assess pulse triage — urgent](Task-task-pulse-completed.html)|Expected task for the yellow pulse result under the completed episode. Priority urgent, because the value fell in a GAL range.|
-|[Evaluate questionnaire response triage — routine](Task-task-questionnaireresponse.html)|Expected task for the green questionnaire result under the open episode. Carries the questionnaire wording rather than the measurement wording.|
-|[Evaluate questionnaire response triage — asap](Task-task-questionnaireresponse-completed.html)|Expected task for the red questionnaire result under the completed episode. Priority asap, because the highest answer significance was red.|
-|[Assess saturation triage — routine](Task-task-saturation.html)|Expected task for the green saturation result under the open episode. Priority routine, because triage returned green.|
-|[Assess saturation triage — asap](Task-task-saturation-completed.html)|Expected task for the red saturation result under the completed episode. Priority asap, because the value fell in a RAL range.|
+|[Assess pulse triage — urgent](Task-p01-cp1-task-pulse.html)|Expected task for the yellow pulse result under the completed episode. Priority urgent, because the value fell in a GAL range.|
+|[Evaluate questionnaire response triage — asap](Task-p01-cp1-task-qr.html)|Expected task for the red questionnaire result under the completed episode. Priority asap, because the highest answer significance was red.|
+|[Assess saturation triage — asap](Task-p01-cp1-task-sat.html)|Expected task for the red saturation result under the completed episode. Priority asap, because the value fell in a RAL range.|
+|[Assess pulse triage — routine](Task-p01-cp2-task-pulse.html)|Expected task for the green pulse result under the open episode. Priority routine, because triage returned green.|
+|[Evaluate questionnaire response triage — routine](Task-p01-cp2-task-qr.html)|Expected task for the green questionnaire result under the open episode. Carries the questionnaire wording rather than the measurement wording.|
+|[Assess saturation triage — routine](Task-p01-cp2-task-sat.html)|Expected task for the green saturation result under the open episode. Priority routine, because triage returned green.|
 
 ### Specialized.Definitional Artifacts
 

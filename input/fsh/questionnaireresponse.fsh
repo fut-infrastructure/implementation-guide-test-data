@@ -39,18 +39,18 @@ RuleSet: SubmittedQR(episode, sr, authored)
 * basedOn = Reference({sr})
 * questionnaire = Canonical(questionnaire)
 * status = #completed
-* subject = Reference(patient)
+* subject = Reference(p01)
 * authored = "{authored}"
-* source = Reference(patient)
+* source = Reference(p01)
 
 // ─── the open episode: a well patient, every answer green ───────────────────────────────────────
 
-Instance: questionnaireresponse
+Instance: p01-cp2-qr
 InstanceOf: ehealth-questionnaireresponse
 Usage: #example
 Title: "Questionnaire response, no symptoms (open episode)"
 Description: "A symptom questionnaire answered under the open episode with no symptoms reported. Every answer carries green significance, so triage returns green and the resulting task is routine."
-* insert SubmittedQR(episodeofcare, sr-extra-questionnaire, 2026-01-12T08:30:00+00:00)
+* insert SubmittedQR(p01-eoc2,p01-cp2-sr-extra-questionnaire, 2026-01-12T08:30:00+00:00)
 * item[0].linkId = "1.2.208.176.7.200.2,02572a07-8923-4ea3-9ee9-f9aa10344379,ehealth.sundhed.dk"
 * item[0].answer.valueString = "Nej"
 * item[+].linkId = "1.2.208.176.7.200.2,0c8a7cbd-1dc9-4553-a0f3-9b3d046486a7,ehealth.sundhed.dk"
@@ -71,12 +71,12 @@ Description: "A symptom questionnaire answered under the open episode with no sy
 // Dated inside the completed care plan's window. Both exacerbation treatments are in progress,
 // breathlessness is "En del" (red) and the sputum is greenish (red), so the response triages red.
 
-Instance: questionnaireresponse-completed
+Instance: p01-cp1-qr
 InstanceOf: ehealth-questionnaireresponse
 Usage: #example
 Title: "Questionnaire response, exacerbation (completed episode)"
 Description: "A symptom questionnaire answered under the completed episode during an exacerbation. Breathlessness 'En del' and greenish sputum both carry red significance, so triage returns red and raises a task with priority asap."
-* insert SubmittedQR(episodeofcare-completed, sr-completed-extra-questionnaire, 2025-05-14T10:00:00+00:00)
+* insert SubmittedQR(p01-eoc1,p01-cp1-sr-extra-questionnaire, 2025-05-14T10:00:00+00:00)
 * item[0].linkId = "1.2.208.176.7.200.2,02572a07-8923-4ea3-9ee9-f9aa10344379,ehealth.sundhed.dk"
 * item[0].answer.valueString = "Ja"
 * item[+].linkId = "1.2.208.176.7.200.2,0c8a7cbd-1dc9-4553-a0f3-9b3d046486a7,ehealth.sundhed.dk"

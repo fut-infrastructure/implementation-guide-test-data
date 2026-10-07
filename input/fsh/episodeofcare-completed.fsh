@@ -25,7 +25,7 @@
 // three months in 2025. The dates here are the intent; putting them into the database is a
 // separate step the loader cannot do through the FHIR API.
 
-Instance: episodeofcare-completed
+Instance: p01-eoc1
 InstanceOf: ehealth-episodeofcare
 Usage: #example
 Title: "Episode of care (completed)"
@@ -49,8 +49,8 @@ Description: "A completed episode of care for the same patient and the same COPD
 * statusHistory[+].status = #finished
 * statusHistory[=].period.start = "2025-06-30T12:00:00+00:00"
 // Its own Condition, not the open episode's — see condition-completed.fsh.
-* diagnosis.condition = Reference(condition-completed)
-* patient = Reference(patient)
+* diagnosis.condition = Reference(p01-eoc1-cond)
+* patient = Reference(p01)
 * period.start = "2025-03-03T09:00:00+00:00"
 * period.end = "2025-06-30T12:00:00+00:00"
 * team = Reference(careteam)

@@ -41,7 +41,7 @@ RuleSet: SubmitProvenance(episode, qr, obsSat, obsPulse, srQ, srSat, srPulse, re
 * target[+] = Reference({obsPulse})
 * recorded = "{recorded}"
 * policy = "http://ehealth.sundhed.dk/policy/ehealth/coherent-submitted-measurement"
-* agent.who = Reference(patient)
+* agent.who = Reference(p01)
 * entity[0].role = #quotation
 * entity[=].what = Reference({srQ})
 * entity[+].role = #quotation
@@ -51,16 +51,16 @@ RuleSet: SubmitProvenance(episode, qr, obsSat, obsPulse, srQ, srSat, srPulse, re
 * entity[+].role = #quotation
 * entity[=].what = Reference({episode})
 
-Instance: provenance
+Instance: p01-cp2-prov
 InstanceOf: ehealth-provenance
 Usage: #example
 Title: "Submission under the open episode"
 Description: "The submit record for the open episode: one questionnaire response and two observations, submitted together against the unscheduled branch. This is what triggers automated processing, which should triage all three green with routine tasks."
-* insert SubmitProvenance(episodeofcare, questionnaireresponse, observation-saturation, observation-pulse, sr-extra-questionnaire, sr-extra-saturation, sr-extra-pulse, 2026-01-12T08:30:05+00:00)
+* insert SubmitProvenance(p01-eoc2,p01-cp2-qr,p01-cp2-sat,p01-cp2-pulse,p01-cp2-sr-extra-questionnaire,p01-cp2-sr-extra-saturation,p01-cp2-sr-extra-pulse, 2026-01-12T08:30:05+00:00)
 
-Instance: provenance-completed
+Instance: p01-cp1-prov
 InstanceOf: ehealth-provenance
 Usage: #example
 Title: "Submission under the completed episode"
 Description: "The submit record for the completed episode, made while the plan was still active in May 2025. Triage should return red for the saturation and the questionnaire, and yellow for the pulse."
-* insert SubmitProvenance(episodeofcare-completed, questionnaireresponse-completed, observation-saturation-completed, observation-pulse-completed, sr-completed-extra-questionnaire, sr-completed-extra-saturation, sr-completed-extra-pulse, 2025-05-14T10:00:05+00:00)
+* insert SubmitProvenance(p01-eoc1,p01-cp1-qr,p01-cp1-sat,p01-cp1-pulse,p01-cp1-sr-extra-questionnaire,p01-cp1-sr-extra-saturation,p01-cp1-sr-extra-pulse, 2025-05-14T10:00:05+00:00)

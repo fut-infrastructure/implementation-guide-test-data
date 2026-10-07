@@ -1,60 +1,270 @@
-// Patient — A TEMPLATE, AND ANONYMOUS.
+// Patients — TEN CONCRETE TEST IDENTITIES, taken from the target environment's own samples.
 //
-// Not created on the target environment. The data loader resolves a Patient by CPR identifier to
-// find the real resource id there, exactly as it does for an Organization — see organization.fsh
-// for the conventions that apply. The resource id used here is a local handle that never reaches
-// the target.
+// Not created on the target. The loader resolves a Patient by CPR, so the CPR is the one value
+// that has to match something already there — and these ten do, because they were read back from
+// the environment rather than invented.
 //
-// ONE PATIENT IS DEFINED HERE AND IT DESCRIBES NOBODY. The loader produces ten patients from this
-// shape, substituting a CPR and the other personal details per copy. So every identifying element
-// is either a ${PLACEHOLDER} or absent, and the resource's job is to show which elements a patient
-// carries, not to carry values.
+// SYNTHETIC PEOPLE, NOT ANONYMISED ONES. An earlier version of this file held a single template
+// with ${PLACEHOLDER}s in every identifying element, because inventing a person is not acceptable
+// and naming a real one less so. These ten are test identities that already exist, so the real
+// values can be used: that removes the placeholders, removes the CPR regex error they caused, and
+// gives the ten distinct CPRs the dataset needs. The addresses do not always agree with their
+// postcodes — Hasselvej in Nuuk, Weidekampsgade in the Faroes — which is itself a sign the data is
+// generated rather than real.
 //
-// WHY SOME ELEMENTS ARE PLACEHOLDERS AND OTHERS ARE OMITTED. A ${PLACEHOLDER} is only safe in an
-// element typed as a plain string, where there is no binding and no pattern to violate. The
-// elements left out are the ones where a placeholder would be invalid data rather than a marker:
+// ONE OF THEM CARRIES THE SCENARIO. patient-01 has the two episodes, their care plans, service
+// requests, submissions and triage results. The other nine exist as patients only, ready for the
+// episodes to be added per patient.
 //
-//   birthDate       type `date`. "${BIRTHDATE}" is not a date and fails the type check. The
-//                   element is 0..1, so leaving it out is clean, and a birth date is identifying
-//                   in combination with anything else anyway.
-//   maritalStatus   CodeableConcept, extensible binding, and the profile carries an invariant
-//                   restricting which forms of marriage are permitted in the Danish context.
-//                   0..1, so omitted.
-//   address extensions
-//                   municipalityCode and regionalSubDivisionCodes are CodeableConcepts with bound
-//                   value sets, and they pin the patient to a municipality and a region. Omitted.
+// generalPractitioner IS A LOGICAL REFERENCE — an identifier with no reference, keyed by
+// Ydernummer (urn:oid:1.2.208.176.1.4), which the core IG defines as a NamingSystem. So it names a
+// practice without needing a resource in this guide to point at.
 //
-// GENDER IS THE EXCEPTION. It is 1..1 with a required binding, so it can be neither omitted nor
-// given a placeholder. administrative-gender includes `unknown`, which is the honest value for a
-// template that describes no one — it validates, and it says the real value is supplied elsewhere.
-//
-// SO THE CPR IS STILL THE ONLY FIELD THAT HAS TO BE RIGHT, and here it is not even that: it is the
-// one value the loader must supply for the resolution to find anything.
+// GENERATED ONCE from the environment's samples, then maintained here by hand.
 
-Instance: patient
+Instance: p01
 InstanceOf: ehealth-patient
 Usage: #example
-Title: "Patient (template)"
-Description: "Template for a test patient. Carries no personal data: the loader substitutes a CPR and the remaining details for each patient it creates. Expected to pre-exist on the target environment; resolved by CPR identifier."
-// PLACEHOLDERS: see aliases.fsh. These sit in string-typed elements, so they validate cleanly.
+Title: "Hakob Joumøller"
+Description: "Test patient 01, CPR 0908899393. Expected to pre-exist on the target environment; resolved by CPR identifier."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
-* identifier[cpr].value = "${CPR}"
-* active = true
-// name[official] is discriminated by a fixed use = #official, so SUSHI sets `use` itself.
-// family is 1..1 within the slice; given is optional but kept, to show both parts.
-* name[official].family = "${FAMILY_NAME}"
-* name[official].given = "${GIVEN_NAME}"
-// telecom[NemSMS] is discriminated by a fixed value = "NemSMS" with system patterned to #other; a
-// path rule instantiates the slice and SUSHI fills both in. Neither is personal data — the slice
-// records that the patient is reachable by NemSMS, it does not hold a number.
+* identifier[cpr].value = "0908899393"
+* name[official].family = "Joumøller"
+* name[official].given = "Hakob"
 * telecom[NemSMS]
-// 1..1 with a required binding: cannot be omitted, cannot take a placeholder. See the header.
-* gender = #unknown
-// address[officialHomeAddress] is discriminated by a fixed use = #home.
+* gender = #male
+* birthDate = "1989-08-09"
 * address[officialHomeAddress]
   * type = #postal
-  * line = "${ADDRESS_LINE}"
-  * city = "${CITY}"
-  * postalCode = "${POSTAL_CODE}"
+  * line = "Helgolandsgade 354"
+  * city = "Terndrup"
+  * postalCode = "9575"
   * country = "DK"
+  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0420
+  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-83
+* maritalStatus = $v3-MaritalStatus#U "unmarried"
+* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
+* generalPractitioner.identifier.value = "077704"
+
+Instance: p02
+InstanceOf: ehealth-patient
+Usage: #example
+Title: "Stine Rasmussen"
+Description: "Test patient 02, CPR 2406799436. Expected to pre-exist on the target environment; resolved by CPR identifier."
+* identifier[cpr].use = #official
+* identifier[cpr].system = $cpr
+* identifier[cpr].value = "2406799436"
+* active = true
+* name[official].family = "Rasmussen"
+* name[official].given = "Stine"
+* gender = #female
+* birthDate = "1979-06-24"
+* address[officialHomeAddress]
+  * type = #postal
+  * line = "Weidekampsgade 38"
+  * city = "Frederiksberg C"
+  * postalCode = "1951"
+  * country = "DK"
+  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0740
+  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-82
+* maritalStatus = $v3-MaritalStatus#U "unmarried"
+* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
+* generalPractitioner.identifier.value = "077704"
+
+Instance: p03
+InstanceOf: ehealth-patient
+Usage: #example
+Title: "Fie Møller"
+Description: "Test patient 03, CPR 2105018404. Expected to pre-exist on the target environment; resolved by CPR identifier."
+* identifier[cpr].use = #official
+* identifier[cpr].system = $cpr
+* identifier[cpr].value = "2105018404"
+* name[official].family = "Møller"
+* name[official].given = "Fie"
+* gender = #female
+* birthDate = "2001-05-21"
+* address[officialHomeAddress]
+  * type = #postal
+  * line = "Dronninggårds Allé 331"
+  * city = "København K"
+  * postalCode = "1216"
+  * country = "DK"
+  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0575
+  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-83
+* maritalStatus = $v3-MaritalStatus#U "unmarried"
+* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
+* generalPractitioner.identifier.value = "077704"
+
+Instance: p04
+InstanceOf: ehealth-patient
+Usage: #example
+Title: "Line Rasmussen"
+Description: "Test patient 04, CPR 1007850448. Expected to pre-exist on the target environment; resolved by CPR identifier."
+* identifier[cpr].use = #official
+* identifier[cpr].system = $cpr
+* identifier[cpr].value = "1007850448"
+* name[official].family = "Rasmussen"
+* name[official].given = "Line"
+* gender = #female
+* birthDate = "1985-07-10"
+* address[officialHomeAddress]
+  * type = #postal
+  * line = "Hasselvej 171"
+  * city = "Nuuk"
+  * postalCode = "3900"
+  * country = "DK"
+  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0740
+  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-82
+* maritalStatus = $v3-MaritalStatus#U "unmarried"
+* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
+* generalPractitioner.identifier.value = "077704"
+
+Instance: p05
+InstanceOf: ehealth-patient
+Usage: #example
+Title: "Adrian Bach"
+Description: "Test patient 05, CPR 0108720417. Expected to pre-exist on the target environment; resolved by CPR identifier."
+* identifier[cpr].use = #official
+* identifier[cpr].system = $cpr
+* identifier[cpr].value = "0108720417"
+* name[official].family = "Bach"
+* name[official].given = "Adrian"
+* gender = #male
+* birthDate = "1972-08-01"
+* address[officialHomeAddress]
+  * type = #postal
+  * line = "Hasselvej 405"
+  * city = "København K"
+  * postalCode = "1360"
+  * country = "DK"
+  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0710
+  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-82
+* maritalStatus = $v3-MaritalStatus#U "unmarried"
+* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
+* generalPractitioner.identifier.value = "077704"
+
+Instance: p06
+InstanceOf: ehealth-patient
+Usage: #example
+Title: "Bente Bach"
+Description: "Test patient 06, CPR 1406612674. Expected to pre-exist on the target environment; resolved by CPR identifier."
+* identifier[cpr].use = #official
+* identifier[cpr].system = $cpr
+* identifier[cpr].value = "1406612674"
+* active = true
+* name[official].family = "Bach"
+* name[official].given = "Bente"
+* gender = #female
+* birthDate = "1961-06-14"
+* address[officialHomeAddress]
+  * type = #postal
+  * line = "Frodesgade 164"
+  * city = "Frederiksberg C"
+  * postalCode = "1958"
+  * country = "DK"
+  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0190
+  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-84
+* maritalStatus = $v3-MaritalStatus#U "unmarried"
+* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
+* generalPractitioner.identifier.value = "077704"
+
+Instance: p07
+InstanceOf: ehealth-patient
+Usage: #example
+Title: "Anne Pedersen"
+Description: "Test patient 07, CPR 2307684902. Expected to pre-exist on the target environment; resolved by CPR identifier."
+* identifier[cpr].use = #official
+* identifier[cpr].system = $cpr
+* identifier[cpr].value = "2307684902"
+* active = true
+* name[official].family = "Pedersen"
+* name[official].given = "Anne"
+* gender = #female
+* birthDate = "1968-07-23"
+* address[officialHomeAddress]
+  * type = #postal
+  * line = "Lønvejen 305"
+  * city = "København K"
+  * postalCode = "1410"
+  * country = "DK"
+  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0461
+  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-83
+* maritalStatus = $v3-MaritalStatus#U "unmarried"
+* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
+* generalPractitioner.identifier.value = "077704"
+
+Instance: p08
+InstanceOf: ehealth-patient
+Usage: #example
+Title: "Jeppe Jørgensen"
+Description: "Test patient 08, CPR 1210669643. Expected to pre-exist on the target environment; resolved by CPR identifier."
+* identifier[cpr].use = #official
+* identifier[cpr].system = $cpr
+* identifier[cpr].value = "1210669643"
+* active = true
+* name[official].family = "Jørgensen"
+* name[official].given = "Jeppe"
+* gender = #male
+* birthDate = "1966-10-12"
+* address[officialHomeAddress]
+  * type = #postal
+  * line = "Kroghsgade 168"
+  * city = "Blokhus"
+  * postalCode = "9492"
+  * country = "DK"
+  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0175
+  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-84
+* maritalStatus = $v3-MaritalStatus#U "unmarried"
+* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
+* generalPractitioner.identifier.value = "077704"
+
+Instance: p09
+InstanceOf: ehealth-patient
+Usage: #example
+Title: "Jakob Rasmussen"
+Description: "Test patient 09, CPR 0209723123. Expected to pre-exist on the target environment; resolved by CPR identifier."
+* identifier[cpr].use = #official
+* identifier[cpr].system = $cpr
+* identifier[cpr].value = "0209723123"
+* active = true
+* name[official].family = "Rasmussen"
+* name[official].given = "Jakob"
+* gender = #male
+* birthDate = "1972-09-02"
+* address[officialHomeAddress]
+  * type = #postal
+  * line = "Højgårdsparken 468"
+  * city = "København K"
+  * postalCode = "1220"
+  * country = "DK"
+  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0330
+  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-85
+* maritalStatus = $v3-MaritalStatus#U "unmarried"
+* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
+* generalPractitioner.identifier.value = "077704"
+
+Instance: p10
+InstanceOf: ehealth-patient
+Usage: #example
+Title: "Ina Pedersen"
+Description: "Test patient 10, CPR 0306909622. Expected to pre-exist on the target environment; resolved by CPR identifier."
+* identifier[cpr].use = #official
+* identifier[cpr].system = $cpr
+* identifier[cpr].value = "0306909622"
+* active = true
+* name[official].family = "Pedersen"
+* name[official].given = "Ina"
+* gender = #female
+* birthDate = "1990-06-03"
+* address[officialHomeAddress]
+  * type = #postal
+  * line = "Weidekampsgade 215"
+  * city = "Nes, Eysturoy"
+  * postalCode = "0655"
+  * country = "DK"
+  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0751
+  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-82
+* maritalStatus = $v3-MaritalStatus#U "unmarried"
+* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
+* generalPractitioner.identifier.value = "077704"

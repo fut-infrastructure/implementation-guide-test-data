@@ -19,7 +19,7 @@
 // clinicalStatus is active: the condition is current. Closing an episode ends the monitoring, not
 // the condition, which is why the completed episode's copy is active too.
 
-Instance: condition
+Instance: p01-eoc2-cond
 InstanceOf: ehealth-condition
 Usage: #example
 Title: "Kronisk obstruktiv lungesygdom"
@@ -28,7 +28,7 @@ Description: "The COPD diagnosis the episode of care addresses and the monitorin
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
 // The profile names this slice episodeOfCare, so use the slice rather than a raw url — mixing the
 // two forms in one project is what produced empty extension stubs in the earlier conversion.
-* extension[episodeOfCare].valueReference = Reference(episodeofcare)
+* extension[episodeOfCare].valueReference = Reference(p01-eoc2)
 * clinicalStatus = $condition-clinical#active "active"
 * code = $sks#DJ44 "Kronisk obstruktiv lungesygdom"
-* subject = Reference(patient)
+* subject = Reference(p01)

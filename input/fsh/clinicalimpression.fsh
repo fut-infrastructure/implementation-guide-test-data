@@ -39,55 +39,55 @@
 
 // ─── contained decision contexts ────────────────────────────────────────────────────────────────
 
-Instance: dc-saturation
+Instance: p01-cp2-dc-sat
 InstanceOf: Parameters
 Usage: #inline
 * parameter[0].name = "library"
 * parameter[=].valueReference = Reference(library-observation-absolute-triage)
 * parameter[+].name = "fact"
-* parameter[=].valueReference = Reference(sr-extra-saturation)
+* parameter[=].valueReference = Reference(p01-cp2-sr-extra-saturation)
 
-Instance: dc-pulse
+Instance: p01-cp2-dc-pulse
 InstanceOf: Parameters
 Usage: #inline
 * parameter[0].name = "library"
 * parameter[=].valueReference = Reference(library-observation-absolute-triage)
 * parameter[+].name = "fact"
-* parameter[=].valueReference = Reference(sr-extra-pulse)
+* parameter[=].valueReference = Reference(p01-cp2-sr-extra-pulse)
 
-Instance: dc-questionnaire
+Instance: p01-cp2-dc-qr
 InstanceOf: Parameters
 Usage: #inline
 * parameter[0].name = "library"
 * parameter[=].valueReference = Reference(library-questionnaire-triage)
 * parameter[+].name = "fact"
-* parameter[=].valueReference = Reference(sr-extra-questionnaire)
+* parameter[=].valueReference = Reference(p01-cp2-sr-extra-questionnaire)
 * parameter[+].name = "fact"
 * parameter[=].valueReference = Reference(questionnaire)
 
-Instance: dc-saturation-completed
+Instance: p01-cp1-dc-sat
 InstanceOf: Parameters
 Usage: #inline
 * parameter[0].name = "library"
 * parameter[=].valueReference = Reference(library-observation-absolute-triage)
 * parameter[+].name = "fact"
-* parameter[=].valueReference = Reference(sr-completed-extra-saturation)
+* parameter[=].valueReference = Reference(p01-cp1-sr-extra-saturation)
 
-Instance: dc-pulse-completed
+Instance: p01-cp1-dc-pulse
 InstanceOf: Parameters
 Usage: #inline
 * parameter[0].name = "library"
 * parameter[=].valueReference = Reference(library-observation-absolute-triage)
 * parameter[+].name = "fact"
-* parameter[=].valueReference = Reference(sr-completed-extra-pulse)
+* parameter[=].valueReference = Reference(p01-cp1-sr-extra-pulse)
 
-Instance: dc-questionnaire-completed
+Instance: p01-cp1-dc-qr
 InstanceOf: Parameters
 Usage: #inline
 * parameter[0].name = "library"
 * parameter[=].valueReference = Reference(library-questionnaire-triage)
 * parameter[+].name = "fact"
-* parameter[=].valueReference = Reference(sr-completed-extra-questionnaire)
+* parameter[=].valueReference = Reference(p01-cp1-sr-extra-questionnaire)
 * parameter[+].name = "fact"
 * parameter[=].valueReference = Reference(questionnaire)
 
@@ -101,7 +101,7 @@ RuleSet: TriageCI(episode, careplan, dc, when)
 * extension[decisionContext].valueReference.reference = "#{dc}"
 * status = #completed
 * code = $clinicalimpression-codes#TriagingResult "Result of triaging"
-* subject = Reference(patient)
+* subject = Reference(p01)
 * effectiveDateTime = "{when}"
 * date = "{when}"
 
@@ -132,40 +132,40 @@ RuleSet: FindingBasis(idx, linkId, value, colour, colourdisplay, sig)
 
 // ─── the open episode's submission: three green results ─────────────────────────────────────────
 
-Instance: clinicalimpression-saturation
+Instance: p01-cp2-ci-sat
 InstanceOf: ehealth-clinicalimpression
 Usage: #example
 Title: "Triage of saturation 96% — green"
 Description: "Expected triage result for the saturation submitted under the open episode. 96% is within every absolute range, so the finding is 'within reference range' and the overall assessment green."
-* insert TriageCI(episodeofcare, careplan, dc-saturation, 2026-01-12T08:30:10+00:00)
-* contained[0] = dc-saturation
+* insert TriageCI(p01-eoc2,p01-cp2,p01-cp2-dc-sat, 2026-01-12T08:30:10+00:00)
+* contained[0] = p01-cp2-dc-sat
 * description = "Automatisk processering grundet måling modtaget"
-* insert Investigated(observation-saturation)
+* insert Investigated(p01-cp2-sat)
 * finding[0].itemCodeableConcept.coding[0] = $npu#NPU03011 "Hb(Fe; O2-bind.; aB)—Oxygen(O2); mætn. = ?"
 * finding[0].itemCodeableConcept.coding[+] = $sct#442082004 "Measurement finding within reference range"
 * finding[+].itemCodeableConcept.coding = $clinicalimpression-finding-codes#green "Green overall assessment"
 
-Instance: clinicalimpression-pulse
+Instance: p01-cp2-ci-pulse
 InstanceOf: ehealth-clinicalimpression
 Usage: #example
 Title: "Triage of pulse 72/min — green"
 Description: "Expected triage result for the pulse submitted under the open episode. 72/min falls between the low and high alarm ranges, so the finding is 'within reference range' and the overall assessment green."
-* insert TriageCI(episodeofcare, careplan, dc-pulse, 2026-01-12T08:30:10+00:00)
-* contained[0] = dc-pulse
+* insert TriageCI(p01-eoc2,p01-cp2,p01-cp2-dc-pulse, 2026-01-12T08:30:10+00:00)
+* contained[0] = p01-cp2-dc-pulse
 * description = "Automatisk processering grundet måling modtaget"
-* insert Investigated(observation-pulse)
+* insert Investigated(p01-cp2-pulse)
 * finding[0].itemCodeableConcept.coding[0] = $npu#NPU21692 "Hjerte—Systole; frekv. = ? × 1/min"
 * finding[0].itemCodeableConcept.coding[+] = $sct#442082004 "Measurement finding within reference range"
 * finding[+].itemCodeableConcept.coding = $clinicalimpression-finding-codes#green "Green overall assessment"
 
-Instance: clinicalimpression-questionnaireresponse
+Instance: p01-cp2-ci-qr
 InstanceOf: ehealth-clinicalimpression
 Usage: #example
 Title: "Triage of the questionnaire response — green"
 Description: "Expected triage result for the questionnaire response submitted under the open episode. Four scored answers, all green, so the overall assessment is green. Carries no description: the questionnaire rule does not set one."
-* insert TriageCI(episodeofcare, careplan, dc-questionnaire, 2026-01-12T08:30:10+00:00)
-* contained[0] = dc-questionnaire
-* insert Investigated(questionnaireresponse)
+* insert TriageCI(p01-eoc2,p01-cp2,p01-cp2-dc-qr, 2026-01-12T08:30:10+00:00)
+* contained[0] = p01-cp2-dc-qr
+* insert Investigated(p01-cp2-qr)
 * finding.itemCodeableConcept.coding = $clinicalimpression-finding-codes#green "Green overall assessment"
 * insert FindingBasis(0, 1.2.208.176.7.200.2\,898d7b4b-bbb8-45d9-9a1b-956b11d2547b\,ehealth.sundhed.dk, Slet ikke, green-question-answer, green question and answer combination, green)
 * insert FindingBasis(1, 1.2.208.176.7.200.2\,a5cc4f01-d9f7-4599-a0a6-e4522dbc8797\,ehealth.sundhed.dk, Slet ikke, green-question-answer, green question and answer combination, green)
@@ -174,42 +174,42 @@ Description: "Expected triage result for the questionnaire response submitted un
 
 // ─── the completed episode's submission: red, yellow, red ───────────────────────────────────────
 
-Instance: clinicalimpression-saturation-completed
+Instance: p01-cp1-ci-sat
 InstanceOf: ehealth-clinicalimpression
 Usage: #example
 Title: "Triage of saturation 84% — red"
 Description: "Expected triage result for the saturation submitted under the completed episode. 84% is at or below the red alarm range of 85%, so the finding is 'outside reference range' with the RAL coding, and the overall assessment red."
-* insert TriageCI(episodeofcare-completed, careplan-completed, dc-saturation-completed, 2025-05-14T10:00:10+00:00)
-* contained[0] = dc-saturation-completed
+* insert TriageCI(p01-eoc1,p01-cp1,p01-cp1-dc-sat, 2025-05-14T10:00:10+00:00)
+* contained[0] = p01-cp1-dc-sat
 * description = "Automatisk processering grundet måling modtaget"
-* insert Investigated(observation-saturation-completed)
+* insert Investigated(p01-cp1-sat)
 * finding[0].itemCodeableConcept.coding[0] = $npu#NPU03011 "Hb(Fe; O2-bind.; aB)—Oxygen(O2); mætn. = ?"
 * finding[0].itemCodeableConcept.coding[+] = $sct#442096005 "Measurement finding outside reference range"
 * finding[0].itemCodeableConcept.coding[+] = $absolute-range#RAL "Terapeutiske grænseværdier for RØD alarm"
 * finding[+].itemCodeableConcept.coding = $clinicalimpression-finding-codes#red "Red overall assessment"
 
-Instance: clinicalimpression-pulse-completed
+Instance: p01-cp1-ci-pulse
 InstanceOf: ehealth-clinicalimpression
 Usage: #example
 Title: "Triage of pulse 118/min — yellow"
 Description: "Expected triage result for the pulse submitted under the completed episode. 118/min falls in the upper yellow range of 110 to 130, so the finding is 'outside reference range' with the GAL coding, and the overall assessment yellow."
-* insert TriageCI(episodeofcare-completed, careplan-completed, dc-pulse-completed, 2025-05-14T10:00:10+00:00)
-* contained[0] = dc-pulse-completed
+* insert TriageCI(p01-eoc1,p01-cp1,p01-cp1-dc-pulse, 2025-05-14T10:00:10+00:00)
+* contained[0] = p01-cp1-dc-pulse
 * description = "Automatisk processering grundet måling modtaget"
-* insert Investigated(observation-pulse-completed)
+* insert Investigated(p01-cp1-pulse)
 * finding[0].itemCodeableConcept.coding[0] = $npu#NPU21692 "Hjerte—Systole; frekv. = ? × 1/min"
 * finding[0].itemCodeableConcept.coding[+] = $sct#442096005 "Measurement finding outside reference range"
 * finding[0].itemCodeableConcept.coding[+] = $absolute-range#GAL "Terapeutiske grænseværdier for GUL alarm"
 * finding[+].itemCodeableConcept.coding = $clinicalimpression-finding-codes#yellow "Yellow overall assessment"
 
-Instance: clinicalimpression-questionnaireresponse-completed
+Instance: p01-cp1-ci-qr
 InstanceOf: ehealth-clinicalimpression
 Usage: #example
 Title: "Triage of the questionnaire response — red"
 Description: "Expected triage result for the questionnaire response submitted under the completed episode. Five scored answers, three red and two yellow; the rule takes the highest, so the overall assessment is red."
-* insert TriageCI(episodeofcare-completed, careplan-completed, dc-questionnaire-completed, 2025-05-14T10:00:10+00:00)
-* contained[0] = dc-questionnaire-completed
-* insert Investigated(questionnaireresponse-completed)
+* insert TriageCI(p01-eoc1,p01-cp1,p01-cp1-dc-qr, 2025-05-14T10:00:10+00:00)
+* contained[0] = p01-cp1-dc-qr
+* insert Investigated(p01-cp1-qr)
 * finding.itemCodeableConcept.coding = $clinicalimpression-finding-codes#red "Red overall assessment"
 * insert FindingBasis(0, 1.2.208.176.7.200.2\,898d7b4b-bbb8-45d9-9a1b-956b11d2547b\,ehealth.sundhed.dk, En del, red-question-answer, red question and answer combination, red)
 * insert FindingBasis(1, 1.2.208.176.7.200.2\,a5cc4f01-d9f7-4599-a0a6-e4522dbc8797\,ehealth.sundhed.dk, Lidt, yellow-question-answer, yellow question and answer combination, yellow)

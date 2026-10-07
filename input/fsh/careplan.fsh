@@ -22,14 +22,14 @@
 // (draft | active | on-hold | revoked | completed | entered-in-error | unknown), so the vocabulary
 // differs from the episode's. The service writes the history itself on each status change.
 
-Instance: careplan
+Instance: p01-cp2
 InstanceOf: ehealth-careplan
 Usage: #example
 Title: "Care plan (active)"
 Description: "The monitoring plan as delivered under the open episode of care. Normally created by $apply, which would also create one ServiceRequest per activity."
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
-* extension[episodeOfCare].valueReference = Reference(episodeofcare)
+* extension[episodeOfCare].valueReference = Reference(p01-eoc2)
 * extension[statusHistory][0].extension[status].valueCodeableConcept = $request-status#draft
 * extension[statusHistory][=].extension[period].valuePeriod.start = "2026-01-08T09:05:00+00:00"
 * extension[statusHistory][=].extension[period].valuePeriod.end = "2026-01-08T09:05:01+00:00"
@@ -40,22 +40,22 @@ Description: "The monitoring plan as delivered under the open episode of care. N
 * instantiatesCanonical = Canonical(plandefinition)
 * status = #active
 * intent = #order
-* subject = Reference(patient)
+* subject = Reference(p01)
 * period.start = "2026-01-08T09:05:00+00:00"
 * careTeam = Reference(careteam)
-* addresses = Reference(condition)
+* addresses = Reference(p01-eoc2-cond)
 // One entry per activity, in the order the plan runs them. See servicerequest.fsh.
-* activity[0].reference = Reference(sr-head)
-* activity[+].reference = Reference(sr-intro)
-* activity[+].reference = Reference(sr-sat-pulse-intro)
-* activity[+].reference = Reference(sr-sat-pulse-prep)
-* activity[+].reference = Reference(sr-sat-pulse)
-* activity[+].reference = Reference(sr-saturation)
-* activity[+].reference = Reference(sr-pulse)
-* activity[+].reference = Reference(sr-questionnaire)
-* activity[+].reference = Reference(sr-closing)
-* activity[+].reference = Reference(sr-extra-head)
-* activity[+].reference = Reference(sr-extra-sat-pulse)
-* activity[+].reference = Reference(sr-extra-saturation)
-* activity[+].reference = Reference(sr-extra-pulse)
-* activity[+].reference = Reference(sr-extra-questionnaire)
+* activity[0].reference = Reference(p01-cp2-sr-head)
+* activity[+].reference = Reference(p01-cp2-sr-intro)
+* activity[+].reference = Reference(p01-cp2-sr-sat-pulse-intro)
+* activity[+].reference = Reference(p01-cp2-sr-sat-pulse-prep)
+* activity[+].reference = Reference(p01-cp2-sr-sat-pulse)
+* activity[+].reference = Reference(p01-cp2-sr-saturation)
+* activity[+].reference = Reference(p01-cp2-sr-pulse)
+* activity[+].reference = Reference(p01-cp2-sr-questionnaire)
+* activity[+].reference = Reference(p01-cp2-sr-closing)
+* activity[+].reference = Reference(p01-cp2-sr-extra-head)
+* activity[+].reference = Reference(p01-cp2-sr-extra-sat-pulse)
+* activity[+].reference = Reference(p01-cp2-sr-extra-saturation)
+* activity[+].reference = Reference(p01-cp2-sr-extra-pulse)
+* activity[+].reference = Reference(p01-cp2-sr-extra-questionnaire)

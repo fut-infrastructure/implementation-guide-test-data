@@ -64,7 +64,7 @@ const CATEGORY_OVERRIDE = {
 // In 'type' and 'category-type' modes a group IS a type, so the module's description would be
 // wrong — it describes the whole module, and would repeat under every type in it.
 const TYPE_ORDER = [
-  ['Patient', 'The patient the test data is about. Resolved on the target environment by CPR identifier, never created there.'],
+  ['Patient', 'The ten patients the test data is about, each a concrete test identity from the target environment. Resolved there by CPR identifier, never created. patient-01 carries the full scenario; the rest are patients only.'],
   ['Practitioner', 'The practitioner on the care team. Resolved on the target environment by identifier, never created there, and carrying no personal data.'],
   ['EpisodeOfCare', 'The episode everything patient-specific hangs off: the plan is delivered under it, and every measurement and response refers back to it.'],
   ['Condition', 'The diagnosis the episode addresses, and the reason the plan is in place.'],
@@ -170,6 +170,12 @@ for (const [cat, description] of CATEGORY_ORDER) {
 //
 // Generating the page here avoids the template machinery entirely, and gives the same two levels:
 // one per module, then one per resource type within it.
+//
+// THIS PAGE IS THE ONLY ARTIFACTS PAGE IN THE MENU. The publisher always writes its own
+// artifacts.html, but that one shows modules alone — the resource-type level came from the XSLT
+// override the CI build refuses, so it cannot be restored there. Linking both put two artifacts
+// pages in the menu with the better name on the weaker page, so the menu now points "Artifacts
+// Summary" here and artifacts.html is left unlinked.
 //
 // START AT h3, NEVER h2. The publisher's stylesheet numbers headings with CSS counters, and h2 is
 // reserved for the page itself — measured in the rendered page, its ::before content is

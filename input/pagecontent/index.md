@@ -38,11 +38,10 @@ Values written as `${NAME}` are substituted by the loader at load time. They fal
 * `${COEXISTENCE_TAG}` — the coexistence tag in `meta.tag`, marking which deployment owns the
   record. Carried by the patient-specific resources only; the definitions do not have it.
 
-**Patient values** — the Patient here is a template that describes nobody. The loader creates ten
-patients from it, substituting these per patient:
-
-* `${CPR}` — the CPR number the loader resolves the Patient by. The one value it must supply.
-* `${FAMILY_NAME}`, `${GIVEN_NAME}`, `${ADDRESS_LINE}`, `${CITY}`, `${POSTAL_CODE}`
+The patients have **no** placeholders. There are ten of them, each a concrete test identity read
+back from the target environment, so the CPR the loader resolves by is a real value that already
+exists there. One of them, `patient-01`, carries the episodes, care plans, submissions and triage
+results; the other nine are patients only.
 
 **Organization-data values** — the care team and the practitioner on it already exist on the target
 environment and are resolved there, so their identities belong to it:
@@ -51,24 +50,18 @@ environment and are resolved there, so their identities belong to it:
 * `${PRACTITIONER_IDENTIFIER}`, `${PRACTITIONER_FAMILY_NAME}`, `${PRACTITIONER_GIVEN_NAME}`,
   `${PRACTITIONER_AUTHORISATION_ID}`, `${PROFESSION_GROUP}`
 
-Elements that could not take a placeholder without becoming invalid — `birthDate`, `maritalStatus`
-and the municipality and region codes on the address — are left out instead. `gender` is the one
-exception: it is mandatory with a required binding, so it is set to `unknown`.
-
 #### What a placeholder costs
 
 Not every element can hold one, and the guide carries validation errors where it does anyway.
 
-* **Free** — a plain string with no constraint beyond its type: names, address parts, the CPR's
-  neighbours. These validate exactly as a real value would.
+* **Free** — a plain string with no constraint beyond its type: the practitioner's name and
+  identifier, the care team's UUID. These validate exactly as a real value would.
 * **A validation error per occurrence** — a *coded* element, because the validator looks the code
-  up in its code system and does not find it: `${EHEALTH_PROGRAM}`, `${COEXISTENCE_TAG}`,
-  `${PROFESSION_GROUP}`. Also `${CPR}`, which looks like a free string but is governed by a regex
-  in `dk-core-cpr-identifier` requiring a valid day, month and six further digits.
+  up in its code system and does not find it: `${EHEALTH_PROGRAM}`, `${COEXISTENCE_TAG}` and
+  `${PROFESSION_GROUP}`.
 * **Impossible** — a string whose constraint no placeholder can satisfy. The practitioner's
   authorisation number is capped at five characters drawn from the consonants, Y and the digits,
-  and `${X}` is already four. Those elements are left out instead, as `birthDate` and
-  `maritalStatus` are on the Patient.
+  and `${X}` is already four. That element is left out instead.
 
 Where a constraint merely dictates the *shape*, the placeholder moves inside it rather than being
 abandoned: the care team's identifier is `urn:uuid:${CARETEAM_UUID}`, because `dk-core` requires a

@@ -70,20 +70,20 @@ Alias: $library-type = http://ehealth.sundhed.dk/cs/library-type
 //                         error. The authorisation number has no placeholder at all — it cannot
 //                         hold one. See practitioner.fsh.
 //
-//   ${CPR}                the patient's CPR number. The loader resolves a Patient by this, and
-//   ${FAMILY_NAME}        supplies a different one per patient it creates. The name and address
-//   ${GIVEN_NAME}         placeholders exist so the template shows the shape of a patient without
-//   ${ADDRESS_LINE}       naming a real person — see patient.fsh for why some elements carry a
-//   ${CITY}               placeholder and others are left out entirely.
-//   ${POSTAL_CODE}
+//   THE PATIENTS HAVE NONE. They were placeholders once, a single template with ${CPR} and the
+//   name and address substituted per patient. There are now ten concrete test identities read
+//   back from the target environment, so nothing needs substituting — and the ${CPR} placeholder
+//   is gone along with the regex error it caused.
 //
 // NOTE THE DIFFERENCE IN COST — and do not assume a string element is free. Three cases:
 //
-//   free        a plain string with no further constraint: every name and address part here.
+//   free        a plain string with no further constraint: the practitioner's name and
+//               identifier, the care team's UUID.
 //
 //   one error   a coded element, where the validator cannot find the code in its code system:
-//   per use     ${EHEALTH_PROGRAM}, ${COEXISTENCE_TAG}, ${PROFESSION_GROUP}. Also ${CPR}, which
-//               looks like a free string but carries a regex from dk-core-cpr-identifier.
+//   per use     ${EHEALTH_PROGRAM}, ${COEXISTENCE_TAG}, ${PROFESSION_GROUP}. A regex-constrained
+//               string counts too — that is what ${CPR} used to cost before the patients became
+//               concrete, via dk-core-cpr-identifier.
 //
 //   impossible  a string constrained so tightly that no placeholder fits. The practitioner's
 //               authorisation number is 5 characters of consonants, Y and digits, and "${X}" is
@@ -124,9 +124,11 @@ Alias: $clinicalimpression-finding-codes = http://ehealth.sundhed.dk/cs/clinical
 Alias: $clinicalimpression-investigation-item-codes = http://ehealth.sundhed.dk/cs/clinicalimpression-investigation-item-codes
 Alias: $task-category = http://ehealth.sundhed.dk/cs/task-category
 Alias: $restriction-category = http://ehealth.sundhed.dk/cs/restriction-category
-// The aliases for municipality codes, ISO 3166-2 subdivisions and marital status were dropped
-// along with the elements that used them: all three are coded, so they could not take a
-// placeholder, and all three identify a person. See patient.fsh.
+// Back in use now that the patients are concrete test identities rather than one anonymised
+// template — all three are coded, so they could not have held a placeholder. See patient.fsh.
+Alias: $dk-municipality-codes = http://hl7.dk/fhir/core/CodeSystem/dk-core-municipality-codes
+Alias: $iso3166-2 = urn:iso:std:iso:3166:-2
+Alias: $v3-MaritalStatus = http://terminology.hl7.org/CodeSystem/v3-MaritalStatus
 
 // Episode and condition terminology
 Alias: $ehealth-system = http://ehealth.sundhed.dk/cs/ehealth-system
