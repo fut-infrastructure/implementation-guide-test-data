@@ -83,7 +83,7 @@ groups:
       - Practitioner/practitioner
   BaseEntities:
     name: "Base.Entities"
-    description: "Organizations the definitions refer to."
+    description: "Organizations the definitions refer to. Resolved on the target environment by identifier, never created there."
     resources:
       - Organization/org-region-hovedstaden
       - Organization/org-region-midtjylland
@@ -93,21 +93,9 @@ groups:
     resources:
       - EpisodeOfCare/p01-eoc1
       - EpisodeOfCare/p01-eoc2
-  ClinicalSummary:
-    name: "Clinical.Summary"
-    description: "The clinical record: the diagnoses, and the triage result of each submission. The impressions are not loaded — automated processing creates them, and the ones here record what it should produce."
-    resources:
-      - Condition/p01-eoc1-cond
-      - Condition/p01-eoc2-cond
-      - ClinicalImpression/p01-cp1-ci-pulse
-      - ClinicalImpression/p01-cp1-ci-qr
-      - ClinicalImpression/p01-cp1-ci-sat
-      - ClinicalImpression/p01-cp2-ci-pulse
-      - ClinicalImpression/p01-cp2-ci-qr
-      - ClinicalImpression/p01-cp2-ci-sat
   ClinicalCareProvision:
     name: "Clinical.Care Provision"
-    description: "The plan as delivered: care plan, service requests, goals, care team."
+    description: "The plan as delivered to the patient: the care plan, the service requests it consists of, and the care team responsible."
     resources:
       - CarePlan/p01-cp1
       - CarePlan/p01-cp2
@@ -142,7 +130,7 @@ groups:
       - CareTeam/careteam
   ClinicalDiagnostics:
     name: "Clinical.Diagnostics"
-    description: "Measurements and questionnaire responses."
+    description: "What the patient submitted: the measurements and the questionnaire responses."
     resources:
       - Observation/p01-cp1-pulse
       - Observation/p01-cp1-sat
@@ -150,15 +138,27 @@ groups:
       - Observation/p01-cp2-sat
       - QuestionnaireResponse/p01-cp1-qr
       - QuestionnaireResponse/p01-cp2-qr
+  ClinicalSummary:
+    name: "Clinical.Summary"
+    description: "The clinical record: the diagnosis each episode addresses, and the triage result of each submission. The impressions are not loaded — automated processing creates them, and the ones here record what it should produce."
+    resources:
+      - Condition/p01-eoc1-cond
+      - Condition/p01-eoc2-cond
+      - ClinicalImpression/p01-cp1-ci-pulse
+      - ClinicalImpression/p01-cp1-ci-qr
+      - ClinicalImpression/p01-cp1-ci-sat
+      - ClinicalImpression/p01-cp2-ci-pulse
+      - ClinicalImpression/p01-cp2-ci-qr
+      - ClinicalImpression/p01-cp2-ci-sat
   FoundationSecurity:
     name: "Foundation.Security"
-    description: "Submission records for the measurements."
+    description: "One Provenance per submission, naming the resources submitted together. This is what triggers automated processing."
     resources:
       - Provenance/p01-cp1-prov
       - Provenance/p01-cp2-prov
   BaseWorkflow:
     name: "Base.Workflow"
-    description: "The assessment tasks raised by automated processing. Not loaded either: each accompanies a triage result, and its priority is the triage colour."
+    description: "The assessment task raised with each triage result. Not loaded either, and its priority is the triage colour."
     resources:
       - Task/p01-cp1-task-pulse
       - Task/p01-cp1-task-qr

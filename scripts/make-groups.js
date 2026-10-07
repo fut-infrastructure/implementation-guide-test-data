@@ -35,18 +35,15 @@ const CORE = path.join(process.env.HOME || process.env.USERPROFILE, '.fhir', 'pa
 // R4 categories in the order the spec presents the modules: foundations, then the clinical
 // record, then the definitional artefacts that describe care rather than record it.
 const CATEGORY_ORDER = [
-  ['Base.Individuals', 'The people the test data is about.'],
-  ['Base.Entities', 'Organizations the definitions refer to.'],
-  ['Base.Management', 'The episode of care the plan is delivered under, and that every record of care refers back to.'],
-  ['Clinical.Summary', 'The clinical record: the diagnoses, and the triage result of each submission. The impressions are not loaded — automated processing creates them, and the ones here record what it should produce.'],
-  ['Clinical.Care Provision', 'The plan as delivered: care plan, service requests, goals, care team.'],
-  ['Clinical.Diagnostics', 'Measurements and questionnaire responses.'],
-  // Provenance lands here by the spec's taxonomy rather than by feel. It sits next to the
-  // measurements because that is what it records: one per submission, and the trigger that makes
-  // automated processing run over them.
-  ['Foundation.Security', 'Submission records for the measurements.'],
-  ['Base.Workflow', 'The assessment tasks raised by automated processing. Not loaded either: each accompanies a triage result, and its priority is the triage colour.'],
-  ['Specialized.Definitional Artifacts', 'The plan, the activities it is built from, the questionnaire and the automated-processing rules.'],
+  ["Base.Individuals", "The people the test data is about."],
+  ["Base.Entities", "Organizations the definitions refer to. Resolved on the target environment by identifier, never created there."],
+  ["Base.Management", "The episode of care the plan is delivered under, and that every record of care refers back to."],
+  ["Clinical.Care Provision", "The plan as delivered to the patient: the care plan, the service requests it consists of, and the care team responsible."],
+  ["Clinical.Diagnostics", "What the patient submitted: the measurements and the questionnaire responses."],
+  ["Clinical.Summary", "The clinical record: the diagnosis each episode addresses, and the triage result of each submission. The impressions are not loaded — automated processing creates them, and the ones here record what it should produce."],
+  ["Foundation.Security", "One Provenance per submission, naming the resources submitted together. This is what triggers automated processing."],
+  ["Base.Workflow", "The assessment task raised with each triage result. Not loaded either, and its priority is the triage colour."],
+  ["Specialized.Definitional Artifacts", "The plan, the activities it is built from, the questionnaire and the automated-processing rules."],
 ];
 
 // Deliberate departures from the spec's taxonomy. Keep this list short and say why for each:

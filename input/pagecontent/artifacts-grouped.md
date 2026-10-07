@@ -35,7 +35,7 @@ The practitioner on the care team. Resolved on the target environment by identif
 
 ### Base.Entities
 
-Organizations the definitions refer to.
+Organizations the definitions refer to. Resolved on the target environment by identifier, never created there.
 
 #### Organizations
 
@@ -59,35 +59,9 @@ The episode everything patient-specific hangs off: the plan is delivered under i
 |[Episode of care (completed)](EpisodeOfCare-p01-eoc1.html)|A completed episode of care for the same patient and the same COPD diagnosis, which ran from March to June 2025. Shows the closed period and the full status history that a finished episode carries.|
 |[Episode of care](EpisodeOfCare-p01-eoc2.html)|The open episode of care the monitoring plan is delivered under, addressing the COPD diagnosis.|
 
-### Clinical.Summary
-
-The clinical record: the diagnoses, and the triage result of each submission. The impressions are not loaded — automated processing creates them, and the ones here record what it should produce.
-
-#### Conditions
-
-The diagnosis the episode addresses, and the reason the plan is in place.
-
-|Name|Description|
-|---|---|
-|[Kronisk obstruktiv lungesygdom (completed episode)](Condition-p01-eoc1-cond.html)|The COPD diagnosis as recorded under the completed episode of care. The same diagnosis as the other Condition: each episode carries its own, because a Condition can reference only one episode.|
-|[Kronisk obstruktiv lungesygdom](Condition-p01-eoc2-cond.html)|The COPD diagnosis the episode of care addresses and the monitoring plan responds to.|
-
-#### ClinicalImpressions
-
-The triage result for each submitted resource. NOT loaded — automated processing creates these, and the ones here record what it should produce.
-
-|Name|Description|
-|---|---|
-|[Triage of pulse 118/min — yellow](ClinicalImpression-p01-cp1-ci-pulse.html)|Expected triage result for the pulse submitted under the completed episode. 118/min falls in the upper yellow range of 110 to 130, so the finding is 'outside reference range' with the GAL coding, and the overall assessment yellow.|
-|[Triage of the questionnaire response — red](ClinicalImpression-p01-cp1-ci-qr.html)|Expected triage result for the questionnaire response submitted under the completed episode. Five scored answers, three red and two yellow; the rule takes the highest, so the overall assessment is red.|
-|[Triage of saturation 84% — red](ClinicalImpression-p01-cp1-ci-sat.html)|Expected triage result for the saturation submitted under the completed episode. 84% is at or below the red alarm range of 85%, so the finding is 'outside reference range' with the RAL coding, and the overall assessment red.|
-|[Triage of pulse 72/min — green](ClinicalImpression-p01-cp2-ci-pulse.html)|Expected triage result for the pulse submitted under the open episode. 72/min falls between the low and high alarm ranges, so the finding is 'within reference range' and the overall assessment green.|
-|[Triage of the questionnaire response — green](ClinicalImpression-p01-cp2-ci-qr.html)|Expected triage result for the questionnaire response submitted under the open episode. Four scored answers, all green, so the overall assessment is green. Carries no description: the questionnaire rule does not set one.|
-|[Triage of saturation 96% — green](ClinicalImpression-p01-cp2-ci-sat.html)|Expected triage result for the saturation submitted under the open episode. 96% is within every absolute range, so the finding is 'within reference range' and the overall assessment green.|
-
 ### Clinical.Care Provision
 
-The plan as delivered: care plan, service requests, goals, care team.
+The plan as delivered to the patient: the care plan, the service requests it consists of, and the care team responsible.
 
 #### CarePlans
 
@@ -143,7 +117,7 @@ The clinicians responsible for the episode. Resolved on the target environment, 
 
 ### Clinical.Diagnostics
 
-Measurements and questionnaire responses.
+What the patient submitted: the measurements and the questionnaire responses.
 
 #### Observations
 
@@ -165,9 +139,35 @@ The questionnaire answered as part of each submission. The answers are chosen to
 |[Questionnaire response, exacerbation (completed episode)](QuestionnaireResponse-p01-cp1-qr.html)|A symptom questionnaire answered under the completed episode during an exacerbation. Breathlessness 'En del' and greenish sputum both carry red significance, so triage returns red and raises a task with priority asap.|
 |[Questionnaire response, no symptoms (open episode)](QuestionnaireResponse-p01-cp2-qr.html)|A symptom questionnaire answered under the open episode with no symptoms reported. Every answer carries green significance, so triage returns green and the resulting task is routine.|
 
+### Clinical.Summary
+
+The clinical record: the diagnosis each episode addresses, and the triage result of each submission. The impressions are not loaded — automated processing creates them, and the ones here record what it should produce.
+
+#### Conditions
+
+The diagnosis the episode addresses, and the reason the plan is in place.
+
+|Name|Description|
+|---|---|
+|[Kronisk obstruktiv lungesygdom (completed episode)](Condition-p01-eoc1-cond.html)|The COPD diagnosis as recorded under the completed episode of care. The same diagnosis as the other Condition: each episode carries its own, because a Condition can reference only one episode.|
+|[Kronisk obstruktiv lungesygdom](Condition-p01-eoc2-cond.html)|The COPD diagnosis the episode of care addresses and the monitoring plan responds to.|
+
+#### ClinicalImpressions
+
+The triage result for each submitted resource. NOT loaded — automated processing creates these, and the ones here record what it should produce.
+
+|Name|Description|
+|---|---|
+|[Triage of pulse 118/min — yellow](ClinicalImpression-p01-cp1-ci-pulse.html)|Expected triage result for the pulse submitted under the completed episode. 118/min falls in the upper yellow range of 110 to 130, so the finding is 'outside reference range' with the GAL coding, and the overall assessment yellow.|
+|[Triage of the questionnaire response — red](ClinicalImpression-p01-cp1-ci-qr.html)|Expected triage result for the questionnaire response submitted under the completed episode. Five scored answers, three red and two yellow; the rule takes the highest, so the overall assessment is red.|
+|[Triage of saturation 84% — red](ClinicalImpression-p01-cp1-ci-sat.html)|Expected triage result for the saturation submitted under the completed episode. 84% is at or below the red alarm range of 85%, so the finding is 'outside reference range' with the RAL coding, and the overall assessment red.|
+|[Triage of pulse 72/min — green](ClinicalImpression-p01-cp2-ci-pulse.html)|Expected triage result for the pulse submitted under the open episode. 72/min falls between the low and high alarm ranges, so the finding is 'within reference range' and the overall assessment green.|
+|[Triage of the questionnaire response — green](ClinicalImpression-p01-cp2-ci-qr.html)|Expected triage result for the questionnaire response submitted under the open episode. Four scored answers, all green, so the overall assessment is green. Carries no description: the questionnaire rule does not set one.|
+|[Triage of saturation 96% — green](ClinicalImpression-p01-cp2-ci-sat.html)|Expected triage result for the saturation submitted under the open episode. 96% is within every absolute range, so the finding is 'within reference range' and the overall assessment green.|
+
 ### Foundation.Security
 
-Submission records for the measurements.
+One Provenance per submission, naming the resources submitted together. This is what triggers automated processing.
 
 #### Provenances
 
@@ -180,7 +180,7 @@ One per submission, naming the resources submitted together. This is what trigge
 
 ### Base.Workflow
 
-The assessment tasks raised by automated processing. Not loaded either: each accompanies a triage result, and its priority is the triage colour.
+The assessment task raised with each triage result. Not loaded either, and its priority is the triage colour.
 
 #### Tasks
 
