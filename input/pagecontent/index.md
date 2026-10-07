@@ -5,7 +5,7 @@ profile published in the
 [eHealth Infrastructure Implementation Guide](http://ehealth.sundhed.dk/fhir) — this guide defines
 no profiles, extensions, code systems or value sets of its own.
 
-See the [Artifacts Summary](artifacts.html) for the full list.
+See the [Artifacts Summary](artifacts-grouped.html) for the full list.
 
 #### What is here
 
