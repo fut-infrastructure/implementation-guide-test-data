@@ -9,74 +9,30 @@ See the [Artifacts Summary](artifacts-grouped.html) for the full list.
 
 #### What is here
 
-A COPD monitoring plan and everything it needs: oxygen saturation and pulse from a single
-pulse-oximeter reading, and a symptom questionnaire. The plan has a scheduled branch and an
-unscheduled one, and the difference between them is the design — a scheduled activity accrues an
-expected occurrence whether or not anything is submitted against it, while an unscheduled activity
-expects nothing.
+Data representing a scenario covering 10 patients with a COPD condition. The patients are enrolled in episodes of care and has been assigned a plan for COPD monitoring.
+The COPD monitoring plan schedules observations for oxygen saturation and pulse, and a symptom questionnaire. 
+The plans are assigned to a care team with a single practitioner as participant. 
+Some data can be shared across vendor solutions, while others are labeled with a coexistence tag which reserves the data for use with the corresponding system vendor.
+The scenario carries a placeholder value for the coexistence tag and the corresponding ehealth program code, and the placeholders are substituted when the data is loaded on a specific environment.
+The vendor specific part of the scenario is duplicated across coexistence tag values when loaded. 
+
 
 #### Loading
 
-Two kinds of resource appear here, and the distinction is not declared anywhere in this guide:
-
-* most resources are **created** on the target environment by the data loader
-* `Organization`, `Practitioner`, `PractitionerRole` and `Patient` are **resolved** there instead —
-  they are expected to exist already, and the loader finds each by identifier and rewrites the
-  references accordingly
-
-The loader decides which is which from the resource **type**, so nothing in the ids, titles or file
-layout marks it.
+Loading on an environment is done idempotent. Data is created only if not already present. The target environment will normally be expunged before loading, but the expunge will only transactions (eg clinical data), while context is kept (eg organizations).
+Some clinical data present in this IG will not be loaded, but will become present on the target environment as result of the automatic processing doing triage of submitted observations and questionnaire responses.
 
 #### Placeholders
 
-Values written as `${NAME}` are substituted by the loader at load time. Each takes its value from
-the target environment, and the ones that are codes draw on a code system defined elsewhere.
+Values written as `${PLACEHOLDER}` are substituted by the loader at load time. 
 
 **Environment values** — these belong to the deployment, not to the test data. Both take a code
-from a code system the core IG defines, so the candidate values are published there rather than
-restated here:
+from a code system the core IG defines:
 
 * `${EHEALTH_PROGRAM}` — the programme these definitions belong to. It names the deployment being
-  loaded for, so it cannot be fixed in the guide.
+  loaded for.
   Codes: [eHealth Program](http://ehealth.sundhed.dk/fhir/CodeSystem-ehealth-program.html)
 * `${COEXISTENCE_TAG}` — the coexistence tag in `meta.tag`, marking which deployment owns the
   record. Carried by the patient-specific resources only; the definitions do not have it.
-  Codes: [Ehealth System](http://ehealth.sundhed.dk/fhir/CodeSystem-ehealth-system.html)
+  Codes: [eHealth System](http://ehealth.sundhed.dk/fhir/CodeSystem-ehealth-system.html)
 
-Both code systems declare `content: complete`, so each lists every code valid **for the version of
-the core IG this guide depends on**. A deployment running a newer core IG may have more — which is
-the reason these are placeholders and not a fixed value.
-
-The patients have **no** placeholders. There are ten of them, each a concrete test identity read
-back from the target environment, so the CPR the loader resolves by is a real value that already
-exists there. 
-
-**Organization-data values** — the care team and the practitioner on it already exist on the target
-environment and are resolved there, so their identities belong to it:
-
-* `${CARETEAM_IDENTIFIER}`
-* `${PRACTITIONER_IDENTIFIER}`, `${PRACTITIONER_FAMILY_NAME}`, `${PRACTITIONER_GIVEN_NAME}`,
-  `${PRACTITIONER_AUTHORISATION_ID}`
-* `${PROFESSION_GROUP}` — the practitioner's profession.
-  Codes: [DkCoreProfessionGroupCodes](http://hl7.dk/fhir/core/CodeSystem-DkCoreProfessionGroupCodes.html),
-  defined by hl7.fhir.dk.core rather than by the eHealth core IG
-
-#### What a placeholder costs
-
-Not every element can hold one, and the guide carries validation errors where it does anyway.
-
-* **Free** — a plain string with no constraint beyond its type: the practitioner's name and
-  identifier, the care team's UUID. These validate exactly as a real value would.
-* **A validation error per occurrence** — a *coded* element, because the validator looks the code
-  up in its code system and does not find it: `${EHEALTH_PROGRAM}`, `${COEXISTENCE_TAG}` and
-  `${PROFESSION_GROUP}`.
-* **Impossible** — a string whose constraint no placeholder can satisfy. The practitioner's
-  authorisation number is capped at five characters drawn from the consonants, Y and the digits,
-  and `${X}` is already four. That element is left out instead.
-
-Where a constraint merely dictates the *shape*, the placeholder moves inside it rather than being
-abandoned: the care team's identifier is `urn:uuid:${CARETEAM_UUID}`, because `dk-core` requires a
-full URI and only the UUID is actually environment-specific.
-
-None of these errors can be suppressed — the publisher's suppression file covers warnings and
-hints only.
