@@ -105,9 +105,8 @@ Alias: $cpr = urn:oid:1.2.208.176.1.2
 // Practitioner terminology
 // The LDAP uid OID, which is the system the environment identifies a practitioner by
 Alias: $practitioner-uid = urn:oid:0.9.2342.19200300.100.1.1
-// No alias for Styrelsen for Patientsikkerhed's authorisation register (https://autregweb.sst.dk).
-// The practitioner's qualification carries only a profession, not an authorisation — see
-// practitioner.fsh for why that slice cannot be used anonymously.
+// Styrelsen for Patientsikkerhed's authorisation register
+Alias: $autreg = https://autregweb.sst.dk
 Alias: $profession-group = http://hl7.dk/fhir/core/CodeSystem/DkCoreProfessionGroupCodes
 Alias: $careteam-participant-role = http://ehealth.sundhed.dk/cs/careteam-participant-role
 // CarePlan.status, and the status recorded in each careplan statusHistory entry

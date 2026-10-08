@@ -31,7 +31,10 @@ The practitioner on the care team.
 
 |Name|Description|
 |---|---|
-|[Practitioner (template)](Practitioner-practitioner.html)|Template for a practitioner on the care team. Carries no personal data: the loader substitutes the identifier, name and authorisation number.|
+|[Practitioner fob](Practitioner-practitioner-fob.html)|Practitioner for fob, assigned on a care team for fob.|
+|[Practitioner kpro](Practitioner-practitioner-kpro.html)|Practitioner for kpro, assigned on a care team for kpro.|
+|[Practitioner (placeholder)](Practitioner-practitioner-placeholder.html)|Stands in for a practitioner on the care team the scenario runs under. The loader substitutes a real one.|
+|[Practitioner telma](Practitioner-practitioner-telma.html)|Practitioner for telma, assigned on a care team for telma.|
 
 ### Base.Entities
 
@@ -113,7 +116,10 @@ The clinicians responsible for the episode.
 
 |Name|Description|
 |---|---|
-|[KOL care team](CareTeam-careteam.html)|The care team responsible for the COPD monitoring. Its one participant's role is administered by Keycloak, not by this guide.|
+|[KOL care team for fob](CareTeam-careteam-fob.html)|The care team responsible for the COPD monitoring under fob.|
+|[KOL care team for kpro](CareTeam-careteam-kpro.html)|The care team responsible for the COPD monitoring under kpro.|
+|[KOL care team (placeholder)](CareTeam-careteam-placeholder.html)|Stands in for the care team the scenario runs under. The loader substitutes a real one.|
+|[KOL care team for telma](CareTeam-careteam-telma.html)|The care team responsible for the COPD monitoring under telma.|
 
 ### Clinical.Diagnostics
 

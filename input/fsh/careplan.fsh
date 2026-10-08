@@ -35,14 +35,14 @@ Description: "The monitoring plan as delivered under the open episode of care. N
 * extension[statusHistory][=].extension[period].valuePeriod.end = "2026-01-08T09:05:01+00:00"
 * extension[statusHistory][+].extension[status].valueCodeableConcept = $request-status#active
 * extension[statusHistory][=].extension[period].valuePeriod.start = "2026-01-08T09:05:01+00:00"
-* extension[teamHistory].extension[careTeam].valueReference = Reference(careteam)
+* extension[teamHistory].extension[careTeam].valueReference = Reference(careteam-placeholder)
 * extension[teamHistory].extension[period].valuePeriod.start = "2026-01-08T09:05:00+00:00"
 * instantiatesCanonical = Canonical(plandefinition)
 * status = #active
 * intent = #order
 * subject = Reference(p01)
 * period.start = "2026-01-08T09:05:00+00:00"
-* careTeam = Reference(careteam)
+* careTeam = Reference(careteam-placeholder)
 * addresses = Reference(p01-eoc2-cond)
 // One entry per activity, in the order the plan runs them. See servicerequest.fsh.
 * activity[0].reference = Reference(p01-cp2-sr-head)

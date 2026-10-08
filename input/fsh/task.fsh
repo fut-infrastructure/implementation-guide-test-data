@@ -30,7 +30,7 @@ RuleSet: TriageTask(episode, careplan, focus, priority, when)
 * extension[episodeOfCare].valueReference = Reference({episode})
 * extension[taskCategory].valueCodeableConcept = $task-category#MeasurementForAssessment "Need assessment of measurement"
 * extension[restrictionCategory].valueCodeableConcept = $restriction-category#measurement-monitoring "Monitoring of measurement(s)"
-* extension[taskResponsible].valueReference = Reference(careteam)
+* extension[taskResponsible].valueReference = Reference(careteam-placeholder)
 * extension[carePlan].valueReference = Reference({careplan})
 * status = #requested
 * intent = #plan

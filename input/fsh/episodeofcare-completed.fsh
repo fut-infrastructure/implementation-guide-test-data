@@ -36,7 +36,7 @@ Description: "A completed episode of care for the same patient and the same COPD
 * extension[managingOrganization].extension[organisation].valueReference = Reference(org-region-hovedstaden)
 * extension[managingOrganization].extension[period].valuePeriod.start = "2025-03-03T09:00:00+00:00"
 * extension[managingOrganization].extension[period].valuePeriod.end = "2025-06-30T12:00:00+00:00"
-* extension[teamHistory].extension[careTeam].valueReference = Reference(careteam)
+* extension[teamHistory].extension[careTeam].valueReference = Reference(careteam-placeholder)
 * extension[teamHistory].extension[period].valuePeriod.start = "2025-03-03T09:00:00+00:00"
 * extension[teamHistory].extension[period].valuePeriod.end = "2025-06-30T12:00:00+00:00"
 * status = #finished
@@ -53,4 +53,4 @@ Description: "A completed episode of care for the same patient and the same COPD
 * patient = Reference(p01)
 * period.start = "2025-03-03T09:00:00+00:00"
 * period.end = "2025-06-30T12:00:00+00:00"
-* team = Reference(careteam)
+* team = Reference(careteam-placeholder)

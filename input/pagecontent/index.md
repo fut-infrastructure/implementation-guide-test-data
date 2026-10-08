@@ -29,14 +29,23 @@ layout marks it.
 
 #### Placeholders
 
-Values written as `${NAME}` are substituted by the loader at load time. They fall into two groups.
+Values written as `${NAME}` are substituted by the loader at load time. Each takes its value from
+the target environment, and the ones that are codes draw on a code system defined elsewhere.
 
-**Environment values** — these belong to the deployment, not to the test data:
+**Environment values** — these belong to the deployment, not to the test data. Both take a code
+from a code system the core IG defines, so the candidate values are published there rather than
+restated here:
 
 * `${EHEALTH_PROGRAM}` — the programme these definitions belong to. It names the deployment being
   loaded for, so it cannot be fixed in the guide.
+  Codes: [eHealth Program](http://ehealth.sundhed.dk/fhir/CodeSystem-ehealth-program.html)
 * `${COEXISTENCE_TAG}` — the coexistence tag in `meta.tag`, marking which deployment owns the
   record. Carried by the patient-specific resources only; the definitions do not have it.
+  Codes: [Ehealth System](http://ehealth.sundhed.dk/fhir/CodeSystem-ehealth-system.html)
+
+Both code systems declare `content: complete`, so each lists every code valid **for the version of
+the core IG this guide depends on**. A deployment running a newer core IG may have more — which is
+the reason these are placeholders and not a fixed value.
 
 The patients have **no** placeholders. There are ten of them, each a concrete test identity read
 back from the target environment, so the CPR the loader resolves by is a real value that already
@@ -47,7 +56,10 @@ environment and are resolved there, so their identities belong to it:
 
 * `${CARETEAM_IDENTIFIER}`
 * `${PRACTITIONER_IDENTIFIER}`, `${PRACTITIONER_FAMILY_NAME}`, `${PRACTITIONER_GIVEN_NAME}`,
-  `${PRACTITIONER_AUTHORISATION_ID}`, `${PROFESSION_GROUP}`
+  `${PRACTITIONER_AUTHORISATION_ID}`
+* `${PROFESSION_GROUP}` — the practitioner's profession.
+  Codes: [DkCoreProfessionGroupCodes](http://hl7.dk/fhir/core/CodeSystem-DkCoreProfessionGroupCodes.html),
+  defined by hl7.fhir.dk.core rather than by the eHealth core IG
 
 #### What a placeholder costs
 

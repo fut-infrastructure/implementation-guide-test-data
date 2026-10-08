@@ -80,7 +80,10 @@ groups:
       - Patient/p08
       - Patient/p09
       - Patient/p10
-      - Practitioner/practitioner
+      - Practitioner/practitioner-fob
+      - Practitioner/practitioner-kpro
+      - Practitioner/practitioner-placeholder
+      - Practitioner/practitioner-telma
   BaseEntities:
     name: "Base.Entities"
     description: "Organizations the definitions refer to."
@@ -127,7 +130,10 @@ groups:
       - ServiceRequest/p01-cp2-sr-sat-pulse-intro
       - ServiceRequest/p01-cp2-sr-sat-pulse-prep
       - ServiceRequest/p01-cp2-sr-saturation
-      - CareTeam/careteam
+      - CareTeam/careteam-fob
+      - CareTeam/careteam-kpro
+      - CareTeam/careteam-placeholder
+      - CareTeam/careteam-telma
   ClinicalDiagnostics:
     name: "Clinical.Diagnostics"
     description: "What the patient submitted: the measurements and the questionnaire responses."

@@ -1,54 +1,71 @@
-// Practitioner — A TEMPLATE, AND ANONYMOUS.
+// Practitioners — one per programme, currently: kpro, telma and fob.
 //
-// Not created on the target environment. Like an Organization or a CareTeam, a Practitioner is
-// organization data that already exists there, and the loader resolves it by identifier — so the
-// identifier is a ${PLACEHOLDER} and the resource id used here is a local handle.
-//
-// ANONYMOUS FOR THE SAME REASON THE PATIENT IS. A practitioner is a real person, so the name, the
-// environment identifier and the authorisation number are all placeholders. The profession is not
-// personal data and stays real: it is what makes the template mean something.
+// EVERY VALUE IS SYNTHETIC. The names are Test <programme> Testesen, the identifiers are UUIDs,
+// and the authorisation numbers are test authorization numbers.
 //
 // WHAT EACH IDENTIFIER IS:
-//   identifier                  the environment identifies a practitioner by an LDAP uid, whose
-//                               real values embed a CVR number and a RID. Both identify a person
-//                               and the organisation they work for, so the value is a placeholder.
-//   (no authorisation)          the practitioner's authorisation number in Styrelsen for
-//                               Patientsikkerhed's register is absent entirely. It is personal,
-//                               and it cannot be anonymised — see the note on the rules below.
-//   qualification.code          the profession group. A placeholder too, so the template states
-//                               no profession at all.
-//
-// THE PROFESSION PLACEHOLDER COSTS ONE VALIDATION ERROR, unlike the others here. The name and the
-// two identifiers are string-typed, so a ${PLACEHOLDER} in them validates cleanly. This one sits
-// in a coded element, so the validator reports an unknown code in
-// http://hl7.dk/fhir/core/CodeSystem/DkCoreProfessionGroupCodes — the same unsuppressible kind of
-// error as ${EHEALTH_PROGRAM}. The system is kept alongside it so that substituting the code
-// yields a complete coding; the alternative, putting the placeholder in code.text and leaving out
-// the coding, validates without error but gives the loader nowhere to write a real code.
-//
-// The binding is extensible and the code system holds 21 Danish profession groups, of which 5166
-// Sygeplejerske is the one this team would have — telemedical COPD monitoring is nurse-led, which
-// is also why the care team gives this practitioner monitoringAssistor. Since qualification is
-// 0..*, leaving it out entirely is the other way to say nothing, and costs no error.
-//
-// name is 1..1 — the profile requires exactly one, so it cannot be left out the way the patient's
-// birthDate was. Both parts are strings, so placeholders validate cleanly.
+//   identifier                  the LDAP uid, under urn:oid:0.9.2342.19200300.100.1.1. 
+//   qualification.identifier    the authorisation number in Styrelsen for Patientsikkerhed's
+//                               register.
+//   qualification.code          profession group 7170, Læge.
 
-Instance: practitioner
+
+// The practitioner the placeholder team lists.
+Instance: practitioner-placeholder
 InstanceOf: ehealth-practitioner
 Usage: #example
-Title: "Practitioner (template)"
-Description: "Template for a practitioner on the care team. Carries no personal data: the loader substitutes the identifier, name and authorisation number."
-// PLACEHOLDERS: see aliases.fsh. All sit in string-typed elements, so they validate cleanly.
+Title: "Practitioner (placeholder)"
+Description: "Stands in for a practitioner on the care team the scenario runs under. The loader substitutes a real one."
 * identifier.system = $practitioner-uid
 * identifier.value = "${PRACTITIONER_IDENTIFIER}"
 * active = true
-* name.family = "${PRACTITIONER_FAMILY_NAME}"
-* name.given = "${PRACTITIONER_GIVEN_NAME}"
-// NO officialHealthAuthorization SLICE AT ALL — an unsliced qualification carrying only the
-// profession. That slice is identified by identifier.system, and dk-core then requires
-// identifier.value (1..1) to be exactly 5 characters drawn from the consonants, Y and the digits.
-// No ${PLACEHOLDER} can fit in five characters, and the value cannot be left out, so the slice
-// cannot be used anonymously at all. qualification itself only requires code.
-// PLACEHOLDER in a coded element — this one does cost an error. See the header.
-* qualification.code = $profession-group#"${PROFESSION_GROUP}"
+* name.family = "Testesen"
+* name.given = "Test"
+* qualification[officialHealthAuthorization].identifier.system = $autreg
+* qualification[officialHealthAuthorization].identifier.value = "00100"
+* qualification[officialHealthAuthorization].code = $profession-group#7170 "Læge"
+
+Instance: practitioner-kpro
+InstanceOf: ehealth-practitioner
+Usage: #example
+Title: "Practitioner kpro"
+Description: "Practitioner for kpro, assigned on a care team for kpro."
+* identifier.system = $practitioner-uid
+* identifier.value = "19a67fa3-f91e-45e6-bedb-a737845329a4"
+* active = true
+* name.family = "Testesen"
+* name.given[0] = "Test"
+* name.given[+] = "kpro"
+* qualification[officialHealthAuthorization].identifier.system = $autreg
+* qualification[officialHealthAuthorization].identifier.value = "00101"
+* qualification[officialHealthAuthorization].code = $profession-group#7170 "Læge"
+
+Instance: practitioner-telma
+InstanceOf: ehealth-practitioner
+Usage: #example
+Title: "Practitioner telma"
+Description: "Practitioner for telma, assigned on a care team for telma."
+* identifier.system = $practitioner-uid
+* identifier.value = "ebf319ef-fcd7-4757-80df-0611f11bb618"
+* active = true
+* name.family = "Testesen"
+* name.given[0] = "Test"
+* name.given[+] = "telma"
+* qualification[officialHealthAuthorization].identifier.system = $autreg
+* qualification[officialHealthAuthorization].identifier.value = "00102"
+* qualification[officialHealthAuthorization].code = $profession-group#7170 "Læge"
+
+Instance: practitioner-fob
+InstanceOf: ehealth-practitioner
+Usage: #example
+Title: "Practitioner fob"
+Description: "Practitioner for fob, assigned on a care team for fob."
+* identifier.system = $practitioner-uid
+* identifier.value = "55c30f5e-efb5-4e84-8212-cbf89477ce46"
+* active = true
+* name.family = "Testesen"
+* name.given[0] = "Test"
+* name.given[+] = "fob"
+* qualification[officialHealthAuthorization].identifier.system = $autreg
+* qualification[officialHealthAuthorization].identifier.value = "00103"
+* qualification[officialHealthAuthorization].code = $profession-group#7170 "Læge"

@@ -46,7 +46,7 @@ Description: "The open episode of care the monitoring plan is delivered under, a
 * extension[caremanagerOrganization].valueReference = Reference(org-region-hovedstaden)
 * extension[managingOrganization].extension[organisation].valueReference = Reference(org-region-hovedstaden)
 * extension[managingOrganization].extension[period].valuePeriod.start = "2026-01-08T09:00:00+00:00"
-* extension[teamHistory].extension[careTeam].valueReference = Reference(careteam)
+* extension[teamHistory].extension[careTeam].valueReference = Reference(careteam-placeholder)
 * extension[teamHistory].extension[period].valuePeriod.start = "2026-01-08T09:00:00+00:00"
 * status = #active
 * statusHistory[0].status = #planned
@@ -57,4 +57,4 @@ Description: "The open episode of care the monitoring plan is delivered under, a
 * diagnosis.condition = Reference(p01-eoc2-cond)
 * patient = Reference(p01)
 * period.start = "2026-01-08T09:00:00+00:00"
-* team = Reference(careteam)
+* team = Reference(careteam-placeholder)
