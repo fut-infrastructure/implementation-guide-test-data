@@ -40,8 +40,7 @@ Values written as `${NAME}` are substituted by the loader at load time. They fal
 
 The patients have **no** placeholders. There are ten of them, each a concrete test identity read
 back from the target environment, so the CPR the loader resolves by is a real value that already
-exists there. One of them, `patient-01`, carries the episodes, care plans, submissions and triage
-results; the other nine are patients only.
+exists there. 
 
 **Organization-data values** — the care team and the practitioner on it already exist on the target
 environment and are resolved there, so their identities belong to it:

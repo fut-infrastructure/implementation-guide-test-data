@@ -40,7 +40,7 @@
 Instance: plandefinition
 InstanceOf: ehealth-plandefinition
 Usage: #example
-Title: "Målinger og spørgeskema (iltmætning, puls og spørgeskema)"
+Title: "COPD monitoring plan (oxygen saturation, pulse and questionnaire)"
 Description: "COPD monitoring plan with a scheduled mon/wed/fri branch and an unscheduled extra branch, each carrying the saturation and pulse device group and the symptom questionnaire. One submission against the extra branch yields one questionnaire response and two observations."
 * extension[modifierRole][0].extension[reference].valueReference = Reference(org-region-midtjylland)
 * extension[modifierRole][0].extension[role].valueCodeableConcept = $modifier-role#owner

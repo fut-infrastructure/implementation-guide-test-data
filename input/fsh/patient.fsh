@@ -12,9 +12,6 @@
 // postcodes — Hasselvej in Nuuk, Weidekampsgade in the Faroes — which is itself a sign the data is
 // generated rather than real.
 //
-// ONE OF THEM CARRIES THE SCENARIO. patient-01 has the two episodes, their care plans, service
-// requests, submissions and triage results. The other nine exist as patients only, ready for the
-// episodes to be added per patient.
 //
 // generalPractitioner IS A LOGICAL REFERENCE — an identifier with no reference, keyed by
 // Ydernummer (urn:oid:1.2.208.176.1.4), which the core IG defines as a NamingSystem. So it names a
@@ -26,7 +23,7 @@ Instance: p01
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Hakob Joumøller"
-Description: "Test patient 01, CPR 0908899393. Expected to pre-exist on the target environment; resolved by CPR identifier."
+Description: "Test patient 01, CPR 0908899393."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
 * identifier[cpr].value = "0908899393"
@@ -51,7 +48,7 @@ Instance: p02
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Stine Rasmussen"
-Description: "Test patient 02, CPR 2406799436. Expected to pre-exist on the target environment; resolved by CPR identifier."
+Description: "Test patient 02, CPR 2406799436."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
 * identifier[cpr].value = "2406799436"
@@ -76,7 +73,7 @@ Instance: p03
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Fie Møller"
-Description: "Test patient 03, CPR 2105018404. Expected to pre-exist on the target environment; resolved by CPR identifier."
+Description: "Test patient 03, CPR 2105018404."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
 * identifier[cpr].value = "2105018404"
@@ -100,7 +97,7 @@ Instance: p04
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Line Rasmussen"
-Description: "Test patient 04, CPR 1007850448. Expected to pre-exist on the target environment; resolved by CPR identifier."
+Description: "Test patient 04, CPR 1007850448."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
 * identifier[cpr].value = "1007850448"
@@ -124,7 +121,7 @@ Instance: p05
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Adrian Bach"
-Description: "Test patient 05, CPR 0108720417. Expected to pre-exist on the target environment; resolved by CPR identifier."
+Description: "Test patient 05, CPR 0108720417."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
 * identifier[cpr].value = "0108720417"
@@ -148,7 +145,7 @@ Instance: p06
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Bente Bach"
-Description: "Test patient 06, CPR 1406612674. Expected to pre-exist on the target environment; resolved by CPR identifier."
+Description: "Test patient 06, CPR 1406612674."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
 * identifier[cpr].value = "1406612674"
@@ -173,7 +170,7 @@ Instance: p07
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Anne Pedersen"
-Description: "Test patient 07, CPR 2307684902. Expected to pre-exist on the target environment; resolved by CPR identifier."
+Description: "Test patient 07, CPR 2307684902."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
 * identifier[cpr].value = "2307684902"
@@ -198,7 +195,7 @@ Instance: p08
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Jeppe Jørgensen"
-Description: "Test patient 08, CPR 1210669643. Expected to pre-exist on the target environment; resolved by CPR identifier."
+Description: "Test patient 08, CPR 1210669643."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
 * identifier[cpr].value = "1210669643"
@@ -223,7 +220,7 @@ Instance: p09
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Jakob Rasmussen"
-Description: "Test patient 09, CPR 0209723123. Expected to pre-exist on the target environment; resolved by CPR identifier."
+Description: "Test patient 09, CPR 0209723123."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
 * identifier[cpr].value = "0209723123"
@@ -248,7 +245,7 @@ Instance: p10
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Ina Pedersen"
-Description: "Test patient 10, CPR 0306909622. Expected to pre-exist on the target environment; resolved by CPR identifier."
+Description: "Test patient 10, CPR 0306909622."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
 * identifier[cpr].value = "0306909622"

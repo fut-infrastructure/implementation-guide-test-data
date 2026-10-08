@@ -36,7 +36,7 @@ const CORE = path.join(process.env.HOME || process.env.USERPROFILE, '.fhir', 'pa
 // record, then the definitional artefacts that describe care rather than record it.
 const CATEGORY_ORDER = [
   ["Base.Individuals", "The people the test data is about."],
-  ["Base.Entities", "Organizations the definitions refer to. Resolved on the target environment by identifier, never created there."],
+  ["Base.Entities", "Organizations the definitions refer to."],
   ["Base.Management", "The episode of care the plan is delivered under, and that every record of care refers back to."],
   ["Clinical.Care Provision", "The plan as delivered to the patient: the care plan, the service requests it consists of, and the care team responsible."],
   ["Clinical.Diagnostics", "What the patient submitted: the measurements and the questionnaire responses."],
@@ -61,13 +61,13 @@ const CATEGORY_OVERRIDE = {
 // In 'type' and 'category-type' modes a group IS a type, so the module's description would be
 // wrong — it describes the whole module, and would repeat under every type in it.
 const TYPE_ORDER = [
-  ['Patient', 'The ten patients the test data is about, each a concrete test identity from the target environment. Resolved there by CPR identifier, never created. patient-01 carries the full scenario; the rest are patients only.'],
-  ['Practitioner', 'The practitioner on the care team. Resolved on the target environment by identifier, never created there, and carrying no personal data.'],
+  ['Patient', 'The ten patients the test data is about, each a concrete test identity from the target environment. p01 carries the full scenario; the rest are patients only.'],
+  ['Practitioner', 'The practitioner on the care team.'],
   ['EpisodeOfCare', 'The episode everything patient-specific hangs off: the plan is delivered under it, and every measurement and response refers back to it.'],
   ['Condition', 'The diagnosis the episode addresses, and the reason the plan is in place.'],
   ['CarePlan', 'The plan definition as delivered to the patient, one per episode. Normally created by $apply, which would also create one ServiceRequest per activity.'],
   ['ServiceRequest', 'One per activity of a care plan, created by $apply alongside it. A measurement or questionnaire response is submitted against one of these, and the measurement ones carry the reference ranges triage compares a value against.'],
-  ['CareTeam', 'The clinicians responsible for the episode. Resolved on the target environment, never created there.'],
+  ['CareTeam', 'The clinicians responsible for the episode.'],
   ['Observation', 'The measurements submitted, two per submission. Their values are chosen to produce a known triage colour against the reference ranges they carry.'],
   ['QuestionnaireResponse', 'The questionnaire answered as part of each submission. The answers are chosen to produce a known triage colour through the answer significance the questionnaire defines.'],
   ['Provenance', 'One per submission, naming the resources submitted together. This is what triggers automated processing, so triage runs because one of these appeared.'],
@@ -77,7 +77,7 @@ const TYPE_ORDER = [
   ['ActivityDefinition', 'One per step of the plan — the containers that group them, the guidance screens, the measurements and the questionnaire activity.'],
   ['Questionnaire', 'The questionnaire the plan collects, carrying the answer significance its triage rule reads.'],
   ['Library', 'The automated-processing rules the measurement and questionnaire activities point at.'],
-  ['Organization', 'Organizations the definitions refer to. Resolved on the target environment, never created there.'],
+  ['Organization', 'Organizations the definitions refer to.'],
 ];
 const typeRank = (t) => {
   const i = TYPE_ORDER.findIndex(([x]) => x === t);

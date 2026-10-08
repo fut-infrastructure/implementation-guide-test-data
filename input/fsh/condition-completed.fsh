@@ -17,7 +17,7 @@
 Instance: p01-eoc1-cond
 InstanceOf: ehealth-condition
 Usage: #example
-Title: "Kronisk obstruktiv lungesygdom (completed episode)"
+Title: "Chronic obstructive pulmonary disease (completed episode)"
 Description: "The COPD diagnosis as recorded under the completed episode of care. The same diagnosis as the other Condition: each episode carries its own, because a Condition can reference only one episode."
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"

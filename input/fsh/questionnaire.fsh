@@ -29,7 +29,7 @@
 Instance: questionnaire
 InstanceOf: ehealth-questionnaire
 Usage: #example
-Title: "KOL spørgeskema"
+Title: "COPD questionnaire"
 Description: "COPD symptom questionnaire: treatment status, three symptom scales, sputum colour and a conditional comment. Eighteen answer-significance mappings across green, yellow and red."
 // QR, "Questionnaire with Rules" — which is what this is: the answerSignificance mappings below
 // are rules the triage library reads. The production questionnaire this was converted from carries

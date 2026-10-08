@@ -136,7 +136,7 @@ Instance: p01-cp2-ci-sat
 InstanceOf: ehealth-clinicalimpression
 Usage: #example
 Title: "Triage of saturation 96% — green"
-Description: "Expected triage result for the saturation submitted under the open episode. 96% is within every absolute range, so the finding is 'within reference range' and the overall assessment green."
+Description: "Triage result for the saturation submitted under the open episode. 96% is within every absolute range, so the finding is 'within reference range' and the overall assessment green."
 * insert TriageCI(p01-eoc2,p01-cp2,p01-cp2-dc-sat, 2026-01-12T08:30:10+00:00)
 * contained[0] = p01-cp2-dc-sat
 * description = "Automatisk processering grundet måling modtaget"
@@ -149,7 +149,7 @@ Instance: p01-cp2-ci-pulse
 InstanceOf: ehealth-clinicalimpression
 Usage: #example
 Title: "Triage of pulse 72/min — green"
-Description: "Expected triage result for the pulse submitted under the open episode. 72/min falls between the low and high alarm ranges, so the finding is 'within reference range' and the overall assessment green."
+Description: "Triage result for the pulse submitted under the open episode. 72/min falls between the low and high alarm ranges, so the finding is 'within reference range' and the overall assessment green."
 * insert TriageCI(p01-eoc2,p01-cp2,p01-cp2-dc-pulse, 2026-01-12T08:30:10+00:00)
 * contained[0] = p01-cp2-dc-pulse
 * description = "Automatisk processering grundet måling modtaget"
@@ -162,7 +162,7 @@ Instance: p01-cp2-ci-qr
 InstanceOf: ehealth-clinicalimpression
 Usage: #example
 Title: "Triage of the questionnaire response — green"
-Description: "Expected triage result for the questionnaire response submitted under the open episode. Four scored answers, all green, so the overall assessment is green. Carries no description: the questionnaire rule does not set one."
+Description: "Triage result for the questionnaire response submitted under the open episode. Four scored answers, all green, so the overall assessment is green. Carries no description: the questionnaire rule does not set one."
 * insert TriageCI(p01-eoc2,p01-cp2,p01-cp2-dc-qr, 2026-01-12T08:30:10+00:00)
 * contained[0] = p01-cp2-dc-qr
 * insert Investigated(p01-cp2-qr)
@@ -178,7 +178,7 @@ Instance: p01-cp1-ci-sat
 InstanceOf: ehealth-clinicalimpression
 Usage: #example
 Title: "Triage of saturation 84% — red"
-Description: "Expected triage result for the saturation submitted under the completed episode. 84% is at or below the red alarm range of 85%, so the finding is 'outside reference range' with the RAL coding, and the overall assessment red."
+Description: "Triage result for the saturation submitted under the completed episode. 84% is at or below the red alarm range of 85%, so the finding is 'outside reference range' with the RAL coding, and the overall assessment red."
 * insert TriageCI(p01-eoc1,p01-cp1,p01-cp1-dc-sat, 2025-05-14T10:00:10+00:00)
 * contained[0] = p01-cp1-dc-sat
 * description = "Automatisk processering grundet måling modtaget"
@@ -192,7 +192,7 @@ Instance: p01-cp1-ci-pulse
 InstanceOf: ehealth-clinicalimpression
 Usage: #example
 Title: "Triage of pulse 118/min — yellow"
-Description: "Expected triage result for the pulse submitted under the completed episode. 118/min falls in the upper yellow range of 110 to 130, so the finding is 'outside reference range' with the GAL coding, and the overall assessment yellow."
+Description: "Triage result for the pulse submitted under the completed episode. 118/min falls in the upper yellow range of 110 to 130, so the finding is 'outside reference range' with the GAL coding, and the overall assessment yellow."
 * insert TriageCI(p01-eoc1,p01-cp1,p01-cp1-dc-pulse, 2025-05-14T10:00:10+00:00)
 * contained[0] = p01-cp1-dc-pulse
 * description = "Automatisk processering grundet måling modtaget"
@@ -206,7 +206,7 @@ Instance: p01-cp1-ci-qr
 InstanceOf: ehealth-clinicalimpression
 Usage: #example
 Title: "Triage of the questionnaire response — red"
-Description: "Expected triage result for the questionnaire response submitted under the completed episode. Five scored answers, three red and two yellow; the rule takes the highest, so the overall assessment is red."
+Description: "Triage result for the questionnaire response submitted under the completed episode. Five scored answers, three red and two yellow; the rule takes the highest, so the overall assessment is red."
 * insert TriageCI(p01-eoc1,p01-cp1,p01-cp1-dc-qr, 2025-05-14T10:00:10+00:00)
 * contained[0] = p01-cp1-dc-qr
 * insert Investigated(p01-cp1-qr)

@@ -105,7 +105,7 @@ Description: "Container for the scheduled saturation, pulse and questionnaire."
 Instance: ad-intro
 InstanceOf: ehealth-activitydefinition
 Usage: #example
-Title: "Introduktion"
+Title: "Introduction"
 Description: "Opening guidance for a scheduled round."
 * insert Common
 * insert Focus
@@ -125,7 +125,7 @@ Description: "Opening guidance for a scheduled round."
 Instance: ad-sat-pulse-intro
 InstanceOf: ehealth-activitydefinition
 Usage: #example
-Title: "Måling af iltmætning og puls"
+Title: "Oxygen saturation and pulse measurement"
 Description: "Guidance shown before the saturation and pulse measurement: warm the hands, and what the reading involves."
 * insert Common
 * insert Focus
@@ -145,7 +145,7 @@ Description: "Guidance shown before the saturation and pulse measurement: warm t
 Instance: ad-sat-pulse-prep
 InstanceOf: ehealth-activitydefinition
 Usage: #example
-Title: "Forberedelse"
+Title: "Preparation"
 Description: "Immediate preparation: sit still for five minutes beforehand and keep the hand steady during the reading."
 * insert Common
 * insert Focus
@@ -165,7 +165,7 @@ Description: "Immediate preparation: sit still for five minutes beforehand and k
 Instance: ad-sat-pulse
 InstanceOf: ehealth-activitydefinition
 Usage: #example
-Title: "Iltmætning og pulsmåling (same device group)"
+Title: "Oxygen saturation and pulse (same device group)"
 Description: "The same-device group: one pulse oximeter, one patient action, two values. Its children are the saturation and the pulse."
 * insert Common
 * extension[base].valueIdentifier.system = "urn:ietf:rfc:3986"
@@ -187,7 +187,7 @@ Description: "The same-device group: one pulse oximeter, one patient action, two
 Instance: ad-saturation
 InstanceOf: ehealth-activitydefinition
 Usage: #example
-Title: "Iltmætning"
+Title: "Oxygen saturation"
 Description: "Oxygen saturation, triaged against absolute thresholds: red at or below 85%, yellow up to 88%, green above."
 * insert Common
 * insert Focus
@@ -207,7 +207,7 @@ Description: "Oxygen saturation, triaged against absolute thresholds: red at or 
 Instance: ad-pulse
 InstanceOf: ehealth-activitydefinition
 Usage: #example
-Title: "Puls"
+Title: "Pulse"
 Description: "Heart rate, triaged against absolute thresholds: red at or below 50 and at or above 130, yellow either side of the 60-110 green band."
 * insert Common
 * insert Focus
@@ -227,7 +227,7 @@ Description: "Heart rate, triaged against absolute thresholds: red at or below 5
 Instance: ad-questionnaire
 InstanceOf: ehealth-activitydefinition
 Usage: #example
-Title: "Spørgeskema"
+Title: "Questionnaire"
 Description: "Master Questionnaire activity presenting the symptom questionnaire, the single questionnaire of this plan."
 * insert Common
 * insert Focus
@@ -249,7 +249,7 @@ Description: "Master Questionnaire activity presenting the symptom questionnaire
 Instance: ad-closing
 InstanceOf: ehealth-activitydefinition
 Usage: #example
-Title: "Afrunding"
+Title: "Closing"
 Description: "Closing guidance for a scheduled round."
 * insert Common
 * insert Focus
@@ -273,7 +273,7 @@ Description: "Closing guidance for a scheduled round."
 Instance: ad-extra-head
 InstanceOf: ehealth-activitydefinition
 Usage: #example
-Title: "Ekstra head activity"
+Title: "Extra head activity"
 Description: "Container for the unscheduled saturation, pulse and questionnaire."
 * insert Common
 * extension[base].valueIdentifier.system = "urn:ietf:rfc:3986"
@@ -289,7 +289,7 @@ Description: "Container for the unscheduled saturation, pulse and questionnaire.
 Instance: ad-extra-sat-pulse
 InstanceOf: ehealth-activitydefinition
 Usage: #example
-Title: "Ekstra iltmætning og pulsmåling (same device group)"
+Title: "Extra oxygen saturation and pulse (same device group)"
 Description: "The unscheduled same-device group."
 * insert Common
 * extension[base].valueIdentifier.system = "urn:ietf:rfc:3986"
@@ -310,7 +310,7 @@ Description: "The unscheduled same-device group."
 Instance: ad-extra-saturation
 InstanceOf: ehealth-activitydefinition
 Usage: #example
-Title: "Ekstra iltmætning"
+Title: "Extra oxygen saturation"
 Description: "Unscheduled oxygen saturation, with the same absolute thresholds as the scheduled one."
 * insert Common
 * insert Focus
@@ -330,7 +330,7 @@ Description: "Unscheduled oxygen saturation, with the same absolute thresholds a
 Instance: ad-extra-pulse
 InstanceOf: ehealth-activitydefinition
 Usage: #example
-Title: "Ekstra puls"
+Title: "Extra pulse"
 Description: "Unscheduled heart rate, with the same absolute thresholds as the scheduled one."
 * insert Common
 * insert Focus
@@ -350,7 +350,7 @@ Description: "Unscheduled heart rate, with the same absolute thresholds as the s
 Instance: ad-extra-questionnaire
 InstanceOf: ehealth-activitydefinition
 Usage: #example
-Title: "Ekstra spørgeskema"
+Title: "Extra questionnaire"
 Description: "Unscheduled Master Questionnaire activity, composed of the same questionnaire as the scheduled one."
 * insert Common
 * insert Focus

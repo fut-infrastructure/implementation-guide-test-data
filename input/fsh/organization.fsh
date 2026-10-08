@@ -36,7 +36,7 @@ Instance: org-region-midtjylland
 InstanceOf: ehealth-organization
 Usage: #example
 Title: "Region Midtjylland"
-Description: "Owner of the two automated-processing rules. Expected to pre-exist on the target; resolved by SOR identifier."
+Description: "Owner of the two automated-processing rules."
 * extension[cvrNumber].valueString = "29190925"
 * extension[regionCode].valueString = "1082"
 * extension[municipalityCode].valueString = "0791"
@@ -79,7 +79,7 @@ Instance: org-region-hovedstaden
 InstanceOf: ehealth-organization
 Usage: #example
 Title: "Region Hovedstaden"
-Description: "Owner and intended audience of the plan and its activities. Expected to pre-exist on the target; resolved by SOR identifier."
+Description: "Owner and intended audience of the plan and its activities."
 * extension[cvrNumber].valueString = "29190623"
 * extension[regionCode].valueString = "1084"
 * extension[municipalityCode].valueString = "0219"

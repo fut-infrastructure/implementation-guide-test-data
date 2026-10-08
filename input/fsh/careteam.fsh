@@ -39,7 +39,7 @@ Instance: careteam
 InstanceOf: ehealth-careteam
 Usage: #example
 Title: "KOL care team"
-Description: "The care team responsible for the COPD monitoring. Expected to pre-exist on the target environment; resolved by identifier. Its one participant's role is administered by Keycloak, not by this guide."
+Description: "The care team responsible for the COPD monitoring."
 // PLACEHOLDERS: see aliases.fsh.
 * extension[useContext].valueUsageContext.code = $usage-context-type#program "Program"
 * extension[useContext].valueUsageContext.valueCodeableConcept = $ehealth-program#"${EHEALTH_PROGRAM}"

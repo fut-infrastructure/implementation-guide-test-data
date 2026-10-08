@@ -10,41 +10,41 @@ The people the test data is about.
 
 #### Patients
 
-The ten patients the test data is about, each a concrete test identity from the target environment. Resolved there by CPR identifier, never created. patient-01 carries the full scenario; the rest are patients only.
+The ten patients the test data is about, each a concrete test identity from the target environment. p01 carries the full scenario; the rest are patients only.
 
 |Name|Description|
 |---|---|
-|[Hakob Joumøller](Patient-p01.html)|Test patient 01, CPR 0908899393. Expected to pre-exist on the target environment; resolved by CPR identifier.|
-|[Stine Rasmussen](Patient-p02.html)|Test patient 02, CPR 2406799436. Expected to pre-exist on the target environment; resolved by CPR identifier.|
-|[Fie Møller](Patient-p03.html)|Test patient 03, CPR 2105018404. Expected to pre-exist on the target environment; resolved by CPR identifier.|
-|[Line Rasmussen](Patient-p04.html)|Test patient 04, CPR 1007850448. Expected to pre-exist on the target environment; resolved by CPR identifier.|
-|[Adrian Bach](Patient-p05.html)|Test patient 05, CPR 0108720417. Expected to pre-exist on the target environment; resolved by CPR identifier.|
-|[Bente Bach](Patient-p06.html)|Test patient 06, CPR 1406612674. Expected to pre-exist on the target environment; resolved by CPR identifier.|
-|[Anne Pedersen](Patient-p07.html)|Test patient 07, CPR 2307684902. Expected to pre-exist on the target environment; resolved by CPR identifier.|
-|[Jeppe Jørgensen](Patient-p08.html)|Test patient 08, CPR 1210669643. Expected to pre-exist on the target environment; resolved by CPR identifier.|
-|[Jakob Rasmussen](Patient-p09.html)|Test patient 09, CPR 0209723123. Expected to pre-exist on the target environment; resolved by CPR identifier.|
-|[Ina Pedersen](Patient-p10.html)|Test patient 10, CPR 0306909622. Expected to pre-exist on the target environment; resolved by CPR identifier.|
+|[Hakob Joumøller](Patient-p01.html)|Test patient 01, CPR 0908899393.|
+|[Stine Rasmussen](Patient-p02.html)|Test patient 02, CPR 2406799436.|
+|[Fie Møller](Patient-p03.html)|Test patient 03, CPR 2105018404.|
+|[Line Rasmussen](Patient-p04.html)|Test patient 04, CPR 1007850448.|
+|[Adrian Bach](Patient-p05.html)|Test patient 05, CPR 0108720417.|
+|[Bente Bach](Patient-p06.html)|Test patient 06, CPR 1406612674.|
+|[Anne Pedersen](Patient-p07.html)|Test patient 07, CPR 2307684902.|
+|[Jeppe Jørgensen](Patient-p08.html)|Test patient 08, CPR 1210669643.|
+|[Jakob Rasmussen](Patient-p09.html)|Test patient 09, CPR 0209723123.|
+|[Ina Pedersen](Patient-p10.html)|Test patient 10, CPR 0306909622.|
 
 #### Practitioners
 
-The practitioner on the care team. Resolved on the target environment by identifier, never created there, and carrying no personal data.
+The practitioner on the care team.
 
 |Name|Description|
 |---|---|
-|[Practitioner (template)](Practitioner-practitioner.html)|Template for a practitioner on the care team. Carries no personal data: the loader substitutes the identifier, name and authorisation number. Expected to pre-exist on the target environment; resolved by identifier.|
+|[Practitioner (template)](Practitioner-practitioner.html)|Template for a practitioner on the care team. Carries no personal data: the loader substitutes the identifier, name and authorisation number.|
 
 ### Base.Entities
 
-Organizations the definitions refer to. Resolved on the target environment by identifier, never created there.
+Organizations the definitions refer to.
 
 #### Organizations
 
-Organizations the definitions refer to. Resolved on the target environment, never created there.
+Organizations the definitions refer to.
 
 |Name|Description|
 |---|---|
-|[Region Hovedstaden](Organization-org-region-hovedstaden.html)|Owner and intended audience of the plan and its activities. Expected to pre-exist on the target; resolved by SOR identifier.|
-|[Region Midtjylland](Organization-org-region-midtjylland.html)|Owner of the two automated-processing rules. Expected to pre-exist on the target; resolved by SOR identifier.|
+|[Region Hovedstaden](Organization-org-region-hovedstaden.html)|Owner and intended audience of the plan and its activities.|
+|[Region Midtjylland](Organization-org-region-midtjylland.html)|Owner of the two automated-processing rules.|
 
 ### Base.Management
 
@@ -109,11 +109,11 @@ One per activity of a care plan, created by $apply alongside it. A measurement o
 
 #### CareTeams
 
-The clinicians responsible for the episode. Resolved on the target environment, never created there.
+The clinicians responsible for the episode.
 
 |Name|Description|
 |---|---|
-|[KOL care team](CareTeam-careteam.html)|The care team responsible for the COPD monitoring. Expected to pre-exist on the target environment; resolved by identifier. Its one participant's role is administered by Keycloak, not by this guide.|
+|[KOL care team](CareTeam-careteam.html)|The care team responsible for the COPD monitoring. Its one participant's role is administered by Keycloak, not by this guide.|
 
 ### Clinical.Diagnostics
 
@@ -149,8 +149,8 @@ The diagnosis the episode addresses, and the reason the plan is in place.
 
 |Name|Description|
 |---|---|
-|[Kronisk obstruktiv lungesygdom (completed episode)](Condition-p01-eoc1-cond.html)|The COPD diagnosis as recorded under the completed episode of care. The same diagnosis as the other Condition: each episode carries its own, because a Condition can reference only one episode.|
-|[Kronisk obstruktiv lungesygdom](Condition-p01-eoc2-cond.html)|The COPD diagnosis the episode of care addresses and the monitoring plan responds to.|
+|[Chronic obstructive pulmonary disease (completed episode)](Condition-p01-eoc1-cond.html)|The COPD diagnosis as recorded under the completed episode of care. The same diagnosis as the other Condition: each episode carries its own, because a Condition can reference only one episode.|
+|[Chronic obstructive pulmonary disease](Condition-p01-eoc2-cond.html)|The COPD diagnosis the episode of care addresses and the monitoring plan responds to.|
 
 #### ClinicalImpressions
 
@@ -158,12 +158,12 @@ The triage result for each submitted resource. NOT loaded — automated processi
 
 |Name|Description|
 |---|---|
-|[Triage of pulse 118/min — yellow](ClinicalImpression-p01-cp1-ci-pulse.html)|Expected triage result for the pulse submitted under the completed episode. 118/min falls in the upper yellow range of 110 to 130, so the finding is 'outside reference range' with the GAL coding, and the overall assessment yellow.|
-|[Triage of the questionnaire response — red](ClinicalImpression-p01-cp1-ci-qr.html)|Expected triage result for the questionnaire response submitted under the completed episode. Five scored answers, three red and two yellow; the rule takes the highest, so the overall assessment is red.|
-|[Triage of saturation 84% — red](ClinicalImpression-p01-cp1-ci-sat.html)|Expected triage result for the saturation submitted under the completed episode. 84% is at or below the red alarm range of 85%, so the finding is 'outside reference range' with the RAL coding, and the overall assessment red.|
-|[Triage of pulse 72/min — green](ClinicalImpression-p01-cp2-ci-pulse.html)|Expected triage result for the pulse submitted under the open episode. 72/min falls between the low and high alarm ranges, so the finding is 'within reference range' and the overall assessment green.|
-|[Triage of the questionnaire response — green](ClinicalImpression-p01-cp2-ci-qr.html)|Expected triage result for the questionnaire response submitted under the open episode. Four scored answers, all green, so the overall assessment is green. Carries no description: the questionnaire rule does not set one.|
-|[Triage of saturation 96% — green](ClinicalImpression-p01-cp2-ci-sat.html)|Expected triage result for the saturation submitted under the open episode. 96% is within every absolute range, so the finding is 'within reference range' and the overall assessment green.|
+|[Triage of pulse 118/min — yellow](ClinicalImpression-p01-cp1-ci-pulse.html)|Triage result for the pulse submitted under the completed episode. 118/min falls in the upper yellow range of 110 to 130, so the finding is 'outside reference range' with the GAL coding, and the overall assessment yellow.|
+|[Triage of the questionnaire response — red](ClinicalImpression-p01-cp1-ci-qr.html)|Triage result for the questionnaire response submitted under the completed episode. Five scored answers, three red and two yellow; the rule takes the highest, so the overall assessment is red.|
+|[Triage of saturation 84% — red](ClinicalImpression-p01-cp1-ci-sat.html)|Triage result for the saturation submitted under the completed episode. 84% is at or below the red alarm range of 85%, so the finding is 'outside reference range' with the RAL coding, and the overall assessment red.|
+|[Triage of pulse 72/min — green](ClinicalImpression-p01-cp2-ci-pulse.html)|Triage result for the pulse submitted under the open episode. 72/min falls between the low and high alarm ranges, so the finding is 'within reference range' and the overall assessment green.|
+|[Triage of the questionnaire response — green](ClinicalImpression-p01-cp2-ci-qr.html)|Triage result for the questionnaire response submitted under the open episode. Four scored answers, all green, so the overall assessment is green. Carries no description: the questionnaire rule does not set one.|
+|[Triage of saturation 96% — green](ClinicalImpression-p01-cp2-ci-sat.html)|Triage result for the saturation submitted under the open episode. 96% is within every absolute range, so the finding is 'within reference range' and the overall assessment green.|
 
 ### Foundation.Security
 
@@ -188,12 +188,12 @@ The assessment task raised with each triage result. NOT loaded either; its prior
 
 |Name|Description|
 |---|---|
-|[Assess pulse triage — urgent](Task-p01-cp1-task-pulse.html)|Expected task for the yellow pulse result under the completed episode. Priority urgent, because the value fell in a GAL range.|
-|[Evaluate questionnaire response triage — asap](Task-p01-cp1-task-qr.html)|Expected task for the red questionnaire result under the completed episode. Priority asap, because the highest answer significance was red.|
-|[Assess saturation triage — asap](Task-p01-cp1-task-sat.html)|Expected task for the red saturation result under the completed episode. Priority asap, because the value fell in a RAL range.|
-|[Assess pulse triage — routine](Task-p01-cp2-task-pulse.html)|Expected task for the green pulse result under the open episode. Priority routine, because triage returned green.|
-|[Evaluate questionnaire response triage — routine](Task-p01-cp2-task-qr.html)|Expected task for the green questionnaire result under the open episode. Carries the questionnaire wording rather than the measurement wording.|
-|[Assess saturation triage — routine](Task-p01-cp2-task-sat.html)|Expected task for the green saturation result under the open episode. Priority routine, because triage returned green.|
+|[Assess pulse triage — urgent](Task-p01-cp1-task-pulse.html)|Task for the yellow pulse result under the completed episode. Priority urgent, because the value fell in a GAL range.|
+|[Evaluate questionnaire response triage — asap](Task-p01-cp1-task-qr.html)|Task for the red questionnaire result under the completed episode. Priority asap, because the highest answer significance was red.|
+|[Assess saturation triage — asap](Task-p01-cp1-task-sat.html)|Task for the red saturation result under the completed episode. Priority asap, because the value fell in a RAL range.|
+|[Assess pulse triage — routine](Task-p01-cp2-task-pulse.html)|Task for the green pulse result under the open episode. Priority routine, because triage returned green.|
+|[Evaluate questionnaire response triage — routine](Task-p01-cp2-task-qr.html)|Task for the green questionnaire result under the open episode. Carries the questionnaire wording rather than the measurement wording.|
+|[Assess saturation triage — routine](Task-p01-cp2-task-sat.html)|Task for the green saturation result under the open episode. Priority routine, because triage returned green.|
 
 ### Specialized.Definitional Artifacts
 
@@ -205,7 +205,7 @@ The monitoring plan: its branches, how each is scheduled, and the order its acti
 
 |Name|Description|
 |---|---|
-|[Målinger og spørgeskema (iltmætning, puls og spørgeskema)](PlanDefinition-plandefinition.html)|COPD monitoring plan with a scheduled mon/wed/fri branch and an unscheduled extra branch, each carrying the saturation and pulse device group and the symptom questionnaire. One submission against the extra branch yields one questionnaire response and two observations.|
+|[COPD monitoring plan (oxygen saturation, pulse and questionnaire)](PlanDefinition-plandefinition.html)|COPD monitoring plan with a scheduled mon/wed/fri branch and an unscheduled extra branch, each carrying the saturation and pulse device group and the symptom questionnaire. One submission against the extra branch yields one questionnaire response and two observations.|
 
 #### ActivityDefinitions
 
@@ -213,20 +213,20 @@ One per step of the plan — the containers that group them, the guidance screen
 
 |Name|Description|
 |---|---|
-|[Afrunding](ActivityDefinition-ad-closing.html)|Closing guidance for a scheduled round.|
-|[Ekstra head activity](ActivityDefinition-ad-extra-head.html)|Container for the unscheduled saturation, pulse and questionnaire.|
-|[Ekstra puls](ActivityDefinition-ad-extra-pulse.html)|Unscheduled heart rate, with the same absolute thresholds as the scheduled one.|
-|[Ekstra spørgeskema](ActivityDefinition-ad-extra-questionnaire.html)|Unscheduled Master Questionnaire activity, composed of the same questionnaire as the scheduled one.|
-|[Ekstra iltmætning og pulsmåling (same device group)](ActivityDefinition-ad-extra-sat-pulse.html)|The unscheduled same-device group.|
-|[Ekstra iltmætning](ActivityDefinition-ad-extra-saturation.html)|Unscheduled oxygen saturation, with the same absolute thresholds as the scheduled one.|
+|[Closing](ActivityDefinition-ad-closing.html)|Closing guidance for a scheduled round.|
+|[Extra head activity](ActivityDefinition-ad-extra-head.html)|Container for the unscheduled saturation, pulse and questionnaire.|
+|[Extra pulse](ActivityDefinition-ad-extra-pulse.html)|Unscheduled heart rate, with the same absolute thresholds as the scheduled one.|
+|[Extra questionnaire](ActivityDefinition-ad-extra-questionnaire.html)|Unscheduled Master Questionnaire activity, composed of the same questionnaire as the scheduled one.|
+|[Extra oxygen saturation and pulse (same device group)](ActivityDefinition-ad-extra-sat-pulse.html)|The unscheduled same-device group.|
+|[Extra oxygen saturation](ActivityDefinition-ad-extra-saturation.html)|Unscheduled oxygen saturation, with the same absolute thresholds as the scheduled one.|
 |[Head activity](ActivityDefinition-ad-head.html)|Container for the scheduled saturation, pulse and questionnaire.|
-|[Introduktion](ActivityDefinition-ad-intro.html)|Opening guidance for a scheduled round.|
-|[Puls](ActivityDefinition-ad-pulse.html)|Heart rate, triaged against absolute thresholds: red at or below 50 and at or above 130, yellow either side of the 60-110 green band.|
-|[Spørgeskema](ActivityDefinition-ad-questionnaire.html)|Master Questionnaire activity presenting the symptom questionnaire, the single questionnaire of this plan.|
-|[Iltmætning og pulsmåling (same device group)](ActivityDefinition-ad-sat-pulse.html)|The same-device group: one pulse oximeter, one patient action, two values. Its children are the saturation and the pulse.|
-|[Måling af iltmætning og puls](ActivityDefinition-ad-sat-pulse-intro.html)|Guidance shown before the saturation and pulse measurement: warm the hands, and what the reading involves.|
-|[Forberedelse](ActivityDefinition-ad-sat-pulse-prep.html)|Immediate preparation: sit still for five minutes beforehand and keep the hand steady during the reading.|
-|[Iltmætning](ActivityDefinition-ad-saturation.html)|Oxygen saturation, triaged against absolute thresholds: red at or below 85%, yellow up to 88%, green above.|
+|[Introduction](ActivityDefinition-ad-intro.html)|Opening guidance for a scheduled round.|
+|[Pulse](ActivityDefinition-ad-pulse.html)|Heart rate, triaged against absolute thresholds: red at or below 50 and at or above 130, yellow either side of the 60-110 green band.|
+|[Questionnaire](ActivityDefinition-ad-questionnaire.html)|Master Questionnaire activity presenting the symptom questionnaire, the single questionnaire of this plan.|
+|[Oxygen saturation and pulse (same device group)](ActivityDefinition-ad-sat-pulse.html)|The same-device group: one pulse oximeter, one patient action, two values. Its children are the saturation and the pulse.|
+|[Oxygen saturation and pulse measurement](ActivityDefinition-ad-sat-pulse-intro.html)|Guidance shown before the saturation and pulse measurement: warm the hands, and what the reading involves.|
+|[Preparation](ActivityDefinition-ad-sat-pulse-prep.html)|Immediate preparation: sit still for five minutes beforehand and keep the hand steady during the reading.|
+|[Oxygen saturation](ActivityDefinition-ad-saturation.html)|Oxygen saturation, triaged against absolute thresholds: red at or below 85%, yellow up to 88%, green above.|
 
 #### Questionnaires
 
@@ -234,7 +234,7 @@ The questionnaire the plan collects, carrying the answer significance its triage
 
 |Name|Description|
 |---|---|
-|[KOL spørgeskema](Questionnaire-questionnaire.html)|COPD symptom questionnaire: treatment status, three symptom scales, sputum colour and a conditional comment. Eighteen answer-significance mappings across green, yellow and red.|
+|[COPD questionnaire](Questionnaire-questionnaire.html)|COPD symptom questionnaire: treatment status, three symptom scales, sputum colour and a conditional comment. Eighteen answer-significance mappings across green, yellow and red.|
 
 #### Libraries
 

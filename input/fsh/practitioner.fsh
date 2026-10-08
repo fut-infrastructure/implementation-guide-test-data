@@ -38,7 +38,7 @@ Instance: practitioner
 InstanceOf: ehealth-practitioner
 Usage: #example
 Title: "Practitioner (template)"
-Description: "Template for a practitioner on the care team. Carries no personal data: the loader substitutes the identifier, name and authorisation number. Expected to pre-exist on the target environment; resolved by identifier."
+Description: "Template for a practitioner on the care team. Carries no personal data: the loader substitutes the identifier, name and authorisation number."
 // PLACEHOLDERS: see aliases.fsh. All sit in string-typed elements, so they validate cleanly.
 * identifier.system = $practitioner-uid
 * identifier.value = "${PRACTITIONER_IDENTIFIER}"

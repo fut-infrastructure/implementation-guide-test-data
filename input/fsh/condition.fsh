@@ -22,7 +22,7 @@
 Instance: p01-eoc2-cond
 InstanceOf: ehealth-condition
 Usage: #example
-Title: "Kronisk obstruktiv lungesygdom"
+Title: "Chronic obstructive pulmonary disease"
 Description: "The COPD diagnosis the episode of care addresses and the monitoring plan responds to."
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"

@@ -83,7 +83,7 @@ groups:
       - Practitioner/practitioner
   BaseEntities:
     name: "Base.Entities"
-    description: "Organizations the definitions refer to. Resolved on the target environment by identifier, never created there."
+    description: "Organizations the definitions refer to."
     resources:
       - Organization/org-region-hovedstaden
       - Organization/org-region-midtjylland
