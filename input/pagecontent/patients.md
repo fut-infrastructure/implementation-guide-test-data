@@ -5,13 +5,13 @@ requests, submissions and triage results recorded for that patient.
 
 |Patient|Name|CPR|Resources|
 |---|---|---|---|
-|[Patient 01](patient-p01.html)|Hakob Joumøller|0908899393|54|
-|[Patient 02](patient-p02.html)|Stine Rasmussen|2406799436|—|
-|[Patient 03](patient-p03.html)|Fie Møller|2105018404|—|
-|[Patient 04](patient-p04.html)|Line Rasmussen|1007850448|—|
-|[Patient 05](patient-p05.html)|Adrian Bach|0108720417|—|
-|[Patient 06](patient-p06.html)|Bente Bach|1406612674|—|
-|[Patient 07](patient-p07.html)|Anne Pedersen|2307684902|—|
-|[Patient 08](patient-p08.html)|Jeppe Jørgensen|1210669643|—|
-|[Patient 09](patient-p09.html)|Jakob Rasmussen|0209723123|—|
-|[Patient 10](patient-p10.html)|Ina Pedersen|0306909622|—|
+|[Patient 01](patient-01.html)|Hakob Joumøller|0908899393|54|
+|[Patient 02](patient-02.html)|Stine Rasmussen|2406799436|—|
+|[Patient 03](patient-03.html)|Fie Møller|2105018404|—|
+|[Patient 04](patient-04.html)|Line Rasmussen|1007850448|—|
+|[Patient 05](patient-05.html)|Adrian Bach|0108720417|—|
+|[Patient 06](patient-06.html)|Bente Bach|1406612674|—|
+|[Patient 07](patient-07.html)|Anne Pedersen|2307684902|—|
+|[Patient 08](patient-08.html)|Jeppe Jørgensen|1210669643|—|
+|[Patient 09](patient-09.html)|Jakob Rasmussen|0209723123|—|
+|[Patient 10](patient-10.html)|Ina Pedersen|0306909622|—|
