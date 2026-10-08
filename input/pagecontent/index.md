@@ -5,7 +5,7 @@ profile published in the
 [eHealth Infrastructure Implementation Guide](http://ehealth.sundhed.dk/fhir) — this guide defines
 no profiles, extensions, code systems or value sets of its own.
 
-See the [Artifacts Summary](artifacts-grouped.html) for the full list.
+See [Shared definitions](shared.html) for what every patient shares, and [Patients](patients.html) for the data recorded per patient.
 
 #### What is here
 

@@ -19,10 +19,11 @@
 //
 // GENERATED ONCE from the environment's samples, then maintained here by hand.
 
+// Hakob Joumøller
 Instance: p01
 InstanceOf: ehealth-patient
 Usage: #example
-Title: "Hakob Joumøller"
+Title: "Patient 01"
 Description: "Test patient 01, CPR 0908899393."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
@@ -44,10 +45,11 @@ Description: "Test patient 01, CPR 0908899393."
 * generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
 * generalPractitioner.identifier.value = "077704"
 
+// Stine Rasmussen
 Instance: p02
 InstanceOf: ehealth-patient
 Usage: #example
-Title: "Stine Rasmussen"
+Title: "Patient 02"
 Description: "Test patient 02, CPR 2406799436."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
@@ -69,10 +71,11 @@ Description: "Test patient 02, CPR 2406799436."
 * generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
 * generalPractitioner.identifier.value = "077704"
 
+// Fie Møller
 Instance: p03
 InstanceOf: ehealth-patient
 Usage: #example
-Title: "Fie Møller"
+Title: "Patient 03"
 Description: "Test patient 03, CPR 2105018404."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
@@ -93,10 +96,11 @@ Description: "Test patient 03, CPR 2105018404."
 * generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
 * generalPractitioner.identifier.value = "077704"
 
+// Line Rasmussen
 Instance: p04
 InstanceOf: ehealth-patient
 Usage: #example
-Title: "Line Rasmussen"
+Title: "Patient 04"
 Description: "Test patient 04, CPR 1007850448."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
@@ -117,10 +121,11 @@ Description: "Test patient 04, CPR 1007850448."
 * generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
 * generalPractitioner.identifier.value = "077704"
 
+// Adrian Bach
 Instance: p05
 InstanceOf: ehealth-patient
 Usage: #example
-Title: "Adrian Bach"
+Title: "Patient 05"
 Description: "Test patient 05, CPR 0108720417."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
@@ -141,10 +146,11 @@ Description: "Test patient 05, CPR 0108720417."
 * generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
 * generalPractitioner.identifier.value = "077704"
 
+// Bente Bach
 Instance: p06
 InstanceOf: ehealth-patient
 Usage: #example
-Title: "Bente Bach"
+Title: "Patient 06"
 Description: "Test patient 06, CPR 1406612674."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
@@ -166,10 +172,11 @@ Description: "Test patient 06, CPR 1406612674."
 * generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
 * generalPractitioner.identifier.value = "077704"
 
+// Anne Pedersen
 Instance: p07
 InstanceOf: ehealth-patient
 Usage: #example
-Title: "Anne Pedersen"
+Title: "Patient 07"
 Description: "Test patient 07, CPR 2307684902."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
@@ -191,10 +198,11 @@ Description: "Test patient 07, CPR 2307684902."
 * generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
 * generalPractitioner.identifier.value = "077704"
 
+// Jeppe Jørgensen
 Instance: p08
 InstanceOf: ehealth-patient
 Usage: #example
-Title: "Jeppe Jørgensen"
+Title: "Patient 08"
 Description: "Test patient 08, CPR 1210669643."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
@@ -216,10 +224,11 @@ Description: "Test patient 08, CPR 1210669643."
 * generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
 * generalPractitioner.identifier.value = "077704"
 
+// Jakob Rasmussen
 Instance: p09
 InstanceOf: ehealth-patient
 Usage: #example
-Title: "Jakob Rasmussen"
+Title: "Patient 09"
 Description: "Test patient 09, CPR 0209723123."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
@@ -241,10 +250,11 @@ Description: "Test patient 09, CPR 0209723123."
 * generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
 * generalPractitioner.identifier.value = "077704"
 
+// Ina Pedersen
 Instance: p10
 InstanceOf: ehealth-patient
 Usage: #example
-Title: "Ina Pedersen"
+Title: "Patient 10"
 Description: "Test patient 10, CPR 0306909622."
 * identifier[cpr].use = #official
 * identifier[cpr].system = $cpr
