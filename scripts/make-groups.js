@@ -29,8 +29,14 @@ const path = require('path');
 const REPO = process.argv[2] || '.';
 const MODE = process.argv[3] || 'category';
 const RES = path.join(REPO, 'fsh-generated', 'resources');
-const CORE = path.join(process.env.HOME || process.env.USERPROFILE, '.fhir', 'packages',
-  'hl7.fhir.r4.core#4.0.1', 'package');
+const CACHE = path.join(process.env.HOME || process.env.USERPROFILE, '.fhir', 'packages');
+const CORE = path.join(CACHE, 'hl7.fhir.r4.core#4.0.1', 'package');
+
+// The eHealth core IG, at whatever version sushi-config.yaml depends on — that is where the
+// programme code system lives, and its displays are not carried on the codings that use it.
+const CORE_IG_VERSION = (fs.readFileSync(path.join(REPO, 'sushi-config.yaml'), 'utf8')
+  .match(/dk\.ehealth\.sundhed\.fhir\.ig\.core:\s*\n\s*version:\s*(\S+)/) || [])[1];
+const EHEALTH = path.join(CACHE, `dk.ehealth.sundhed.fhir.ig.core#${CORE_IG_VERSION}`, 'package');
 
 // R4 categories in the order the spec presents the modules: foundations, then the clinical
 // record, then the definitional artefacts that describe care rather than record it.
@@ -199,6 +205,11 @@ patients.sort();
 // belongs to it. The programme comes from the team's own useContext rather than a list here, so
 // the table cannot drift from the data.
 const PROGRAM_CS = 'http://ehealth.sundhed.dk/cs/ehealth-program';
+const programFile = path.join(EHEALTH, 'CodeSystem-ehealth-program.json');
+if (!fs.existsSync(programFile)) { console.error(`ERROR: ${programFile} not found. Run the publisher once to populate the package cache.`); process.exit(1); }
+const programDisplay = new Map((JSON.parse(fs.readFileSync(programFile, 'utf8')).concept || [])
+  .map((c) => [c.code, c.display || c.code]));
+
 const vendors = [];
 const vendorOf = new Map();
 for (const [, r] of resources) {
@@ -209,7 +220,8 @@ for (const [, r] of resources) {
   const prog = uc && ((uc.valueUsageContext.valueCodeableConcept || {}).coding || [])
     .find((c) => c.system === PROGRAM_CS);
   if (!prog) { console.error(`ERROR: CareTeam/${r.id} names a vendor but carries no programme in useContext.`); process.exit(1); }
-  vendors.push({ code, programme: prog.code });
+  if (!programDisplay.has(prog.code)) { console.error(`ERROR: CareTeam/${r.id} names programme '${prog.code}', which ${PROGRAM_CS} does not define.`); process.exit(1); }
+  vendors.push({ code, programme: prog.code, display: programDisplay.get(prog.code) });
 }
 vendors.sort((a, b) => a.code.localeCompare(b.code));
 for (const v of vendors) {
@@ -278,9 +290,9 @@ written.push(write('vendors.md', [
   `${vendors.length} vendors, one per programme. Each runs the same plan under its own care team,`,
   'with one practitioner on it.',
   '',
-  '|Vendor|Programme|',
-  '|---|---|',
-  ...vendors.map((v) => `|[${v.code}](vendor-${v.code}.html)|${v.programme}|`),
+  '|System|Programme|Name|',
+  '|---|---|---|',
+  ...vendors.map((v) => `|[${v.code}](vendor-${v.code}.html)|${v.programme}|${v.display}|`),
 ]));
 
 for (const v of vendors) {

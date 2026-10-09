@@ -3,8 +3,8 @@
 3 vendors, one per programme. Each runs the same plan under its own care team,
 with one practitioner on it.
 
-|Vendor|Programme|
-|---|---|
-|[xa](vendor-xa.html)|kpro|
-|[xb](vendor-xb.html)|telma|
-|[xc](vendor-xc.html)|fob|
+|System|Programme|Name|
+|---|---|---|
+|[xa](vendor-xa.html)|kpro|Kommunal PRO|
+|[xb](vendor-xb.html)|telma|Telma|
+|[xc](vendor-xc.html)|fob|FOB|
