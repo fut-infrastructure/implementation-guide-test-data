@@ -176,6 +176,7 @@ for (const r of JSON.parse(fs.readFileSync(path.join(RES, igFile), 'utf8')).defi
   resourceMeta.set(ref, { title: r.name || ref, description: r.description || '' });
 }
 
+const resources = new Map();
 const tagged = new Set();
 const patientOf = new Map();
 const patients = [];
@@ -183,6 +184,7 @@ for (const f of fs.readdirSync(RES)) {
   if (!f.endsWith('.json') || f.startsWith('ImplementationGuide-')) continue;
   const r = JSON.parse(fs.readFileSync(path.join(RES, f), 'utf8'));
   const ref = `${r.resourceType}/${r.id}`;
+  resources.set(ref, r);
   if (((r.meta || {}).tag || []).some((t) => /ehealth-system/.test(t.system || ''))) {
     tagged.add(ref);
     const m = r.id.match(/^(p\d\d)\b/);
@@ -193,6 +195,27 @@ for (const f of fs.readdirSync(RES)) {
 }
 patients.sort();
 
+// Vendors. Each concrete CareTeam names one, and every resource whose id ends in that suffix
+// belongs to it. The programme comes from the team's own useContext rather than a list here, so
+// the table cannot drift from the data.
+const PROGRAM_CS = 'http://ehealth.sundhed.dk/cs/ehealth-program';
+const vendors = [];
+const vendorOf = new Map();
+for (const [, r] of resources) {
+  if (r.resourceType !== 'CareTeam') continue;
+  const code = (r.id.match(/^careteam-(.+)$/) || [])[1];
+  if (!code || code === 'placeholder') continue;
+  const uc = (r.extension || []).find((e) => e.valueUsageContext);
+  const prog = uc && ((uc.valueUsageContext.valueCodeableConcept || {}).coding || [])
+    .find((c) => c.system === PROGRAM_CS);
+  if (!prog) { console.error(`ERROR: CareTeam/${r.id} names a vendor but carries no programme in useContext.`); process.exit(1); }
+  vendors.push({ code, programme: prog.code });
+}
+vendors.sort((a, b) => a.code.localeCompare(b.code));
+for (const v of vendors) {
+  for (const [ref, r] of resources) if (r.id.endsWith(`-${v.code}`)) vendorOf.set(ref, v.code);
+}
+
 const row = (ref) => {
   const m = resourceMeta.get(ref);
   if (!m) { console.error(`ERROR: ${ref} is not in the ImplementationGuide's definition.resource.`); process.exit(1); }
@@ -200,10 +223,20 @@ const row = (ref) => {
   return `|[${m.title}](${href})|${m.description.replace(/\s+/g, ' ').replace(/\|/g, '\\|')}|`;
 };
 
-// one section per module, one subsection per type, over whichever refs are given
-const sections = (refs) => {
+// one section per module, one subsection per type, over whichever refs are given. A vendor page
+// holds two resources, so it drops the module level and heads each table with the type alone.
+const sections = (refs, flat) => {
   const out = [];
   const keep = new Set(refs);
+  if (flat) {
+    const types = [...byType.keys()].filter((t) => byType.get(t).some((r) => keep.has(r)));
+    for (const t of types.sort((a, b) => typeRank(a) - typeRank(b))) {
+      out.push(`### ${plural(t)}`, '', typeDescription(t), '', '|Name|Description|', '|---|---|');
+      byType.get(t).filter((r) => keep.has(r)).sort().forEach((r) => out.push(row(r)));
+      out.push('');
+    }
+    return out;
+  }
   for (const [cat, description] of CATEGORY_ORDER) {
     const types = (cats.get(cat) || []).filter((t) => byType.get(t).some((r) => keep.has(r)));
     if (!types.length) continue;
@@ -234,12 +267,31 @@ const all = [...byType.values()].flat();
 const written = [];
 
 written.push(write('shared.md', [
-  'Everything every patient shares: the plan and the activities it is built from, the questionnaire,',
-  'the automated-processing rules, and the organizations, care teams and practitioners the',
-  'definitions refer to. None of it carries a coexistence tag.',
+  'Everything every patient and every vendor shares: the plan and the activities it is built from,',
+  'the questionnaire, the automated-processing rules, the organizations, the ten patients, and the',
+  'placeholder care team and practitioner the scenario runs under.',
   '',
-  ...sections(all.filter((r) => !tagged.has(r))),
+  ...sections(all.filter((r) => !tagged.has(r) && !vendorOf.has(r))),
 ]));
+
+written.push(write('vendors.md', [
+  `${vendors.length} vendors, one per programme. Each runs the same plan under its own care team,`,
+  'with one practitioner on it.',
+  '',
+  '|Vendor|Programme|',
+  '|---|---|',
+  ...vendors.map((v) => `|[${v.code}](vendor-${v.code}.html)|${v.programme}|`),
+]));
+
+for (const v of vendors) {
+  const mine = all.filter((r) => vendorOf.get(r) === v.code);
+  written.push(write(`vendor-${v.code}.md`, [
+    `The care team running programme ${v.programme} and the practitioner on it. Neither carries a`,
+    'coexistence tag: the vendor is in the id, not in the data.',
+    '',
+    ...sections(mine, true),
+  ]));
+}
 
 written.push(write('patients.md', [
   `${patients.length} patients. Each has its own page holding the episodes, care plans, service`,
@@ -274,10 +326,41 @@ for (const id of patients) {
 
 console.error(`wrote ${written.length} pages: ${written.join(', ')}`);
 
+// ─── the page tree ───────────────────────────────────────────────────────────────────────────────
+// definition.page.page recurses, so the vendor and patient pages nest under their roster. Written
+// here rather than by hand because the set of pages is decided above.
+const pageTree = ['pages:',
+  '  index.md:', '    title: Home',
+  '  shared.md:', '    title: Shared definitions',
+  '  vendors.md:', '    title: Vendors',
+  ...vendors.flatMap((v) => [`    vendor-${v.code}.md:`, `      title: Vendor ${v.code}`]),
+  '  patients.md:', '    title: Patient data',
+  ...patients.flatMap((id) => [`    ${pageOf(id)}.md:`, `      title: ${resourceMeta.get(`Patient/${id}`).title}`]),
+  '  downloads.md:', '    title: Downloads'];
+
+const menu = ['menu:',
+  '  Home: index.html',
+  '  Shared definitions: shared.html',
+  '  Vendors: vendors.html',
+  '  Patient data: patients.html',
+  '  Downloads: downloads.html'];
+
 const cfgPath = path.join(REPO, 'sushi-config.yaml');
 const cfg = fs.readFileSync(cfgPath, 'utf8');
 const eol = cfg.includes('\r\n') ? '\r\n' : '\n';
-const body = cfg.split(/\r?\n/);
+
+// Swap one top-level block for another. A block runs from its key to the next line starting in
+// column 0, which is the next key or a comment — blank lines inside it belong to it.
+const replaceTop = (lines, key, block) => {
+  const i = lines.findIndex((l) => l === `${key}:`);
+  if (i === -1) { console.error(`ERROR: no ${key}: block in sushi-config.yaml`); process.exit(1); }
+  let end = lines.length;
+  for (let k = i + 1; k < lines.length; k++) if (/^[A-Za-z#]/.test(lines[k])) { end = k; break; }
+  while (end > i + 1 && lines[end - 1].trim() === '') end--;
+  return lines.slice(0, i).concat(block, lines.slice(end));
+};
+
+const body = replaceTop(replaceTop(cfg.split(/\r?\n/), 'pages', pageTree), 'menu', menu);
 const start = body.findIndex((l) => /^groups:\s*$/.test(l));
 let out = body;
 if (start !== -1) {
