@@ -11,6 +11,8 @@
 # EXPECTED ERRORS, NOT SUPPRESSIBLE:
 #
 #  124x  Unknown code '${EHEALTH_PROGRAM}' (16) / '${COEXISTENCE_TAG}' (108)
+#        A 17th ${EHEALTH_PROGRAM} sits in practitioner-placeholder.name.given, which is a string
+#        and draws no code error.
 #        One COEXISTENCE_TAG per tagged resource, so this count grows with the dataset.
 #        Deliberate placeholders. The programme code and the coexistence tag belong to the target
 #        environment, not to the test data, and are substituted at load time. ehealth-program holds

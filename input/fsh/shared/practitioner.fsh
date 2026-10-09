@@ -1,7 +1,7 @@
 // Practitioners — the placeholder only. The concrete ones are one per vendor, under
 // vendor/<code>/practitioner.fsh.
 //
-// EVERY VALUE IS SYNTHETIC. The names are Test <programme> Testesen, the identifiers are UUIDs,
+// EVERY VALUE IS SYNTHETIC. The names are Test${EHEALTH_PROGRAM} Testesen, the identifiers are UUIDs,
 // and the authorisation numbers are test authorization numbers.
 //
 // WHAT EACH IDENTIFIER IS:
@@ -20,7 +20,8 @@ Description: "Stands in for a practitioner on the care team the scenario runs un
 * identifier.value = "${PRACTITIONER_IDENTIFIER}"
 * active = true
 * name.family = "Testesen"
-* name.given = "Test"
+* name.given[0] = "Test"
+* name.given[+] = "${EHEALTH_PROGRAM}"
 * qualification[officialHealthAuthorization].identifier.system = $autreg
 * qualification[officialHealthAuthorization].identifier.value = "00100"
 * qualification[officialHealthAuthorization].code = $profession-group#7170 "Læge"
