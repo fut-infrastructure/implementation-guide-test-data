@@ -1,6 +1,6 @@
 // Vendor xc — programme fob.
 
-Instance: practitioner-fob
+Instance: practitioner-xc
 InstanceOf: ehealth-practitioner
 Usage: #example
 Title: "Practitioner fob"

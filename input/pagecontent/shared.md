@@ -31,10 +31,10 @@ The practitioner on the care team.
 
 |Name|Description|
 |---|---|
-|[Practitioner fob](Practitioner-practitioner-fob.html)|Practitioner for fob, assigned on a care team for fob.|
-|[Practitioner kpro](Practitioner-practitioner-kpro.html)|Practitioner for kpro, assigned on a care team for kpro.|
 |[Practitioner (placeholder)](Practitioner-practitioner-placeholder.html)|Stands in for a practitioner on the care team the scenario runs under. The loader substitutes a real one.|
-|[Practitioner telma](Practitioner-practitioner-telma.html)|Practitioner for telma, assigned on a care team for telma.|
+|[Practitioner kpro](Practitioner-practitioner-xa.html)|Practitioner for kpro, assigned on a care team for kpro.|
+|[Practitioner telma](Practitioner-practitioner-xb.html)|Practitioner for telma, assigned on a care team for telma.|
+|[Practitioner fob](Practitioner-practitioner-xc.html)|Practitioner for fob, assigned on a care team for fob.|
 
 ### Base.Entities
 
@@ -59,10 +59,10 @@ The clinicians responsible for the episode.
 
 |Name|Description|
 |---|---|
-|[KOL care team for fob](CareTeam-careteam-fob.html)|The care team responsible for the COPD monitoring under fob.|
-|[KOL care team for kpro](CareTeam-careteam-kpro.html)|The care team responsible for the COPD monitoring under kpro.|
 |[KOL care team (placeholder)](CareTeam-careteam-placeholder.html)|Stands in for the care team the scenario runs under. The loader substitutes a real one.|
-|[KOL care team for telma](CareTeam-careteam-telma.html)|The care team responsible for the COPD monitoring under telma.|
+|[KOL care team for kpro](CareTeam-careteam-xa.html)|The care team responsible for the COPD monitoring under kpro.|
+|[KOL care team for telma](CareTeam-careteam-xb.html)|The care team responsible for the COPD monitoring under telma.|
+|[KOL care team for fob](CareTeam-careteam-xc.html)|The care team responsible for the COPD monitoring under fob.|
 
 ### Specialized.Definitional Artifacts
 

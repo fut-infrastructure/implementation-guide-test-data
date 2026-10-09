@@ -1,6 +1,6 @@
 // Vendor xa — programme kpro.
 
-Instance: practitioner-kpro
+Instance: practitioner-xa
 InstanceOf: ehealth-practitioner
 Usage: #example
 Title: "Practitioner kpro"

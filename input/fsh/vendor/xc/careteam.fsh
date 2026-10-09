@@ -1,6 +1,6 @@
 // Vendor xc — programme fob.
 
-Instance: careteam-fob
+Instance: careteam-xc
 InstanceOf: ehealth-careteam
 Usage: #example
 Title: "KOL care team for fob"
@@ -18,7 +18,7 @@ Description: "The care team responsible for the COPD monitoring under fob."
 * participant.role[+] = $careteam-participant-role#monitoringAssistor "Monitoring assistor"
 * participant.role[+] = $careteam-participant-role#clinicalViewer "Clinical viewer"
 * participant.role[+] = $careteam-participant-role#citizenEnroller "Citizen enroller"
-* participant.member = Reference(practitioner-fob)
+* participant.member = Reference(practitioner-xc)
 * participant.period.start = "2025-01-01T00:00:00+01:00"
 * reasonCode = $sks#DJ44 "Kronisk obstruktiv lungesygdom"
 * managingOrganization = Reference(org-region-hovedstaden)

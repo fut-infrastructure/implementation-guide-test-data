@@ -1,6 +1,6 @@
 // Vendor xb — programme telma.
 
-Instance: practitioner-telma
+Instance: practitioner-xb
 InstanceOf: ehealth-practitioner
 Usage: #example
 Title: "Practitioner telma"
