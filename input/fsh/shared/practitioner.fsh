@@ -9,7 +9,6 @@
 //                               register.
 //   qualification.code          profession group 7170, Læge.
 
-
 // The practitioner the placeholder team lists.
 Instance: practitioner-placeholder
 InstanceOf: ehealth-practitioner

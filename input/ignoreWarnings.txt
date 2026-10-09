@@ -10,7 +10,8 @@
 #
 # EXPECTED ERRORS, NOT SUPPRESSIBLE:
 #
-#   17x  Unknown code '${EHEALTH_PROGRAM}' / '${COEXISTENCE_TAG}'
+#  124x  Unknown code '${EHEALTH_PROGRAM}' (16) / '${COEXISTENCE_TAG}' (108)
+#        One COEXISTENCE_TAG per tagged resource, so this count grows with the dataset.
 #        Deliberate placeholders. The programme code and the coexistence tag belong to the target
 #        environment, not to the test data, and are substituted at load time. ehealth-program holds
 #        only real programme codes (kpro, telma, fob, ...) and ehealth-system only xa, xb, xc, so
