@@ -3,9 +3,13 @@
 Test data resources for the Danish eHealth Infrastructure. Every resource here is an instance of a
 profile published in the
 [eHealth Infrastructure Implementation Guide](http://ehealth.sundhed.dk/fhir) — this guide defines
-no profiles, extensions, code systems or value sets of its own.
+no profiles, extensions, code systems or value sets of its own. The one exception is
+[Loader settings](Parameters-loader-settings.html), a plain `Parameters` resource that is not test
+data at all: the loader reads it and never loads it.
 
-See [Shared definitions](shared.html) for what every patient shares, and [Patients](patients.html) for the data recorded per patient.
+See [Shared definitions](shared.html) for what every patient and vendor shares,
+[Vendors](vendors.html) for the care team and practitioner of each, and
+[Patient data](patients.html) for what is recorded per patient.
 
 #### What is here
 
@@ -14,7 +18,10 @@ The COPD monitoring plan schedules observations for oxygen saturation and pulse,
 The plans are assigned to a care team with a single practitioner as participant. 
 Some data can be shared across vendor solutions, while others are labeled with a coexistence tag which reserves the data for use with the corresponding system vendor.
 The scenario carries a placeholder value for the coexistence tag and the corresponding ehealth program code, and the placeholders are substituted when the data is loaded on a specific environment.
-The vendor specific part of the scenario is duplicated across coexistence tag values when loaded. 
+The vendor specific part of the scenario is duplicated across coexistence tag values when loaded.
+This guide publishes one copy of it, carrying the placeholder tag. How the copies are told apart on
+the target — whether the id is derived from the tag, or the tag alone distinguishes them — is
+decided by the loader, not here: none of the tagged resources carries a business identifier.
 
 
 #### Loading

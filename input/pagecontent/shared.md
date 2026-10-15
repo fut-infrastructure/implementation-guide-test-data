@@ -108,3 +108,15 @@ The automated-processing rules the measurement and questionnaire activities poin
 |[observation-absolute-range-triage](Library-library-observation-absolute-triage.html)|Triages a submitted observation against absolute thresholds expressed in the observation's own unit. Reads the reference ranges from the observation it is given, so a measurement must carry them to be assessed; a GAL range yields a yellow assessment and a RAL range a red one.|
 |[questionnaire-response-triage-on-answersignificance](Library-library-questionnaire-triage.html)|Triages a submitted questionnaire response by matching each answer against the answer-significance mappings on the questionnaire, and recording one finding basis per answered question alongside the overall assessment.|
 
+### Foundation.Other
+
+Settings the loader reads before it loads anything. Not test data, and not created on the target.
+
+#### Parameters
+
+Loader settings, chiefly the anchor date every date in the data is relative to.
+
+|Name|Description|
+|---|---|
+|[Loader settings](Parameters-loader-settings.html)|Read by the loader, never loaded. anchorDate is the day the scenario is written for: it maps to the load date, and every date in the data shifts by the same number of days.|
+

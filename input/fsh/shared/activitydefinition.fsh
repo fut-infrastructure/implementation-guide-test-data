@@ -42,17 +42,14 @@ RuleSet: Common
 * extension[baseEnvironment].valueIdentifier.value = "dk.ehealth.sundhed.fhir.ig.testdata"
 * version = "1.0"
 * status = #active
-* useContext[0].code = $usage-context-type#program
-* useContext[0].valueCodeableConcept = $ehealth-program#"${EHEALTH_PROGRAM}"
 * jurisdiction = $jurisdiction#healthcare-act
 * topic = $topic-type#self-treatment
 
-// Every activity carries the programme context, but only the ones that actually do something also
-// carry focus = DJ44. The four containers — two head activities and two device groups — carry the
-// programme alone, so they do not insert this.
+// Only the activities that do something carry focus = DJ44. The four containers — two head
+// activities and two device groups — do not insert this, and so carry no use context at all.
 RuleSet: Focus
-* useContext[+].code = $usage-context-type#focus
-* useContext[=].valueCodeableConcept = urn:oid:1.2.208.176.2.4#DJ44 "Kronisk obstruktiv lungesygdom"
+* useContext[0].code = $usage-context-type#focus
+* useContext[0].valueCodeableConcept = urn:oid:1.2.208.176.2.4#DJ44 "Kronisk obstruktiv lungesygdom"
 
 RuleSet: MeasurementPolicy
 * extension[sharingApprovalPolicy].valueCodeableConcept = $measurement-sharing-approval-policies#manual

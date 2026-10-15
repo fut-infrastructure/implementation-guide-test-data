@@ -50,6 +50,7 @@ const CATEGORY_ORDER = [
   ["Foundation.Security", "One Provenance per submission, naming the resources submitted together. This is what triggers automated processing."],
   ["Base.Workflow", "The assessment task raised with each triage result. Not loaded either, and its priority is the triage colour."],
   ["Specialized.Definitional Artifacts", "The plan, the activities it is built from, the questionnaire and the automated-processing rules."],
+  ["Foundation.Other", "Settings the loader reads before it loads anything. Not test data, and not created on the target."],
 ];
 
 // Deliberate departures from the spec's taxonomy. Keep this list short and say why for each:
@@ -84,6 +85,7 @@ const TYPE_ORDER = [
   ['Questionnaire', 'The questionnaire the plan collects, carrying the answer significance its triage rule reads.'],
   ['Library', 'The automated-processing rules the measurement and questionnaire activities point at.'],
   ['Organization', 'Organizations the definitions refer to.'],
+  ['Parameters', 'Loader settings, chiefly the anchor date every date in the data is relative to.'],
 ];
 const typeRank = (t) => {
   const i = TYPE_ORDER.findIndex(([x]) => x === t);
@@ -133,7 +135,8 @@ const unordered = [...cats.keys()].filter((c) => !CATEGORY_ORDER.some(([x]) => x
 if (unordered.length) { console.error(`ERROR: category not in CATEGORY_ORDER: ${unordered.join(', ')}`); process.exit(1); }
 
 const id = (s) => s.replace(/[^A-Za-z0-9]/g, '');
-const plural = (t) => t.replace(/y$/, 'ie') + 's';
+// Parameters is already plural, so do not give it a second s.
+const plural = (t) => (/s$/.test(t) ? t : `${t.replace(/y$/, 'ie')}s`);
 const lines = ['groups:'];
 const summary = [];
 for (const [cat, description] of CATEGORY_ORDER) {

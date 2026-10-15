@@ -47,9 +47,10 @@ Alias: $library-type = http://ehealth.sundhed.dk/cs/library-type
 // a target environment. They are deliberately not real codes, and a build-time check reports every
 // one so none is discovered only at load time.
 //
-//   ${EHEALTH_PROGRAM}    the programme these definitions belong to, a code from
+//   ${EHEALTH_PROGRAM}    the programme the care team works under, a code from
 //                         http://ehealth.sundhed.dk/cs/ehealth-program. It names the deployment
-//                         the plan is being loaded for, so it cannot be fixed here.
+//                         the data is being loaded for, so it cannot be fixed here. The plan and
+//                         its activities do NOT carry it: a definition is not programme-specific.
 //
 //   ${COEXISTENCE_TAG}    the coexistence tag in meta.tag, a code from
 //                         http://ehealth.sundhed.dk/cs/ehealth-system. It marks which deployment
@@ -62,13 +63,10 @@ Alias: $library-type = http://ehealth.sundhed.dk/cs/library-type
 //                         written "urn:uuid:${CARETEAM_UUID}" because dk-core requires a full URI.
 //
 //   ${PRACTITIONER_IDENTIFIER}
-//   ${PRACTITIONER_FAMILY_NAME}
-//   ${PRACTITIONER_GIVEN_NAME}
-//   ${PROFESSION_GROUP}   the practitioner on the care team. Resolved by identifier like the team
-//                         itself, and anonymous for the same reason the patient is. The identifier
-//                         and both name parts are free; ${PROFESSION_GROUP} is a code and costs an
-//                         error. The authorisation number has no placeholder at all — it cannot
-//                         hold one. See practitioner.fsh.
+//                         the LDAP uid of the practitioner on the care team, resolved by
+//                         identifier like the team itself. A free string, so it costs nothing.
+//                         The name, the profession group and the authorisation number are all
+//                         concrete — see practitioner.fsh.
 //
 //   THE PATIENTS HAVE NONE. They were placeholders once, a single template with ${CPR} and the
 //   name and address substituted per patient. There are now ten concrete test identities read
@@ -77,17 +75,17 @@ Alias: $library-type = http://ehealth.sundhed.dk/cs/library-type
 //
 // NOTE THE DIFFERENCE IN COST — and do not assume a string element is free. Three cases:
 //
-//   free        a plain string with no further constraint: the practitioner's name and
-//               identifier, the care team's UUID.
+//   free        a plain string with no further constraint: the practitioner's identifier, the care
+//               team's UUID, and ${EHEALTH_PROGRAM} where it sits in the practitioner's name.
 //
 //   one error   a coded element, where the validator cannot find the code in its code system:
-//   per use     ${EHEALTH_PROGRAM}, ${COEXISTENCE_TAG}, ${PROFESSION_GROUP}. A regex-constrained
-//               string counts too — that is what ${CPR} used to cost before the patients became
-//               concrete, via dk-core-cpr-identifier.
+//   per use     ${COEXISTENCE_TAG}, and ${EHEALTH_PROGRAM} in the care team's use context. A
+//               regex-constrained string counts too — that is what ${CPR} used to cost before the
+//               patients became concrete, via dk-core-cpr-identifier.
 //
 //   impossible  a string constrained so tightly that no placeholder fits. The practitioner's
 //               authorisation number is 5 characters of consonants, Y and digits, and "${X}" is
-//               already 4. Leave the element out instead — see practitioner.fsh.
+//               already 4, which is why it carries a concrete test value instead.
 //
 // And where the constraint only dictates shape, put the placeholder inside it rather than giving
 // up: the care team's identifier is "urn:uuid:${CARETEAM_UUID}" because dk-core demands a URI.

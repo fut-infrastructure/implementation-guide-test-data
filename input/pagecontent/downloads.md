@@ -7,18 +7,20 @@ resource, exactly as they appear on this site.
 * [Examples, JSON](examples.json.zip) — every resource in this guide as JSON
 * [Examples, XML](examples.xml.zip) — the same resources as XML
 
-Both archives contain all of it: the shared definitions, the ten patients, and the episodes, care
-plans, service requests, submissions and triage results belonging to `p01`. There is no download
-that contains only one patient, and nothing here is filtered by resource type.
+Both archives contain all of it: the shared definitions, the ten patients, their twenty episodes of
+care with a care plan and a condition each, and the service requests, submissions and triage results
+belonging to `p01`. There is no download that contains only one patient, and nothing here is
+filtered by resource type.
 
 **Read this before loading any of it.** The archives are the resources as published, which is not
 the same as the resources as loadable:
 
-* The `${…}` values are placeholders, not data. The programme code, the coexistence tag and the
-  practitioner's profession have to be substituted for the target environment — see the home page.
+* The `${…}` values are placeholders, not data. The programme code, the coexistence tag, the care
+  team's UUID and the practitioner's identifier have to be substituted for the target environment
+  — see the home page.
 * Canonical references point at this guide, as `http://ehealth.sundhed.dk/fhir/testdata/<Type>/<id>`.
   They have to be rewritten to the target, and they are plain strings rather than `reference`
-  objects, so a loader that walks the JSON looking for references will miss all 52 of them.
+  objects, so a loader that walks the JSON looking for references will miss all 72 of them.
 * The ClinicalImpressions and Tasks are expected results, not input. Automated processing creates
   its own when a Provenance triggers it; these exist to be compared against.
 * The completed episode and its care plan cannot be loaded with their dates intact. `meta.lastUpdated`

@@ -56,11 +56,8 @@ Description: "COPD monitoring plan with a scheduled mon/wed/fri branch and an un
 * version = "1.0"
 * title = "Målinger og spørgeskema (iltmætning, puls og spørgeskema)"
 * status = #active
-// PLACEHOLDER: the programme. See aliases.fsh.
 * useContext[0].code = $usage-context-type#focus
 * useContext[0].valueCodeableConcept = urn:oid:1.2.208.176.2.4#DJ44 "Kronisk obstruktiv lungesygdom"
-* useContext[+].code = $usage-context-type#program
-* useContext[=].valueCodeableConcept = $ehealth-program#"${EHEALTH_PROGRAM}"
 * jurisdiction = $jurisdiction#healthcare-act
 * purpose = "Spørgeskema samt iltmætning og puls, planlagt og ekstra."
 
