@@ -3,9 +3,15 @@
 Test data resources for the Danish eHealth Infrastructure. Every resource here is an instance of a
 profile published in the
 [eHealth Infrastructure Implementation Guide](http://ehealth.sundhed.dk/fhir) — this guide defines
-no profiles, extensions, code systems or value sets of its own. The one exception is
-[Loader settings](Parameters-loader-settings.html), a plain `Parameters` resource that is not test
-data at all: the loader reads it and never loads it.
+no profiles, extensions, code systems or value sets of its own. Two examples are not test data at
+all — the loader reads them and never loads them:
+
+* [Loader settings](Parameters-loader-settings.html), a plain `Parameters` resource carrying the
+  anchor date the dates in the data are relative to.
+* [Loader code systems](Bundle-loader-codesystems.html), a `Bundle` holding copies of the core IG's
+  `ehealth-system` and `ehealth-program` CodeSystems, generated from the dependency version so they
+  cannot drift from it. The loader checks the coexistence tags and programmes against them, and
+  adds to terminology any code it lacks.
 
 See [Shared definitions](shared.html) for what every patient and vendor shares,
 [Vendors](vendors.html) for the care team and practitioner of each, and

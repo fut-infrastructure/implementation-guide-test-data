@@ -22,7 +22,9 @@
 //
 // Order is significant: SUSHI writes definition.grouping in the order emitted here.
 //
-// Usage: sushi . && node scripts/make-groups.js . && sushi .
+// Usage: sushi . ; node scripts/make-groups.js . ; sushi .
+// Separated by ';' — the first sushi exits non-zero on stale groups while still exporting, so '&&'
+// stops the chain before this script can fix them.
 const fs = require('fs');
 const path = require('path');
 
@@ -86,6 +88,7 @@ const TYPE_ORDER = [
   ['Library', 'The automated-processing rules the measurement and questionnaire activities point at.'],
   ['Organization', 'Organizations the definitions refer to.'],
   ['Parameters', 'Loader settings, chiefly the anchor date every date in the data is relative to.'],
+  ['Bundle', 'Copies of the core IG code systems the loader checks the coexistence tags and programmes against.'],
 ];
 const typeRank = (t) => {
   const i = TYPE_ORDER.findIndex(([x]) => x === t);

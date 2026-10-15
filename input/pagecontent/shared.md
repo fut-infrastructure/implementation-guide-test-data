@@ -120,3 +120,11 @@ Loader settings, chiefly the anchor date every date in the data is relative to.
 |---|---|
 |[Loader settings](Parameters-loader-settings.html)|Read by the loader, never loaded. anchorDate is the day the scenario is written for: it maps to the load date, and every date in the data shifts by the same number of days.|
 
+#### Bundles
+
+Copies of the core IG code systems the loader checks the coexistence tags and programmes against.
+
+|Name|Description|
+|---|---|
+|[Loader code systems](Bundle-loader-codesystems.html)|Read by the loader, never loaded. The ehealth-system and ehealth-program CodeSystems of dk.ehealth.sundhed.fhir.ig.core#10.0.2: the loader checks the coexistence tags against them and adds the codes terminology lacks.|
+

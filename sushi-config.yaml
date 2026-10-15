@@ -285,3 +285,4 @@ groups:
     description: "Settings the loader reads before it loads anything. Not test data, and not created on the target."
     resources:
       - Parameters/loader-settings
+      - Bundle/loader-codesystems
