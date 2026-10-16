@@ -27,7 +27,10 @@ The scenario carries a placeholder value for the coexistence tag and the corresp
 The vendor specific part of the scenario is duplicated across coexistence tag values when loaded.
 This guide publishes one copy of it, carrying the placeholder tag. How the copies are told apart on
 the target — whether the id is derived from the tag, or the tag alone distinguishes them — is
-decided by the loader, not here: none of the tagged resources carries a business identifier.
+decided by the loader, not here. Of the tagged resources only the submitted Observations and
+QuestionnaireResponses carry a business identifier of their own; an episode, its care plan and its
+condition are identified by what they relate to — the patient, and for a patient holding more than
+one open episode, the period each one starts.
 
 
 #### Loading
