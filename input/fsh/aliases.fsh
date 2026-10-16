@@ -67,9 +67,10 @@ Alias: $library-type = http://ehealth.sundhed.dk/cs/library-type
 //                         where a value goes, and the loader puts a different UUIDv5 in each. It
 //                         derives that UUID from the resource and the coexistence tag it is being
 //                         copied for, so the same input always yields the same identifier and
-//                         loading the same data twice creates nothing the second time. Written
-//                         "urn:uuid:${SUBMISSION_UUID}" under urn:ietf:rfc:3986, the same shape as
-//                         the care team's identifier.
+//                         loading the same data twice creates nothing the second time. A bare UUID
+//                         under $ehealth-identifier, which is the shape the core IG's own examples
+//                         use — NOT the "urn:uuid:" form the care team's identifier needs, because
+//                         that one is under urn:ietf:rfc:3986 and so has to be a full URI.
 //
 //   ${PRACTITIONER_IDENTIFIER}
 //                         the LDAP uid of the practitioner on the care team, resolved by

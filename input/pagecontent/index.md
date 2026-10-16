@@ -50,14 +50,15 @@ from a code system the core IG defines, and
   record. Carried by the patient-specific resources only; the definitions do not have it.
   Codes: [eHealth System](http://ehealth.sundhed.dk/fhir/CodeSystem-ehealth-system.html)
 
-**Identifiers** — written as `urn:uuid:${…}` under `urn:ietf:rfc:3986`, because the profiles want a
-full URI and only the UUID part is substituted:
+**Identifiers** — each under the naming system its resource type uses, so the shape differs:
 
-* `${CARETEAM_UUID}` and `${PRACTITIONER_IDENTIFIER}` — the care team and practitioner the scenario
-  runs under. The target environment already holds them, and the loader resolves them by these
-  rather than creating them.
-* `${SUBMISSION_UUID}` — the identifier of an Observation or QuestionnaireResponse. **One value per
-  resource, not one for all of them.** The loader derives a UUIDv5 from the resource and the
-  coexistence tag it is being copied for, so the same input always produces the same identifier and
-  loading twice creates nothing the second time.
+* `${CARETEAM_UUID}` — the care team the scenario runs under, written
+  `urn:uuid:${CARETEAM_UUID}` under `urn:ietf:rfc:3986`, which has to be a full URI.
+* `${PRACTITIONER_IDENTIFIER}` — the practitioner on that team, an LDAP uid.
+  Both already exist on the target environment; the loader resolves them rather than creating them.
+* `${SUBMISSION_UUID}` — the identifier of an Observation or QuestionnaireResponse, a bare UUID
+  under [eHealth Identifier](http://ehealth.sundhed.dk/fhir/NamingSystem-ehealth-identifier.html).
+  **One value per resource, not one for all of them.** The loader derives a UUIDv5 from the
+  resource and the coexistence tag it is being copied for, so the same input always produces the
+  same identifier and loading twice creates nothing the second time.
 

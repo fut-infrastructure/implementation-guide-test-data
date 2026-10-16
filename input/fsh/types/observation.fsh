@@ -59,9 +59,8 @@ RuleSet: SubmittedObs(episode, sr, authored)
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
 // PLACEHOLDER: one UUIDv5 per copy of this resource, not one for all. See aliases.fsh.
-* identifier.use = #official
-* identifier.system = "urn:ietf:rfc:3986"
-* identifier.value = "urn:uuid:${SUBMISSION_UUID}"
+* identifier.system = $ehealth-identifier
+* identifier.value = "${SUBMISSION_UUID}"
 * extension[episodeOfCare].valueReference = Reference({episode})
 * extension[resolvedTiming].extension[serviceRequestVersionId].valueId = "1"
 * extension[resolvedTiming].extension[type].valueCodeableConcept = $resolved-timing-type#Extra
