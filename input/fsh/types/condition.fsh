@@ -23,6 +23,6 @@ RuleSet: EpisodeCondition(patient, eoc)
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
 * extension[episodeOfCare].valueReference = Reference({eoc})
-* clinicalStatus = $condition-clinical#active "active"
+* clinicalStatus = $condition-clinical#active "Active"
 * code = $sks#DJ44 "Kronisk obstruktiv lungesygdom"
 * subject = Reference({patient})

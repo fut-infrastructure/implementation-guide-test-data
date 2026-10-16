@@ -6,7 +6,7 @@ Description: "The COPD diagnosis as recorded under the completed episode of care
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
 * extension[episodeOfCare].valueReference = Reference(p01-eoc1)
-* clinicalStatus = $condition-clinical#active "active"
+* clinicalStatus = $condition-clinical#active "Active"
 * code = $sks#DJ44 "Kronisk obstruktiv lungesygdom"
 * subject = Reference(p01)
 
@@ -23,7 +23,7 @@ Description: "The COPD diagnosis the episode of care addresses and the monitorin
 // The profile names this slice episodeOfCare, so use the slice rather than a raw url — mixing the
 // two forms in one project is what produced empty extension stubs in the earlier conversion.
 * extension[episodeOfCare].valueReference = Reference(p01-eoc2)
-* clinicalStatus = $condition-clinical#active "active"
+* clinicalStatus = $condition-clinical#active "Active"
 * code = $sks#DJ44 "Kronisk obstruktiv lungesygdom"
 * subject = Reference(p01)
 
