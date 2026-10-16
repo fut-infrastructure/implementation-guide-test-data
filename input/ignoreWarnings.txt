@@ -20,9 +20,10 @@
 #        there is no neutral code to use instead. Leaving the elements out would make the resources
 #        unloadable and hide the fact that a value has to be supplied.
 #
-#    4x  None of the codings provided are in the value set 'Activity Definition Code'
+#   12x  None of the codings provided are in the value set 'Activity Definition Code'
 #        ad-saturation, ad-pulse and their two extra-branch twins carry NPU codes (NPU03011,
-#        NPU21692). THESE CODES ARE CORRECT. vs/activitydefinition-code includes vs/observation-
+#        NPU21692), and so do the 8 ServiceRequests that copy them — 4 per care plan, and only p01
+#        has service requests so far, so this count grows with them. THESE CODES ARE CORRECT. vs/activitydefinition-code includes vs/observation-
 #        codes, which contains both under urn:oid:1.2.208.176.2.1, and the environment's own
 #        terminology server expands vs/activitydefinition-code to 48 codes including them.
 #        The include lists vs/observation-codes and vs/media-codes in a single include entry, and
@@ -34,7 +35,8 @@
 #        nothing and NPU is rejected. Neither this data nor the core IG is wrong.
 #        VERIFY: a full run (no -tx n/a) may resolve these against the terminology server instead.
 #
-# ONLY WHEN RUNNING OFFLINE (scripts/publish.sh --offline, i.e. -tx n/a):
+# NO LONGER SEEN — kept because it may come back with a different publisher version. The last
+# offline run reported 121 errors, exactly the 109 + 12 above, with none of these:
 #
 #    1x  The value provided ('text/markdown') was not found in the value set 'MimeType'
 #        A null-pointer inside the validator when there is no terminology client — the message

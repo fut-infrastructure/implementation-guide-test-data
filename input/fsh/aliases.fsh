@@ -62,6 +62,15 @@ Alias: $library-type = http://ehealth.sundhed.dk/cs/library-type
 //                         resolves an Organization. Only the UUID is substituted: the value is
 //                         written "urn:uuid:${CARETEAM_UUID}" because dk-core requires a full URI.
 //
+//   ${SUBMISSION_UUID}    the business identifier of an Observation or QuestionnaireResponse.
+//                         ONE VALUE PER RESOURCE, not one for all of them: the placeholder marks
+//                         where a value goes, and the loader puts a different UUIDv5 in each. It
+//                         derives that UUID from the resource and the coexistence tag it is being
+//                         copied for, so the same input always yields the same identifier and
+//                         loading the same data twice creates nothing the second time. Written
+//                         "urn:uuid:${SUBMISSION_UUID}" under urn:ietf:rfc:3986, the same shape as
+//                         the care team's identifier.
+//
 //   ${PRACTITIONER_IDENTIFIER}
 //                         the LDAP uid of the practitioner on the care team, resolved by
 //                         identifier like the team itself. A free string, so it costs nothing.

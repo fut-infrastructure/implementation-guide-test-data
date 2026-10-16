@@ -40,12 +40,24 @@ Some clinical data present in this IG will not be loaded, but will become presen
 Values written as `${PLACEHOLDER}` are substituted by the loader at load time. 
 
 **Environment values** — these belong to the deployment, not to the test data. Both take a code
-from a code system the core IG defines:
+from a code system the core IG defines, and
+[Loader code systems](Bundle-loader-codesystems.html) carries a copy of each:
 
-* `${EHEALTH_PROGRAM}` — the programme these definitions belong to. It names the deployment being
-  loaded for.
+* `${EHEALTH_PROGRAM}` — the programme the care team works under. The plan and its activities do
+  not carry it: a definition is not programme-specific.
   Codes: [eHealth Program](http://ehealth.sundhed.dk/fhir/CodeSystem-ehealth-program.html)
 * `${COEXISTENCE_TAG}` — the coexistence tag in `meta.tag`, marking which deployment owns the
   record. Carried by the patient-specific resources only; the definitions do not have it.
   Codes: [eHealth System](http://ehealth.sundhed.dk/fhir/CodeSystem-ehealth-system.html)
+
+**Identifiers** — written as `urn:uuid:${…}` under `urn:ietf:rfc:3986`, because the profiles want a
+full URI and only the UUID part is substituted:
+
+* `${CARETEAM_UUID}` and `${PRACTITIONER_IDENTIFIER}` — the care team and practitioner the scenario
+  runs under. The target environment already holds them, and the loader resolves them by these
+  rather than creating them.
+* `${SUBMISSION_UUID}` — the identifier of an Observation or QuestionnaireResponse. **One value per
+  resource, not one for all of them.** The loader derives a UUIDv5 from the resource and the
+  coexistence tag it is being copied for, so the same input always produces the same identifier and
+  loading twice creates nothing the second time.
 

@@ -16,8 +16,9 @@ filtered by resource type.
 the same as the resources as loadable:
 
 * The `${…}` values are placeholders, not data. The programme code, the coexistence tag, the care
-  team's UUID and the practitioner's identifier have to be substituted for the target environment
-  — see the home page.
+  team's UUID, the practitioner's identifier and the identifier on every submitted Observation and
+  QuestionnaireResponse have to be substituted for the target environment — see the home page. The
+  submission identifiers take a different value in each resource, unlike the rest.
 * Canonical references point at this guide, as `http://ehealth.sundhed.dk/fhir/testdata/<Type>/<id>`.
   They have to be rewritten to the target, and they are plain strings rather than `reference`
   objects, so a loader that walks the JSON looking for references will miss all 72 of them.
