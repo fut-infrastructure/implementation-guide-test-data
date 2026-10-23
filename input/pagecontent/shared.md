@@ -118,7 +118,7 @@ Loader settings, chiefly the anchor date every date in the data is relative to.
 
 |Name|Description|
 |---|---|
-|[Loader settings](Parameters-loader-settings.html)|Read by the loader, never loaded. anchorDate is the day the scenario is written for: it maps to the load date, and every date in the data shifts by the same number of days.|
+|[Loader settings](Parameters-loader-settings.html)|Read by the loader, never loaded. anchorDate is the day the scenario is written for: it maps to the load date, and every date in the data shifts by the same number of days. One vendor parameter per coexistence tag this dataset is loadable for, pairing the tag with the programme it runs: the loader substitutes ${COEXISTENCE_TAG} and ${EHEALTH_PROGRAM} together, making one copy of the vendor-scoped data per vendor listed here.|
 
 #### Bundles
 

@@ -1,5 +1,6 @@
 // CareTeams — the placeholder the scenario references. The concrete teams are one per vendor,
-// under vendor/<code>/careteam.fsh: xa is kpro, xb telma, xc fob.
+// under vendor/<code>/careteam.fsh. Which programme each vendor runs is declared once, in
+// loader-settings.fsh, and make-groups.js fails the build if a team here disagrees with it.
 //
 // reasonCode is 1..* bound to vs/conditions; DJ44 is what makes these KOL teams.
 // Keycloak administers membership roles on the environment and replaces what is stated here.

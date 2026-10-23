@@ -1,18 +1,18 @@
-// Vendor xb — programme telma.
+// Vendor xb — programme kpro.
 
 Instance: careteam-xb
 InstanceOf: ehealth-careteam
 Usage: #example
-Title: "KOL care team for telma"
-Description: "The care team responsible for the COPD monitoring under telma."
+Title: "KOL care team for kpro"
+Description: "The care team responsible for the COPD monitoring under kpro."
 * extension[useContext].valueUsageContext.code = $usage-context-type#program "Program"
-* extension[useContext].valueUsageContext.valueCodeableConcept = $ehealth-program#telma
+* extension[useContext].valueUsageContext.valueCodeableConcept = $ehealth-program#kpro
 * identifier.use = #official
 * identifier.system = "urn:ietf:rfc:3986"
 // dk-core requires a full URI here, so the scheme is part of the value.
 * identifier.value = "urn:uuid:f974ea3c-4481-4651-808a-b270ff4795dd"
 * status = #active
-* name = "Telemedicinsk KOL-team - telma"
+* name = "Telemedicinsk KOL-team - kpro"
 * period.start = "2025-01-01T00:00:00+01:00"
 * participant.role[0] = $careteam-participant-role#monitoring_adjuster "Monitoring adjuster"
 * participant.role[+] = $careteam-participant-role#monitoringAssistor "Monitoring assistor"

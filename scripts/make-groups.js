@@ -207,29 +207,76 @@ for (const f of fs.readdirSync(RES)) {
 }
 patients.sort();
 
-// Vendors. Each concrete CareTeam names one, and every resource whose id ends in that suffix
-// belongs to it. The programme comes from the team's own useContext rather than a list here, so
-// the table cannot drift from the data.
+// Vendors come from Parameters/loader-settings, which is what the loader itself reads: one
+// `vendor` parameter per coexistence tag, pairing the tag with the programme it runs. The Vendors
+// page is a tabulation of exactly that input, so the two cannot disagree. Every resource whose id
+// ends in a tag's code belongs to that vendor.
 const PROGRAM_CS = 'http://ehealth.sundhed.dk/cs/ehealth-program';
-const programFile = path.join(EHEALTH, 'CodeSystem-ehealth-program.json');
-if (!fs.existsSync(programFile)) { console.error(`ERROR: ${programFile} not found. Run the publisher once to populate the package cache.`); process.exit(1); }
-const programDisplay = new Map((JSON.parse(fs.readFileSync(programFile, 'utf8')).concept || [])
-  .map((c) => [c.code, c.display || c.code]));
+const SYSTEM_CS = 'http://ehealth.sundhed.dk/cs/ehealth-system';
+const csConcepts = (file) => {
+  const p = path.join(EHEALTH, file);
+  if (!fs.existsSync(p)) { console.error(`ERROR: ${p} not found. Check the core IG version in sushi-config.yaml, then the package cache.`); process.exit(1); }
+  return new Map((JSON.parse(fs.readFileSync(p, 'utf8')).concept || []).map((c) => [c.code, c.display || c.code]));
+};
+const programDisplay = csConcepts('CodeSystem-ehealth-program.json');
+const systemCodes = csConcepts('CodeSystem-ehealth-system.json');
+
+const settings = resources.get('Parameters/loader-settings');
+if (!settings) { console.error('ERROR: no Parameters/loader-settings — the vendors are declared there.'); process.exit(1); }
+const partCode = (p, name) => {
+  const part = (p.part || []).find((x) => x.name === name);
+  return part && part.valueCoding && part.valueCoding.code;
+};
 
 const vendors = [];
-const vendorOf = new Map();
-for (const [, r] of resources) {
-  if (r.resourceType !== 'CareTeam') continue;
-  const code = (r.id.match(/^careteam-(.+)$/) || [])[1];
-  if (!code || code === 'placeholder') continue;
-  const uc = (r.extension || []).find((e) => e.valueUsageContext);
-  const prog = uc && ((uc.valueUsageContext.valueCodeableConcept || {}).coding || [])
-    .find((c) => c.system === PROGRAM_CS);
-  if (!prog) { console.error(`ERROR: CareTeam/${r.id} names a vendor but carries no programme in useContext.`); process.exit(1); }
-  if (!programDisplay.has(prog.code)) { console.error(`ERROR: CareTeam/${r.id} names programme '${prog.code}', which ${PROGRAM_CS} does not define.`); process.exit(1); }
-  vendors.push({ code, programme: prog.code, display: programDisplay.get(prog.code) });
+for (const p of settings.parameter || []) {
+  if (p.name !== 'vendor') continue;
+  const code = partCode(p, 'systemTag');
+  const programme = partCode(p, 'programme');
+  if (!code || !programme) { console.error('ERROR: a vendor parameter in loader-settings lacks a systemTag or programme coding.'); process.exit(1); }
+  if (!systemCodes.has(code)) { console.error(`ERROR: loader-settings declares coexistence tag '${code}', which ${SYSTEM_CS} does not define.`); process.exit(1); }
+  if (!programDisplay.has(programme)) { console.error(`ERROR: loader-settings pairs '${code}' with programme '${programme}', which ${PROGRAM_CS} does not define.`); process.exit(1); }
+  // The pairing is one-to-one in both directions: a tag runs one programme, and a programme is
+  // run by one vendor. Either duplicate would make the substitution ambiguous.
+  const dupTag = vendors.find((v) => v.code === code);
+  if (dupTag) { console.error(`ERROR: loader-settings declares coexistence tag '${code}' twice, paired with '${dupTag.programme}' and '${programme}'.`); process.exit(1); }
+  const dupProg = vendors.find((v) => v.programme === programme);
+  if (dupProg) { console.error(`ERROR: loader-settings pairs programme '${programme}' with both '${dupProg.code}' and '${code}'.`); process.exit(1); }
+  vendors.push({ code, programme, display: programDisplay.get(programme) });
 }
+if (!vendors.length) { console.error('ERROR: loader-settings declares no vendor.'); process.exit(1); }
 vendors.sort((a, b) => a.code.localeCompare(b.code));
+
+// Each declared vendor owes a care team and a practitioner, and the team restates the pairing in
+// its own useContext — hold it to what loader-settings says so the two cannot drift.
+for (const v of vendors) {
+  const team = resources.get(`CareTeam/careteam-${v.code}`);
+  if (!team) { console.error(`ERROR: loader-settings declares vendor '${v.code}' but there is no CareTeam/careteam-${v.code}.`); process.exit(1); }
+  if (!resources.has(`Practitioner/practitioner-${v.code}`)) { console.error(`ERROR: loader-settings declares vendor '${v.code}' but there is no Practitioner/practitioner-${v.code}.`); process.exit(1); }
+  const uc = (team.extension || []).find((e) => e.valueUsageContext);
+  const prog = uc && ((uc.valueUsageContext.valueCodeableConcept || {}).coding || []).find((c) => c.system === PROGRAM_CS);
+  if (!prog || prog.code !== v.programme) {
+    console.error(`ERROR: loader-settings pairs '${v.code}' with '${v.programme}', but CareTeam/careteam-${v.code} names '${prog ? prog.code : 'no programme'}'.`);
+    process.exit(1);
+  }
+  const member = ((team.participant || [])[0] || {}).member || {};
+  if (member.reference !== `Practitioner/practitioner-${v.code}`) {
+    console.error(`ERROR: CareTeam/careteam-${v.code} lists '${member.reference || 'no member'}' rather than its own Practitioner/practitioner-${v.code}.`);
+    process.exit(1);
+  }
+}
+// And nothing may look like a vendor's without being declared one.
+for (const [ref, r] of resources) {
+  for (const [type, prefix] of [['CareTeam', 'careteam-'], ['Practitioner', 'practitioner-']]) {
+    if (r.resourceType !== type || !r.id.startsWith(prefix)) continue;
+    const suffix = r.id.slice(prefix.length);
+    if (suffix === 'placeholder' || vendors.some((v) => v.code === suffix)) continue;
+    console.error(`ERROR: ${ref} looks like vendor '${suffix}', but loader-settings declares no such vendor.`);
+    process.exit(1);
+  }
+}
+
+const vendorOf = new Map();
 for (const v of vendors) {
   for (const [ref, r] of resources) if (r.id.endsWith(`-${v.code}`)) vendorOf.set(ref, v.code);
 }
@@ -293,8 +340,11 @@ written.push(write('shared.md', [
 ]));
 
 written.push(write('vendors.md', [
-  `${vendors.length} vendors, one per programme. Each runs the same plan under its own care team,`,
-  'with one practitioner on it.',
+  `The ${vendors.length} vendors this dataset is loadable for, as declared in`,
+  '[Loader settings](Parameters-loader-settings.html) — this table is a tabulation of that input.',
+  'Each pairs a coexistence tag with the programme it runs, and the loader substitutes the two',
+  'together, making one copy of the vendor-scoped data per row. Each vendor has its own care team',
+  'with one practitioner on it, carrying resolved values and no tag of their own.',
   '',
   '|System|Programme|Name|',
   '|---|---|---|',
