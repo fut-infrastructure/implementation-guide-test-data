@@ -126,5 +126,5 @@ Copies of the core IG code systems the loader checks the coexistence tags and pr
 
 |Name|Description|
 |---|---|
-|[Loader code systems](Bundle-loader-codesystems.html)|Read by the loader, never loaded. The ehealth-system and ehealth-program CodeSystems of dk.ehealth.sundhed.fhir.ig.core#10.0.2: the loader checks the coexistence tags against them and adds the codes terminology lacks.|
+|[Loader code systems](Bundle-loader-codesystems.html)|Read by the loader, never loaded. The ehealth-system and ehealth-program CodeSystems of dk.ehealth.sundhed.fhir.ig.core#11.0.1: the loader checks the coexistence tags against them and adds the codes terminology lacks.|
 

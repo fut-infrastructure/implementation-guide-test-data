@@ -34,8 +34,10 @@ publisher:
 # │  conformance-bearing is defined in this repository — only Instances.                           │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 dependencies:
+  # 11.0.1 is not published yet, so this points at its CI build on build.fhir.org:
+  # current$<branch> resolves against the ci-build registry rather than packages.fhir.org.
   dk.ehealth.sundhed.fhir.ig.core:
-    version: 10.0.2
+    version: current$11.0.1
     uri: http://ehealth.sundhed.dk/fhir/ImplementationGuide/dk.ehealth.sundhed.fhir.ig.core
   # The core IG's own dependencies. SUSHI does not resolve a dependency's dependencies, so
   # profiles the core IG slices against (e.g. dk-core-sor-identifier on Organization.identifier)
