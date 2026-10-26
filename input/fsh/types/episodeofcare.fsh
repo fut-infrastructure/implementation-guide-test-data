@@ -51,8 +51,8 @@
 RuleSet: EpisodeActive(patient, cond, start, activeFrom)
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
-* extension[caremanagerOrganization].valueReference = Reference(org-region-hovedstaden)
-* extension[managingOrganization].extension[organisation].valueReference = Reference(org-region-hovedstaden)
+* extension[caremanagerOrganization].valueReference = Reference(org-region-nordjylland)
+* extension[managingOrganization].extension[organisation].valueReference = Reference(org-region-nordjylland)
 * extension[managingOrganization].extension[period].valuePeriod.start = "{start}"
 * extension[teamHistory].extension[careTeam].valueReference = Reference(careteam-placeholder)
 * extension[teamHistory].extension[period].valuePeriod.start = "{start}"
@@ -72,8 +72,8 @@ RuleSet: EpisodeActive(patient, cond, start, activeFrom)
 RuleSet: EpisodeFinished(patient, cond, start, activeFrom, end)
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
-* extension[caremanagerOrganization].valueReference = Reference(org-region-hovedstaden)
-* extension[managingOrganization].extension[organisation].valueReference = Reference(org-region-hovedstaden)
+* extension[caremanagerOrganization].valueReference = Reference(org-region-nordjylland)
+* extension[managingOrganization].extension[organisation].valueReference = Reference(org-region-nordjylland)
 * extension[managingOrganization].extension[period].valuePeriod.start = "{start}"
 * extension[managingOrganization].extension[period].valuePeriod.end = "{end}"
 * extension[teamHistory].extension[careTeam].valueReference = Reference(careteam-placeholder)

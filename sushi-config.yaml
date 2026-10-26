@@ -122,8 +122,8 @@ groups:
     name: "Base.Entities"
     description: "Organizations the definitions refer to."
     resources:
-      - Organization/org-region-hovedstaden
       - Organization/org-region-midtjylland
+      - Organization/org-region-nordjylland
   BaseManagement:
     name: "Base.Management"
     description: "The episode of care the plan is delivered under, and that every record of care refers back to."

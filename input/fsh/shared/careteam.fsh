@@ -28,4 +28,4 @@ Description: "Stands in for the care team the scenario runs under. The loader su
 * participant.member = Reference(practitioner-placeholder)
 * participant.period.start = "2025-01-01T00:00:00+01:00"
 * reasonCode = $sks#DJ44 "Kronisk obstruktiv lungesygdom"
-* managingOrganization = Reference(org-region-hovedstaden)
+* managingOrganization = Reference(org-region-nordjylland)

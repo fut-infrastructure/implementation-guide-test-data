@@ -43,8 +43,8 @@ Organizations the definitions refer to.
 
 |Name|Description|
 |---|---|
-|[Region Hovedstaden](Organization-org-region-hovedstaden.html)|Owner and intended audience of the plan and its activities.|
-|[Region Midtjylland](Organization-org-region-midtjylland.html)|Owner of the two automated-processing rules.|
+|[Region Midtjylland](Organization-org-region-midtjylland.html)|Owner of the plan, its activities, the questionnaire and the automated-processing rules.|
+|[Region Nordjylland](Organization-org-region-nordjylland.html)|Manages the episodes of care and the care teams that deliver the monitoring.|
 
 ### Clinical.Care Provision
 

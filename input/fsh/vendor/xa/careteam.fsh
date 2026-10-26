@@ -21,4 +21,4 @@ Description: "The care team responsible for the COPD monitoring under telma."
 * participant.member = Reference(practitioner-xa)
 * participant.period.start = "2025-01-01T00:00:00+01:00"
 * reasonCode = $sks#DJ44 "Kronisk obstruktiv lungesygdom"
-* managingOrganization = Reference(org-region-hovedstaden)
+* managingOrganization = Reference(org-region-nordjylland)

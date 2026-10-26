@@ -36,7 +36,7 @@ Instance: org-region-midtjylland
 InstanceOf: ehealth-organization
 Usage: #example
 Title: "Region Midtjylland"
-Description: "Owner of the two automated-processing rules."
+Description: "Owner of the plan, its activities, the questionnaire and the automated-processing rules."
 * extension[cvrNumber].valueString = "29190925"
 * extension[regionCode].valueString = "1082"
 * extension[municipalityCode].valueString = "0791"
@@ -75,42 +75,45 @@ Description: "Owner of the two automated-processing rules."
 * address[=].postalCode = "8800"
 * address[=].country = "DK"
 
-Instance: org-region-hovedstaden
+Instance: org-region-nordjylland
 InstanceOf: ehealth-organization
 Usage: #example
-Title: "Region Hovedstaden"
-Description: "Owner and intended audience of the plan and its activities."
-* extension[cvrNumber].valueString = "29190623"
-* extension[regionCode].valueString = "1084"
-* extension[municipalityCode].valueString = "0219"
+Title: "Region Nordjylland"
+Description: "Manages the episodes of care and the care teams that deliver the monitoring."
+* extension[cvrNumber].valueString = "29190941"
+* extension[regionCode].valueString = "1081"
+* extension[municipalityCode].valueString = "0851"
 * extension[source].valueCodeableConcept = $organization-source#SOR "Sundhedsvæsenets Organisationsregister"
 * extension[synchronizationStatus].valueCodeableConcept = $organization-synchronization-status#EligibleForSynchronization
 * identifier[SOR-ID].use = #official
 * identifier[SOR-ID].system = $sor
-* identifier[SOR-ID].value = "6111000016004"
+* identifier[SOR-ID].value = "6071000016008"
 * identifier[SOR-ID].period.start = "2007-08-29T00:00:00+00:00"
 * active = true
 * type = $sct-dk-20150731#550881000005103 "region"
-* name = "Region Hovedstaden"
-* alias = "Region Hovedstaden"
+* name = "Region Nordjylland"
+* alias = "Region Nordjylland"
 * telecom[0].system = #phone
-* telecom[=].value = "48205000"
+* telecom[=].value = "97648000"
 * telecom[=].use = #work
 * telecom[+].system = #email
-* telecom[=].value = "regionh@regionh.dk"
+* telecom[=].value = "region@rn.dk"
+* telecom[=].use = #work
+* telecom[+].system = #fax
+* telecom[=].value = "98152009"
 * telecom[=].use = #work
 * telecom[+].system = #url
-* telecom[=].value = "https://www.regionhovedstaden.dk"
+* telecom[=].value = "https://www.rn.dk"
 * telecom[=].use = #work
 * address[0].use = #work
 * address[=].type = #postal
-* address[=].line = "Kongens Vænge 2"
-* address[=].city = "Hillerød"
-* address[=].postalCode = "3400"
+* address[=].line = "Niels Bohrs Vej 30"
+* address[=].city = "Aalborg Øst"
+* address[=].postalCode = "9220"
 * address[=].country = "DK"
 * address[+].use = #work
 * address[=].type = #physical
-* address[=].line = "Kongens Vænge 2"
-* address[=].city = "Hillerød"
-* address[=].postalCode = "3400"
+* address[=].line = "Niels Bohrs Vej 30"
+* address[=].city = "Aalborg Øst"
+* address[=].postalCode = "9220"
 * address[=].country = "DK"

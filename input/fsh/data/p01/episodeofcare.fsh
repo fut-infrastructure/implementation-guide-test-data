@@ -5,8 +5,8 @@ Title: "Episode of care (completed)"
 Description: "A completed episode of care for the same patient and the same COPD diagnosis, which ran from March to June 2025. Shows the closed period and the full status history that a finished episode carries."
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
-* extension[caremanagerOrganization].valueReference = Reference(org-region-hovedstaden)
-* extension[managingOrganization].extension[organisation].valueReference = Reference(org-region-hovedstaden)
+* extension[caremanagerOrganization].valueReference = Reference(org-region-nordjylland)
+* extension[managingOrganization].extension[organisation].valueReference = Reference(org-region-nordjylland)
 * extension[managingOrganization].extension[period].valuePeriod.start = "2025-03-03T09:00:00+00:00"
 * extension[managingOrganization].extension[period].valuePeriod.end = "2025-06-30T12:00:00+00:00"
 * extension[teamHistory].extension[careTeam].valueReference = Reference(careteam-placeholder)
@@ -39,8 +39,8 @@ Title: "Episode of care"
 Description: "The open episode of care the monitoring plan is delivered under, addressing the COPD diagnosis."
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
-* extension[caremanagerOrganization].valueReference = Reference(org-region-hovedstaden)
-* extension[managingOrganization].extension[organisation].valueReference = Reference(org-region-hovedstaden)
+* extension[caremanagerOrganization].valueReference = Reference(org-region-nordjylland)
+* extension[managingOrganization].extension[organisation].valueReference = Reference(org-region-nordjylland)
 * extension[managingOrganization].extension[period].valuePeriod.start = "2026-01-08T09:00:00+00:00"
 * extension[teamHistory].extension[careTeam].valueReference = Reference(careteam-placeholder)
 * extension[teamHistory].extension[period].valuePeriod.start = "2026-01-08T09:00:00+00:00"
