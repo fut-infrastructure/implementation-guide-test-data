@@ -36,7 +36,7 @@
 // ServiceRequests were not included. Closing them is consistent with the plan no longer accepting
 // submissions; if the environment turns out to leave the sentinel in place, change it here.
 
-RuleSet: SRCommon(episode, srstatus, start)
+RuleSet: SRCommon(patient, episode, srstatus, start)
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
 * extension[episodeOfCare].valueReference = Reference({episode})
@@ -46,7 +46,7 @@ RuleSet: SRCommon(episode, srstatus, start)
 * extension[statusHistory].extension[period].valuePeriod.start = "{start}"
 * status = #{srstatus}
 * intent = #order
-* subject = Reference(p01)
+* subject = Reference({patient})
 
 // The schedule the plan's first branch runs on, copied from the activity definitions.
 RuleSet: SRScheduled

@@ -2,30 +2,30 @@ Instance: p01-eoc1
 InstanceOf: ehealth-episodeofcare
 Usage: #example
 Title: "Episode of care (completed)"
-Description: "A completed episode of care for the same patient and the same COPD diagnosis, which ran from March to June 2025. Shows the closed period and the full status history that a finished episode carries."
+Description: "A completed episode of care for the same patient and the same COPD diagnosis, which ran for about four and a half months and closed well before the open one opened. Shows the closed period and the full status history that a finished episode carries."
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
 * extension[caremanagerOrganization].valueReference = Reference(org-region-nordjylland)
 * extension[managingOrganization].extension[organisation].valueReference = Reference(org-region-nordjylland)
-* extension[managingOrganization].extension[period].valuePeriod.start = "2025-03-03T09:00:00+00:00"
-* extension[managingOrganization].extension[period].valuePeriod.end = "2025-06-30T12:00:00+00:00"
+* extension[managingOrganization].extension[period].valuePeriod.start = "2025-06-02T09:00:00+00:00"
+* extension[managingOrganization].extension[period].valuePeriod.end = "2025-10-13T12:00:00+00:00"
 * extension[teamHistory].extension[careTeam].valueReference = Reference(careteam-placeholder)
-* extension[teamHistory].extension[period].valuePeriod.start = "2025-03-03T09:00:00+00:00"
-* extension[teamHistory].extension[period].valuePeriod.end = "2025-06-30T12:00:00+00:00"
+* extension[teamHistory].extension[period].valuePeriod.start = "2025-06-02T09:00:00+00:00"
+* extension[teamHistory].extension[period].valuePeriod.end = "2025-10-13T12:00:00+00:00"
 * status = #finished
 * statusHistory[0].status = #planned
-* statusHistory[=].period.start = "2025-03-03T09:00:00+00:00"
-* statusHistory[=].period.end = "2025-03-03T09:05:00+00:00"
+* statusHistory[=].period.start = "2025-06-02T09:00:00+00:00"
+* statusHistory[=].period.end = "2025-06-02T09:05:00+00:00"
 * statusHistory[+].status = #active
-* statusHistory[=].period.start = "2025-03-03T09:05:00+00:00"
-* statusHistory[=].period.end = "2025-06-30T12:00:00+00:00"
+* statusHistory[=].period.start = "2025-06-02T09:05:00+00:00"
+* statusHistory[=].period.end = "2025-10-13T12:00:00+00:00"
 * statusHistory[+].status = #finished
-* statusHistory[=].period.start = "2025-06-30T12:00:00+00:00"
+* statusHistory[=].period.start = "2025-10-13T12:00:00+00:00"
 // Its own Condition, not the open episode's — see condition.fsh in this directory.
 * diagnosis.condition = Reference(p01-eoc1-cond)
 * patient = Reference(p01)
-* period.start = "2025-03-03T09:00:00+00:00"
-* period.end = "2025-06-30T12:00:00+00:00"
+* period.start = "2025-06-02T09:00:00+00:00"
+* period.end = "2025-10-13T12:00:00+00:00"
 * team = Reference(careteam-placeholder)
 
 // ─── the other six patients ─────────────────────────────────────────────────────────────────────
@@ -41,18 +41,18 @@ Description: "The open episode of care the monitoring plan is delivered under, a
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
 * extension[caremanagerOrganization].valueReference = Reference(org-region-nordjylland)
 * extension[managingOrganization].extension[organisation].valueReference = Reference(org-region-nordjylland)
-* extension[managingOrganization].extension[period].valuePeriod.start = "2026-01-08T09:00:00+00:00"
+* extension[managingOrganization].extension[period].valuePeriod.start = "2026-09-28T09:00:00+00:00"
 * extension[teamHistory].extension[careTeam].valueReference = Reference(careteam-placeholder)
-* extension[teamHistory].extension[period].valuePeriod.start = "2026-01-08T09:00:00+00:00"
+* extension[teamHistory].extension[period].valuePeriod.start = "2026-09-28T09:00:00+00:00"
 * status = #active
 * statusHistory[0].status = #planned
-* statusHistory[=].period.start = "2026-01-08T09:00:00+00:00"
-* statusHistory[=].period.end = "2026-01-08T09:05:00+00:00"
+* statusHistory[=].period.start = "2026-09-28T09:00:00+00:00"
+* statusHistory[=].period.end = "2026-09-28T09:05:00+00:00"
 * statusHistory[+].status = #active
-* statusHistory[=].period.start = "2026-01-08T09:05:00+00:00"
+* statusHistory[=].period.start = "2026-09-28T09:05:00+00:00"
 * diagnosis.condition = Reference(p01-eoc2-cond)
 * patient = Reference(p01)
-* period.start = "2026-01-08T09:00:00+00:00"
+* period.start = "2026-09-28T09:00:00+00:00"
 * team = Reference(careteam-placeholder)
 
 // ─── the other nine patients ────────────────────────────────────────────────────────────────────

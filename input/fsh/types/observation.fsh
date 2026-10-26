@@ -55,7 +55,7 @@ RuleSet: ObsPulseRanges
 * referenceRange[3].type.coding[0] = $absolute-range#RAL
 * referenceRange[3].type.coding[+] = $npu#NPU21692
 
-RuleSet: SubmittedObs(episode, sr, authored)
+RuleSet: SubmittedObs(patient, episode, sr, authored)
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
 // PLACEHOLDER: one UUIDv5 per copy of this resource, not one for all. See aliases.fsh.
@@ -66,6 +66,6 @@ RuleSet: SubmittedObs(episode, sr, authored)
 * extension[resolvedTiming].extension[type].valueCodeableConcept = $resolved-timing-type#Extra
 * basedOn = Reference({sr})
 * status = #final
-* subject = Reference(p01)
+* subject = Reference({patient})
 * effectiveDateTime = "{authored}"
-* performer = Reference(p01)
+* performer = Reference({patient})

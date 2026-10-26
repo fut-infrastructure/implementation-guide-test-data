@@ -13,7 +13,7 @@ The episode everything patient-specific hangs off: the plan is delivered under i
 
 |Name|Description|
 |---|---|
-|[Episode of care (completed)](EpisodeOfCare-p01-eoc1.html)|A completed episode of care for the same patient and the same COPD diagnosis, which ran from March to June 2025. Shows the closed period and the full status history that a finished episode carries.|
+|[Episode of care (completed)](EpisodeOfCare-p01-eoc1.html)|A completed episode of care for the same patient and the same COPD diagnosis, which ran for about four and a half months and closed well before the open one opened. Shows the closed period and the full status history that a finished episode carries.|
 |[Episode of care](EpisodeOfCare-p01-eoc2.html)|The open episode of care the monitoring plan is delivered under, addressing the COPD diagnosis.|
 
 ### Clinical.Care Provision
@@ -26,7 +26,7 @@ The plan definition as delivered to the patient, one per episode. Normally creat
 
 |Name|Description|
 |---|---|
-|[Care plan (completed)](CarePlan-p01-cp1.html)|The monitoring plan as delivered under the completed episode of care, which ran from March to June 2025. Status completed, with the full status history and — following the environment's behaviour — a period that is left open.|
+|[Care plan (completed)](CarePlan-p01-cp1.html)|The monitoring plan as delivered under the completed episode of care. Status completed, with the full status history and — following the environment's behaviour — a period that is left open.|
 |[Care plan (active)](CarePlan-p01-cp2.html)|The monitoring plan as delivered under the open episode of care. Normally created by $apply, which would also create one ServiceRequest per activity.|
 
 #### ServiceRequests
@@ -124,7 +124,7 @@ One per submission, naming the resources submitted together. This is what trigge
 
 |Name|Description|
 |---|---|
-|[Submission under the completed episode](Provenance-p01-cp1-prov.html)|The submit record for the completed episode, made while the plan was still active in May 2025. Triage should return red for the saturation and the questionnaire, and yellow for the pulse.|
+|[Submission under the completed episode](Provenance-p01-cp1-prov.html)|The submit record for the completed episode, made while the plan was still active. Triage should return red for the saturation and the questionnaire, and yellow for the pulse.|
 |[Submission under the open episode](Provenance-p01-cp2-prov.html)|The submit record for the open episode: one questionnaire response and two observations, submitted together against the unscheduled branch. This is what triggers automated processing, which should triage all three green with routine tasks.|
 
 ### Base.Workflow

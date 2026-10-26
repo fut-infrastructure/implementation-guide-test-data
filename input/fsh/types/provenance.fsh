@@ -33,7 +33,7 @@
 // The guide does not carry those ClinicalImpressions and Tasks: the environment creates them when
 // these Provenances trigger processing, and they can be compared against the table above.
 
-RuleSet: SubmitProvenance(episode, qr, obsSat, obsPulse, srQ, srSat, srPulse, recorded)
+RuleSet: SubmitProvenance(patient, episode, qr, obsSat, obsPulse, srQ, srSat, srPulse, recorded)
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
 * target[0] = Reference({qr})
@@ -41,7 +41,7 @@ RuleSet: SubmitProvenance(episode, qr, obsSat, obsPulse, srQ, srSat, srPulse, re
 * target[+] = Reference({obsPulse})
 * recorded = "{recorded}"
 * policy = "http://ehealth.sundhed.dk/policy/ehealth/coherent-submitted-measurement"
-* agent.who = Reference(p01)
+* agent.who = Reference({patient})
 * entity[0].role = #quotation
 * entity[=].what = Reference({srQ})
 * entity[+].role = #quotation

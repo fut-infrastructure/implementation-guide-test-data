@@ -6,12 +6,12 @@ requests, submissions and triage results recorded for that patient.
 |Patient|Name|CPR|Resources|
 |---|---|---|---|
 |[Patient 01](patient-01.html)|Sonja Knudsen|0508754760|54|
-|[Patient 02](patient-02.html)|Ulrik Møller|1501989971|6|
-|[Patient 03](patient-03.html)|Mette Kristensen|2412589206|6|
-|[Patient 04](patient-04.html)|Thomas Bonde|1311633801|6|
-|[Patient 05](patient-05.html)|Grete Kristensen|0512894992|6|
-|[Patient 06](patient-06.html)|Andreas Bonde|1207969563|6|
-|[Patient 07](patient-07.html)|Karl Larsen|1509829345|6|
-|[Patient 08](patient-08.html)|Line Sørensen|1512543258|3|
-|[Patient 09](patient-09.html)|Ane Larsen|1905839388|3|
-|[Patient 10](patient-10.html)|Martin Kristensen|0510049527|12|
+|[Patient 02](patient-02.html)|Ulrik Møller|1501989971|54|
+|[Patient 03](patient-03.html)|Mette Kristensen|2412589206|54|
+|[Patient 04](patient-04.html)|Thomas Bonde|1311633801|54|
+|[Patient 05](patient-05.html)|Grete Kristensen|0512894992|54|
+|[Patient 06](patient-06.html)|Andreas Bonde|1207969563|54|
+|[Patient 07](patient-07.html)|Karl Larsen|1509829345|54|
+|[Patient 08](patient-08.html)|Line Sørensen|1512543258|27|
+|[Patient 09](patient-09.html)|Ane Larsen|1905839388|27|
+|[Patient 10](patient-10.html)|Martin Kristensen|0510049527|108|

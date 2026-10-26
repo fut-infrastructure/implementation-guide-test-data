@@ -37,7 +37,7 @@
 // The questionnaire colour is the HIGHEST across its answers, which is why three reds and two
 // yellows come out red. See observation.fsh and questionnaireresponse.fsh for the inputs.
 
-RuleSet: TriageCI(episode, careplan, dc, when)
+RuleSet: TriageCI(patient, episode, careplan, dc, when)
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
 * extension[episodeOfCare].valueReference = Reference({episode})
@@ -45,7 +45,7 @@ RuleSet: TriageCI(episode, careplan, dc, when)
 * extension[decisionContext].valueReference.reference = "#{dc}"
 * status = #completed
 * code = $clinicalimpression-codes#TriagingResult "Result of triaging"
-* subject = Reference(p01)
+* subject = Reference({patient})
 * effectiveDateTime = "{when}"
 * date = "{when}"
 

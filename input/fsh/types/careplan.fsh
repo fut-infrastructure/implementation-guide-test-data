@@ -52,6 +52,24 @@ RuleSet: CarePlanActive(patient, eoc, cond, start, activeFrom)
 * careTeam = Reference(careteam-placeholder)
 * addresses = Reference({cond})
 
+// One entry per activity, in the order the plan runs them: the nine scheduled ones, then the five
+// of the extra branch. See servicerequest.fsh.
+RuleSet: CarePlanActivities(cp)
+* activity[0].reference = Reference({cp}-sr-head)
+* activity[+].reference = Reference({cp}-sr-intro)
+* activity[+].reference = Reference({cp}-sr-sat-pulse-intro)
+* activity[+].reference = Reference({cp}-sr-sat-pulse-prep)
+* activity[+].reference = Reference({cp}-sr-sat-pulse)
+* activity[+].reference = Reference({cp}-sr-saturation)
+* activity[+].reference = Reference({cp}-sr-pulse)
+* activity[+].reference = Reference({cp}-sr-questionnaire)
+* activity[+].reference = Reference({cp}-sr-closing)
+* activity[+].reference = Reference({cp}-sr-extra-head)
+* activity[+].reference = Reference({cp}-sr-extra-sat-pulse)
+* activity[+].reference = Reference({cp}-sr-extra-saturation)
+* activity[+].reference = Reference({cp}-sr-extra-pulse)
+* activity[+].reference = Reference({cp}-sr-extra-questionnaire)
+
 RuleSet: CarePlanCompleted(patient, eoc, cond, start, activeFrom, completedAt)
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"

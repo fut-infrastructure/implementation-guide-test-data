@@ -44,7 +44,7 @@
 //
 // THE FINISHED EPISODES ARE NOT LOADABLE AS THEY STAND. The careplan service stamps
 // meta.lastUpdated from the wall clock and maintains statusHistory itself, so loading one produces
-// an episode created and finished at load time rather than one that ran for months in 2025. The
+// an episode created and finished at load time rather than one that ran for months. The
 // dates are the intent; putting them into the database is a step the loader cannot do through the
 // FHIR API.
 

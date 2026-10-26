@@ -30,7 +30,7 @@
 // "1.2.208.176.7.200.2,<uuid>,ehealth.sundhed.dk" — an OID, a UUID and a domain in one string.
 // They have to match the questionnaire exactly, which is why they are written out in full.
 
-RuleSet: SubmittedQR(episode, sr, authored)
+RuleSet: SubmittedQR(patient, episode, sr, authored)
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
 // PLACEHOLDER: one UUIDv5 per copy of this resource, not one for all. See aliases.fsh.
@@ -42,6 +42,6 @@ RuleSet: SubmittedQR(episode, sr, authored)
 * basedOn = Reference({sr})
 * questionnaire = Canonical(questionnaire)
 * status = #completed
-* subject = Reference(p01)
+* subject = Reference({patient})
 * authored = "{authored}"
-* source = Reference(p01)
+* source = Reference({patient})

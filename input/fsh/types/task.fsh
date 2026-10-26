@@ -24,7 +24,7 @@
 // made under. All four of episodeOfCare, taskCategory, taskResponsible and restrictionCategory are
 // mandatory on the profile, which is why extension is 4..* there.
 
-RuleSet: TriageTask(episode, careplan, focus, priority, when)
+RuleSet: TriageTask(patient, episode, careplan, focus, priority, when)
 // PLACEHOLDER: the coexistence tag. See aliases.fsh.
 * meta.tag = $ehealth-system#"${COEXISTENCE_TAG}"
 * extension[episodeOfCare].valueReference = Reference({episode})
@@ -36,5 +36,5 @@ RuleSet: TriageTask(episode, careplan, focus, priority, when)
 * intent = #plan
 * priority = #{priority}
 * focus = Reference({focus})
-* for = Reference(p01)
+* for = Reference({patient})
 * authoredOn = "{when}"

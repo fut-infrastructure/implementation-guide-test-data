@@ -3,7 +3,7 @@ InstanceOf: ehealth-questionnaireresponse
 Usage: #example
 Title: "Questionnaire response, no symptoms (open episode)"
 Description: "A symptom questionnaire answered under the open episode with no symptoms reported. Every answer carries green significance, so triage returns green and the resulting task is routine."
-* insert SubmittedQR(p01-eoc2,p01-cp2-sr-extra-questionnaire, 2026-01-12T08:30:00+00:00)
+* insert SubmittedQR(p01, p01-eoc2,p01-cp2-sr-extra-questionnaire, 2026-09-29T08:30:00+00:00)
 * item[0].linkId = "1.2.208.176.7.200.2,02572a07-8923-4ea3-9ee9-f9aa10344379,ehealth.sundhed.dk"
 * item[0].answer.valueString = "Nej"
 * item[+].linkId = "1.2.208.176.7.200.2,0c8a7cbd-1dc9-4553-a0f3-9b3d046486a7,ehealth.sundhed.dk"
@@ -29,7 +29,7 @@ InstanceOf: ehealth-questionnaireresponse
 Usage: #example
 Title: "Questionnaire response, exacerbation (completed episode)"
 Description: "A symptom questionnaire answered under the completed episode during an exacerbation. Breathlessness 'En del' and greenish sputum both carry red significance, so triage returns red and raises a task with priority asap."
-* insert SubmittedQR(p01-eoc1,p01-cp1-sr-extra-questionnaire, 2025-05-14T10:00:00+00:00)
+* insert SubmittedQR(p01, p01-eoc1,p01-cp1-sr-extra-questionnaire, 2025-08-20T10:00:00+00:00)
 * item[0].linkId = "1.2.208.176.7.200.2,02572a07-8923-4ea3-9ee9-f9aa10344379,ehealth.sundhed.dk"
 * item[0].answer.valueString = "Ja"
 * item[+].linkId = "1.2.208.176.7.200.2,0c8a7cbd-1dc9-4553-a0f3-9b3d046486a7,ehealth.sundhed.dk"
