@@ -61,6 +61,8 @@ pages:
       title: Vendor xb
     vendor-xc.md:
       title: Vendor xc
+    vendor-xd.md:
+      title: Vendor xd
   patients.md:
     title: Patient data
     patient-01.md:
@@ -118,6 +120,7 @@ groups:
       - Practitioner/practitioner-xa
       - Practitioner/practitioner-xb
       - Practitioner/practitioner-xc
+      - Practitioner/practitioner-xd
   BaseEntities:
     name: "Base.Entities"
     description: "Organizations the definitions refer to."
@@ -204,6 +207,7 @@ groups:
       - CareTeam/careteam-xa
       - CareTeam/careteam-xb
       - CareTeam/careteam-xc
+      - CareTeam/careteam-xd
   ClinicalDiagnostics:
     name: "Clinical.Diagnostics"
     description: "What the patient submitted: the measurements and the questionnaire responses."

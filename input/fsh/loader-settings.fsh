@@ -25,3 +25,9 @@ Description: "Read by the loader, never loaded. anchorDate is the day the scenar
 * parameter[=].part[=].valueCoding = $ehealth-system#xc
 * parameter[=].part[+].name = "programme"
 * parameter[=].part[=].valueCoding = $ehealth-program#fob
+
+* parameter[+].name = "vendor"
+* parameter[=].part[0].name = "systemTag"
+* parameter[=].part[=].valueCoding = $ehealth-system#xd
+* parameter[=].part[+].name = "programme"
+* parameter[=].part[=].valueCoding = $ehealth-program#telesaar
