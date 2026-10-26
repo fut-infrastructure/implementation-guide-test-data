@@ -14,16 +14,16 @@ The ten patients the test data is about, each a concrete test identity from the 
 
 |Name|Description|
 |---|---|
-|[Patient 01](Patient-p01.html)|Test patient 01, CPR 0908899393.|
-|[Patient 02](Patient-p02.html)|Test patient 02, CPR 2406799436.|
-|[Patient 03](Patient-p03.html)|Test patient 03, CPR 2105018404.|
-|[Patient 04](Patient-p04.html)|Test patient 04, CPR 1007850448.|
-|[Patient 05](Patient-p05.html)|Test patient 05, CPR 0108720417.|
-|[Patient 06](Patient-p06.html)|Test patient 06, CPR 1406612674.|
-|[Patient 07](Patient-p07.html)|Test patient 07, CPR 2307684902.|
-|[Patient 08](Patient-p08.html)|Test patient 08, CPR 1210669643.|
-|[Patient 09](Patient-p09.html)|Test patient 09, CPR 0209723123.|
-|[Patient 10](Patient-p10.html)|Test patient 10, CPR 0306909622.|
+|[Patient 01](Patient-p01.html)|Test patient 01, CPR 0508754760.|
+|[Patient 02](Patient-p02.html)|Test patient 02, CPR 1501989971.|
+|[Patient 03](Patient-p03.html)|Test patient 03, CPR 2412589206.|
+|[Patient 04](Patient-p04.html)|Test patient 04, CPR 1311633801.|
+|[Patient 05](Patient-p05.html)|Test patient 05, CPR 0512894992.|
+|[Patient 06](Patient-p06.html)|Test patient 06, CPR 1207969563.|
+|[Patient 07](Patient-p07.html)|Test patient 07, CPR 1509829345.|
+|[Patient 08](Patient-p08.html)|Test patient 08, CPR 1512543258.|
+|[Patient 09](Patient-p09.html)|Test patient 09, CPR 1905839388.|
+|[Patient 10](Patient-p10.html)|Test patient 10, CPR 0510049527.|
 
 #### Practitioners
 

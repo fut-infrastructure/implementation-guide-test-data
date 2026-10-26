@@ -1,277 +1,116 @@
-// Patients — TEN CONCRETE TEST IDENTITIES, taken from the target environment's own samples.
+// Patients — THE TEN FUT-IN-A-BOX TEST CITIZENS, users FUT076 to FUT085.
 //
 // Not created on the target. The loader resolves a Patient by CPR, so the CPR is the one value
-// that has to match something already there — and these ten do, because they were read back from
-// the environment rather than invented.
+// that has to match something already there — and these ten do, because they are the citizens the
+// environment issues for exactly this purpose. They log in with MitID; the simulator identity that
+// goes with each is in the test-citizen document, not here, because it is a login credential
+// rather than patient data.
 //
 // SYNTHETIC PEOPLE, NOT ANONYMISED ONES. An earlier version of this file held a single template
 // with ${PLACEHOLDER}s in every identifying element, because inventing a person is not acceptable
 // and naming a real one less so. These ten are test identities that already exist, so the real
-// values can be used: that removes the placeholders, removes the CPR regex error they caused, and
-// gives the ten distinct CPRs the dataset needs. The addresses do not always agree with their
-// postcodes — Hasselvej in Nuuk, Weidekampsgade in the Faroes — which is itself a sign the data is
-// generated rather than real.
+// values can be used.
 //
+// THREE CPRs CARRY A RESTORED LEADING ZERO. p01, p05 and p10 render as nine digits in the source
+// document, which is numeric formatting dropping the zero: dk-core's cpr invariant requires the
+// day to match 0[1-9]|1[0-9]|2[0-9]|3[0-1], and 50/51 are not days. All ten match once restored.
 //
-// generalPractitioner IS A LOGICAL REFERENCE — an identifier with no reference, keyed by
-// Ydernummer (urn:oid:1.2.208.176.1.4), which the core IG defines as a NamingSystem. So it names a
-// practice without needing a resource in this guide to point at.
+// gender AND birthDate ARE DERIVED FROM THE CPR, not supplied: the last digit gives the sex, odd
+// male and even female, and the first six give the date with the century taken from the seventh.
+// The derived sex agrees with all ten names, which is the check that the reading is right.
 //
-// GENERATED ONCE from the environment's samples, then maintained here by hand.
+// NO ADDRESS, maritalStatus OR generalPractitioner. The previous ten had them, read back from the
+// environment; the test-citizen document carries only CPR and name, and those fields are not
+// derivable from a CPR. They are left out rather than invented — the profile requires only
+// identifier and gender. Read them off the environment and add them here if the dataset needs an
+// address to exercise something.
 
-// Hakob Joumøller
+RuleSet: TestCitizen(cpr, family, given, sex, born)
+* identifier[cpr].use = #official
+* identifier[cpr].system = $cpr
+* identifier[cpr].value = "{cpr}"
+* name[official].family = "{family}"
+* name[official].given = "{given}"
+* telecom[NemSMS]
+* gender = #{sex}
+* birthDate = "{born}"
+
+// FUT076 · Sonja Knudsen
 Instance: p01
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Patient 01"
-Description: "Test patient 01, CPR 0908899393."
-* identifier[cpr].use = #official
-* identifier[cpr].system = $cpr
-* identifier[cpr].value = "0908899393"
-* name[official].family = "Joumøller"
-* name[official].given = "Hakob"
-* telecom[NemSMS]
-* gender = #male
-* birthDate = "1989-08-09"
-* address[officialHomeAddress]
-  * type = #postal
-  * line = "Helgolandsgade 354"
-  * city = "Terndrup"
-  * postalCode = "9575"
-  * country = "DK"
-  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0420
-  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-83
-* maritalStatus = $v3-MaritalStatus#U "unmarried"
-* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
-* generalPractitioner.identifier.value = "077704"
+Description: "Test patient 01, CPR 0508754760."
+* insert TestCitizen(0508754760, Knudsen, Sonja, female, 1975-08-05)
 
-// Stine Rasmussen
+// FUT077 · Ulrik Møller
 Instance: p02
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Patient 02"
-Description: "Test patient 02, CPR 2406799436."
-* identifier[cpr].use = #official
-* identifier[cpr].system = $cpr
-* identifier[cpr].value = "2406799436"
-* active = true
-* name[official].family = "Rasmussen"
-* name[official].given = "Stine"
-* gender = #female
-* birthDate = "1979-06-24"
-* address[officialHomeAddress]
-  * type = #postal
-  * line = "Weidekampsgade 38"
-  * city = "Frederiksberg C"
-  * postalCode = "1951"
-  * country = "DK"
-  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0740
-  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-82
-* maritalStatus = $v3-MaritalStatus#U "unmarried"
-* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
-* generalPractitioner.identifier.value = "077704"
+Description: "Test patient 02, CPR 1501989971."
+* insert TestCitizen(1501989971, Møller, Ulrik, male, 1998-01-15)
 
-// Fie Møller
+// FUT078 · Mette Kristensen
 Instance: p03
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Patient 03"
-Description: "Test patient 03, CPR 2105018404."
-* identifier[cpr].use = #official
-* identifier[cpr].system = $cpr
-* identifier[cpr].value = "2105018404"
-* name[official].family = "Møller"
-* name[official].given = "Fie"
-* gender = #female
-* birthDate = "2001-05-21"
-* address[officialHomeAddress]
-  * type = #postal
-  * line = "Dronninggårds Allé 331"
-  * city = "København K"
-  * postalCode = "1216"
-  * country = "DK"
-  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0575
-  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-83
-* maritalStatus = $v3-MaritalStatus#U "unmarried"
-* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
-* generalPractitioner.identifier.value = "077704"
+Description: "Test patient 03, CPR 2412589206."
+* insert TestCitizen(2412589206, Kristensen, Mette, female, 1958-12-24)
 
-// Line Rasmussen
+// FUT079 · Thomas Bonde
 Instance: p04
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Patient 04"
-Description: "Test patient 04, CPR 1007850448."
-* identifier[cpr].use = #official
-* identifier[cpr].system = $cpr
-* identifier[cpr].value = "1007850448"
-* name[official].family = "Rasmussen"
-* name[official].given = "Line"
-* gender = #female
-* birthDate = "1985-07-10"
-* address[officialHomeAddress]
-  * type = #postal
-  * line = "Hasselvej 171"
-  * city = "Nuuk"
-  * postalCode = "3900"
-  * country = "DK"
-  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0740
-  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-82
-* maritalStatus = $v3-MaritalStatus#U "unmarried"
-* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
-* generalPractitioner.identifier.value = "077704"
+Description: "Test patient 04, CPR 1311633801."
+* insert TestCitizen(1311633801, Bonde, Thomas, male, 1963-11-13)
 
-// Adrian Bach
+// FUT080 · Grete Kristensen
 Instance: p05
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Patient 05"
-Description: "Test patient 05, CPR 0108720417."
-* identifier[cpr].use = #official
-* identifier[cpr].system = $cpr
-* identifier[cpr].value = "0108720417"
-* name[official].family = "Bach"
-* name[official].given = "Adrian"
-* gender = #male
-* birthDate = "1972-08-01"
-* address[officialHomeAddress]
-  * type = #postal
-  * line = "Hasselvej 405"
-  * city = "København K"
-  * postalCode = "1360"
-  * country = "DK"
-  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0710
-  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-82
-* maritalStatus = $v3-MaritalStatus#U "unmarried"
-* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
-* generalPractitioner.identifier.value = "077704"
+Description: "Test patient 05, CPR 0512894992."
+* insert TestCitizen(0512894992, Kristensen, Grete, female, 1989-12-05)
 
-// Bente Bach
+// FUT081 · Andreas Bonde
 Instance: p06
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Patient 06"
-Description: "Test patient 06, CPR 1406612674."
-* identifier[cpr].use = #official
-* identifier[cpr].system = $cpr
-* identifier[cpr].value = "1406612674"
-* active = true
-* name[official].family = "Bach"
-* name[official].given = "Bente"
-* gender = #female
-* birthDate = "1961-06-14"
-* address[officialHomeAddress]
-  * type = #postal
-  * line = "Frodesgade 164"
-  * city = "Frederiksberg C"
-  * postalCode = "1958"
-  * country = "DK"
-  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0190
-  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-84
-* maritalStatus = $v3-MaritalStatus#U "unmarried"
-* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
-* generalPractitioner.identifier.value = "077704"
+Description: "Test patient 06, CPR 1207969563."
+* insert TestCitizen(1207969563, Bonde, Andreas, male, 1996-07-12)
 
-// Anne Pedersen
+// FUT082 · Karl Larsen
 Instance: p07
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Patient 07"
-Description: "Test patient 07, CPR 2307684902."
-* identifier[cpr].use = #official
-* identifier[cpr].system = $cpr
-* identifier[cpr].value = "2307684902"
-* active = true
-* name[official].family = "Pedersen"
-* name[official].given = "Anne"
-* gender = #female
-* birthDate = "1968-07-23"
-* address[officialHomeAddress]
-  * type = #postal
-  * line = "Lønvejen 305"
-  * city = "København K"
-  * postalCode = "1410"
-  * country = "DK"
-  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0461
-  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-83
-* maritalStatus = $v3-MaritalStatus#U "unmarried"
-* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
-* generalPractitioner.identifier.value = "077704"
+Description: "Test patient 07, CPR 1509829345."
+* insert TestCitizen(1509829345, Larsen, Karl, male, 1982-09-15)
 
-// Jeppe Jørgensen
+// FUT083 · Line Sørensen
 Instance: p08
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Patient 08"
-Description: "Test patient 08, CPR 1210669643."
-* identifier[cpr].use = #official
-* identifier[cpr].system = $cpr
-* identifier[cpr].value = "1210669643"
-* active = true
-* name[official].family = "Jørgensen"
-* name[official].given = "Jeppe"
-* gender = #male
-* birthDate = "1966-10-12"
-* address[officialHomeAddress]
-  * type = #postal
-  * line = "Kroghsgade 168"
-  * city = "Blokhus"
-  * postalCode = "9492"
-  * country = "DK"
-  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0175
-  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-84
-* maritalStatus = $v3-MaritalStatus#U "unmarried"
-* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
-* generalPractitioner.identifier.value = "077704"
+Description: "Test patient 08, CPR 1512543258."
+* insert TestCitizen(1512543258, Sørensen, Line, female, 1954-12-15)
 
-// Jakob Rasmussen
+// FUT084 · Ane Larsen
 Instance: p09
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Patient 09"
-Description: "Test patient 09, CPR 0209723123."
-* identifier[cpr].use = #official
-* identifier[cpr].system = $cpr
-* identifier[cpr].value = "0209723123"
-* active = true
-* name[official].family = "Rasmussen"
-* name[official].given = "Jakob"
-* gender = #male
-* birthDate = "1972-09-02"
-* address[officialHomeAddress]
-  * type = #postal
-  * line = "Højgårdsparken 468"
-  * city = "København K"
-  * postalCode = "1220"
-  * country = "DK"
-  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0330
-  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-85
-* maritalStatus = $v3-MaritalStatus#U "unmarried"
-* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
-* generalPractitioner.identifier.value = "077704"
+Description: "Test patient 09, CPR 1905839388."
+* insert TestCitizen(1905839388, Larsen, Ane, female, 1983-05-19)
 
-// Ina Pedersen
+// FUT085 · Martin Kristensen
 Instance: p10
 InstanceOf: ehealth-patient
 Usage: #example
 Title: "Patient 10"
-Description: "Test patient 10, CPR 0306909622."
-* identifier[cpr].use = #official
-* identifier[cpr].system = $cpr
-* identifier[cpr].value = "0306909622"
-* active = true
-* name[official].family = "Pedersen"
-* name[official].given = "Ina"
-* gender = #female
-* birthDate = "1990-06-03"
-* address[officialHomeAddress]
-  * type = #postal
-  * line = "Weidekampsgade 215"
-  * city = "Nes, Eysturoy"
-  * postalCode = "0655"
-  * country = "DK"
-  * extension[municipalityCode].valueCodeableConcept = $dk-municipality-codes#0751
-  * extension[regionalSubDivisionCodes].valueCodeableConcept = $iso3166-2#DK-82
-* maritalStatus = $v3-MaritalStatus#U "unmarried"
-* generalPractitioner.identifier.system = "urn:oid:1.2.208.176.1.4"
-* generalPractitioner.identifier.value = "077704"
+Description: "Test patient 10, CPR 0510049527."
+* insert TestCitizen(0510049527, Kristensen, Martin, male, 2004-10-05)
