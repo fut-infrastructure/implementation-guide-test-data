@@ -79,7 +79,7 @@ Instance: org-region-nordjylland
 InstanceOf: ehealth-organization
 Usage: #example
 Title: "Region Nordjylland"
-Description: "Manages the episodes of care and the care teams that deliver the monitoring."
+Description: "Managing organization for the episodes of care and the care teams that deliver the monitoring."
 * extension[cvrNumber].valueString = "29190941"
 * extension[regionCode].valueString = "1081"
 * extension[municipalityCode].valueString = "0851"

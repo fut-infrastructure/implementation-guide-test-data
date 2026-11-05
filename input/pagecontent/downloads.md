@@ -1,6 +1,7 @@
 The IG Publisher packages every resource in this guide. The test data loader takes the JSON
 examples: that archive holds the resources themselves, one file per
-resource, exactly as they appear on this site.
+resource, exactly as they appear on this site. See [Loading](loading.html) for what the loader does
+with it on DEVENVCGI.
 
 ### The test data
 

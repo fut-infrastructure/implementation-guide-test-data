@@ -13,7 +13,7 @@ Data representing a scenario covering 10 patients with a COPD condition. The pat
 
 #### Loading
 
-Loading on an environment is done idempotent. Data is created only if not already present. The target environment will normally be expunged before loading, but the expunge will only remove transactions (eg clinical data), while context is kept (eg organizations). Some clinical data present in this IG will not be loaded, but will become present on the target environment as result of the automatic processing doing triage of submitted observations and questionnaire responses.
+The example data is loaded on the development test environment (DEVENVCGI), after its clinical data has been cleared. Data already present is not created again, and the ClinicalImpressions and Tasks are created by triage rather than loaded. See [Loading](loading.html) for what a run removes, keeps and loads.
 
 #### Placeholders
 

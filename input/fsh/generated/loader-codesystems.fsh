@@ -65,7 +65,7 @@ Instance: loader-codesystems
 InstanceOf: Bundle
 Usage: #example
 Title: "Loader code systems"
-Description: "Read by the loader, never loaded. The ehealth-system and ehealth-program CodeSystems of dk.ehealth.sundhed.fhir.ig.core#11.0.1: the loader checks the coexistence tags against them and adds the codes terminology lacks."
+Description: "Read by the loader, never loaded. The ehealth-system and ehealth-program CodeSystems of dk.ehealth.sundhed.fhir.ig.core: the loader checks the coexistence tags against them, and adds any codes the terminology service lacks."
 * type = #collection
 * entry[+].fullUrl = "http://ehealth.sundhed.dk/fhir/testdata/CodeSystem/ehealth-system"
 * entry[=].resource = cs-ehealth-system

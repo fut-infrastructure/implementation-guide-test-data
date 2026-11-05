@@ -70,7 +70,7 @@ const CATEGORY_OVERRIDE = {
 // In 'type' and 'category-type' modes a group IS a type, so the module's description would be
 // wrong — it describes the whole module, and would repeat under every type in it.
 const TYPE_ORDER = [
-  ['Patient', 'The ten patients the test data is about, each a concrete test identity from the target environment. p01 carries the full scenario; the rest are patients only.'],
+  ['Patient', 'The patients the test data is about, each a concrete test identity from the target environment.'],
   ['Practitioner', 'The practitioner on the care team.'],
   ['EpisodeOfCare', 'The episode everything patient-specific hangs off: the plan is delivered under it, and every measurement and response refers back to it.'],
   ['Condition', 'The diagnosis the episode addresses, and the reason the plan is in place.'],
@@ -290,13 +290,14 @@ const row = (ref) => {
 
 // one section per module, one subsection per type, over whichever refs are given. A vendor page
 // holds two resources, so it drops the module level and heads each table with the type alone.
-const sections = (refs, flat) => {
+const sections = (refs, flat, descriptions = {}) => {
+  const describe = (t) => descriptions[t] || typeDescription(t);
   const out = [];
   const keep = new Set(refs);
   if (flat) {
     const types = [...byType.keys()].filter((t) => byType.get(t).some((r) => keep.has(r)));
     for (const t of types.sort((a, b) => typeRank(a) - typeRank(b))) {
-      out.push(`### ${plural(t)}`, '', typeDescription(t), '', '|Name|Description|', '|---|---|');
+      out.push(`### ${plural(t)}`, '', describe(t), '', '|Name|Description|', '|---|---|');
       byType.get(t).filter((r) => keep.has(r)).sort().forEach((r) => out.push(row(r)));
       out.push('');
     }
@@ -309,7 +310,7 @@ const sections = (refs, flat) => {
     for (const t of [...types].sort((a, b) => typeRank(a) - typeRank(b))) {
       const ids = byType.get(t).filter((r) => keep.has(r)).sort();
       if (!ids.length) continue;
-      out.push(`#### ${plural(t)}`, '', typeDescription(t), '', '|Name|Description|', '|---|---|');
+      out.push(`#### ${plural(t)}`, '', describe(t), '', '|Name|Description|', '|---|---|');
       ids.forEach((r) => out.push(row(r)));
       out.push('');
     }
@@ -332,15 +333,19 @@ const all = [...byType.values()].flat();
 const written = [];
 
 written.push(write('shared.md', [
-  'Everything every patient and every vendor shares: the plan and the activities it is built from,',
-  'the questionnaire, the automated-processing rules, the organizations, the ten patients, and the',
-  'placeholder care team and practitioner the scenario runs under.',
+  'Shared data: the plan and the activities it is built from, the questionnaire, the',
+  'automated-processing rules, the organizations and the patients.',
+  'The care team and practitioner are not shared, but are present here as placeholders referenced by',
+  'the scenario resources (templates). The loader substitutes the placeholder care team and',
+  'practitioner when it duplicates the scenario for each vendor.',
   '',
-  ...sections(all.filter((r) => !tagged.has(r) && !vendorOf.has(r))),
+  ...sections(all.filter((r) => !tagged.has(r) && !vendorOf.has(r)), false, {
+    Practitioner: 'The practitioner on the care team. This is a placeholder, which the loader substitutes for each vendor with a vendor specific practitioner.',
+  }),
 ]));
 
 written.push(write('vendors.md', [
-  `The ${vendors.length} vendors this dataset is loadable for, as declared in`,
+  'The vendors this dataset is loadable for, as declared in',
   '[Loader settings](Parameters-loader-settings.html) — this table is a tabulation of that input.',
   'Each pairs a coexistence tag with the programme it runs, and the loader substitutes the two',
   'together, making one copy of the vendor-scoped data per row. Each vendor has its own care team',
@@ -354,15 +359,14 @@ written.push(write('vendors.md', [
 for (const v of vendors) {
   const mine = all.filter((r) => vendorOf.get(r) === v.code);
   written.push(write(`vendor-${v.code}.md`, [
-    `The care team running programme ${v.programme} and the practitioner on it. Neither carries a`,
-    'coexistence tag: the vendor is in the id, not in the data.',
+    `The care team running programme ${v.programme} and the practitioner on it.`,
     '',
     ...sections(mine, true),
   ]));
 }
 
 written.push(write('patients.md', [
-  `${patients.length} patients. Each has its own page holding the episodes, care plans, service`,
+  'The patients. Each has its own page holding the episodes, care plans, service',
   'requests, submissions and triage results recorded for that patient.',
   '',
   '|Patient|Name|CPR|Resources|',
@@ -382,8 +386,7 @@ for (const id of patients) {
   const mine = all.filter((r) => patientOf.get(r) === id);
   const m = resourceMeta.get(`Patient/${id}`);
   written.push(write(`${pageOf(id)}.md`, mine.length ? [
-    `The ${mine.length} resources recorded for [${m.title}](Patient-${id}.html). Every one carries a`,
-    'coexistence tag, which is what makes it this patient\'s rather than shared.',
+    `The resources recorded for [${m.title}](Patient-${id}.html).`,
     '',
     ...sections(mine),
   ] : [
@@ -404,6 +407,7 @@ const pageTree = ['pages:',
   ...vendors.flatMap((v) => [`    vendor-${v.code}.md:`, `      title: Vendor ${v.code}`]),
   '  patients.md:', '    title: Patient data',
   ...patients.flatMap((id) => [`    ${pageOf(id)}.md:`, `      title: ${resourceMeta.get(`Patient/${id}`).title}`]),
+  '  loading.md:', '    title: Loading',
   '  downloads.md:', '    title: Downloads'];
 
 const menu = ['menu:',
@@ -411,6 +415,7 @@ const menu = ['menu:',
   '  Shared definitions: shared.html',
   '  Vendors: vendors.html',
   '  Patient data: patients.html',
+  '  Loading: loading.html',
   '  Downloads: downloads.html'];
 
 const cfgPath = path.join(REPO, 'sushi-config.yaml');
