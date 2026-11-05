@@ -1,0 +1,61 @@
+== Suppressed Messages ==
+
+# The IG Publisher looks for this file by default and reports its absence as an error, so it exists
+# even when it suppresses nothing.
+#
+# IT CANNOT SUPPRESS ERRORS. Entries here only apply to warnings and hints — qa.json reports
+# suppressed-warnings and suppressed-hints and has no equivalent for errors. So the validation
+# errors this guide carries by design cannot be hidden here; they are listed below as a record of
+# which errors are expected and why, not as suppressions.
+#
+# EXPECTED ERRORS, NOT SUPPRESSIBLE. The last full run (network + terminology server, core IG
+# 11.0.1) reported 148 errors, which is exactly the 109 + 12 + 27 below and nothing else.
+#
+#  109x  Unknown code '${COEXISTENCE_TAG}' (108) / '${EHEALTH_PROGRAM}' (1)
+#        One COEXISTENCE_TAG per tagged resource, so this count grows with the dataset. Only the
+#        placeholder care team carries a programme code; the plan and its activities do not, and
+#        the one in practitioner-placeholder.name.given is a string, so neither draws a code error.
+#        Deliberate placeholders. The programme code and the coexistence tag belong to the target
+#        environment, not to the test data, and are substituted at load time. ehealth-program holds
+#        only real programme codes (kpro, telma, fob, ...) and ehealth-system only xa, xb, xc, so
+#        there is no neutral code to use instead. Leaving the elements out would make the resources
+#        unloadable and hide the fact that a value has to be supplied.
+#
+#   12x  None of the codings provided are in the value set 'Activity Definition Code'
+#        ad-saturation, ad-pulse and their two extra-branch twins carry NPU codes (NPU03011,
+#        NPU21692), and so do the 8 ServiceRequests that copy them — 4 per care plan, and only p01
+#        has service requests so far, so this count grows with them. THESE CODES ARE CORRECT. vs/activitydefinition-code includes vs/observation-
+#        codes, which contains both under urn:oid:1.2.208.176.2.1, and the environment's own
+#        terminology server expands vs/activitydefinition-code to 48 codes including them.
+#        The include lists vs/observation-codes and vs/media-codes in a single include entry, and
+#        R4 defines that as the UNION of the referenced value sets ("If multiple value sets are
+#        specified this includes the union of the contents of all of the referenced value sets" —
+#        ValueSet.compose.include.valueSet). R5 changed the same element to mean the intersection.
+#        The IG Publisher validates through org.hl7.fhir.r5.* internals, so it appears to apply the
+#        R5 rule; those two value sets share no codes, so under R5 semantics the include expands to
+#        nothing and NPU is rejected. Neither this data nor the core IG is wrong.
+#        VERIFIED, AND NOT AN OFFLINE ARTEFACT: a full run against tx.fhir.org rejects them in
+#        exactly the same way, 12 for 12. The earlier guess that the terminology server would
+#        resolve them was wrong.
+#
+#   27x  The Profile 'ehealth-answer-Condition|11.0.1' definition allows for the type string but
+#        found type code
+#        Eighteen on Questionnaire/questionnaire and nine across the two questionnaire
+#        ClinicalImpressions — everything carrying answer significance.
+#        NOT OURS, AND NOT A CHANGE IN THE CORE IG.
+#        The extension's differential is byte-identical between 10.0.2 and 11.0.1 (1675 bytes
+#        either way) and still slices operator.value[x]:valueCode with type=code, which is what
+#        this data writes. What changed is the generated snapshot: 10.0.2 carried 1 slice under
+#        operator.value[x], 11.0.1 carries 50, one per type, because it was built with a newer IG
+#        Publisher whose snapshot generator expands value[x] type-slicing in full. With 50 sibling
+#        slices the validator mis-matches the operator child and reports a type error against it.
+#        DO NOT "FIX" BY WRITING valueString: it would silence the message while contradicting the
+#        slice the core IG authors wrote, and an operator of '=' is a code, not free text. Report
+#        it against the 11.0.1 build instead; it should disappear when that is regenerated.
+#
+# NO LONGER SEEN — kept because it may come back with a different publisher version:
+#
+#    1x  The value provided ('text/markdown') was not found in the value set 'MimeType'
+#        A null-pointer inside the validator when there is no terminology client — the message
+#        carries its own cause: 'Cannot invoke "...TerminologyClientContext.getAddress()" because
+#        "tc" is null'. text/markdown is valid. This error does not occur in a full run.
