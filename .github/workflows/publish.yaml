@@ -31,7 +31,7 @@ jobs:
 
         # https://confluence.hl7.org/display/FHIR/IG+Publisher+CLI
       - name: IG transpile check
-        uses: trifork/ig-publisher/.github/actions/ig-transpile@v1
+        uses: trifork/ig-publisher/.github/actions/ig-transpile@3.0.1
         # uses: ../../trifork/ig-publisher/.github/actions/ig-transpile # Test local action
 
   # Transpile and publish the IG, if it was pushed to main with a tag
@@ -47,12 +47,6 @@ jobs:
       - uses: actions/checkout@v5
         with:
           path: ig
-
-      # TEMPORARY: remove together with ig/.github/scripts/debug-tx-dns.* once tx.fhir.org resolves reliably
-      - name: TEMP DEBUG tx.fhir.org DNS
-        continue-on-error: true
-        shell: bash
-        run: bash ig/.github/scripts/debug-tx-dns.sh
 
       - name: Set Sushi config release YAML properties
         uses: fjogeleit/yaml-update-action@v0.16.1
@@ -92,7 +86,7 @@ jobs:
           repositories: "${{ env.WEB_REPO }},${{ env.REGISTRY_REPO }}"
 
       - name: Publish the implementation guide
-        uses: trifork/ig-publisher/.github/actions/ig-publish@v1
+        uses: trifork/ig-publisher/.github/actions/ig-publish@3.0.1
         # uses: ../../trifork/ig-publisher/.github/actions/ig-publish # Test local action
         with:
           app-token: ${{ steps.token.outputs.token }}
