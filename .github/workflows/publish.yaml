@@ -48,6 +48,12 @@ jobs:
         with:
           path: ig
 
+      # TEMPORARY: remove together with ig/.github/scripts/debug-tx-dns.* once tx.fhir.org resolves reliably
+      - name: TEMP DEBUG tx.fhir.org DNS
+        continue-on-error: true
+        shell: bash
+        run: bash ig/.github/scripts/debug-tx-dns.sh
+
       - name: Set Sushi config release YAML properties
         uses: fjogeleit/yaml-update-action@v0.16.1
         with:
