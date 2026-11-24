@@ -10,5 +10,8 @@
   "introduction": "Test data for FUT-in-a-box, as a FHIR Implementation Guide",
   "desc": "FUT test data version 0.1.0",
   "first": true,
-  "ci-build": "https://build.fhir.org/ig/fut-infrastructure/implementation-guide-test-data/"
+  "ci-build": "https://build.fhir.org/ig/fut-infrastructure/implementation-guide-test-data/",
+  "registry-description": "Test data resources for the Danish eHealth Infrastructure, defined in FSH against the profiles of its Implementation Guide.",
+  "registry-country": "dk",
+  "registry-authority": "Den telemedicinske infrastruktur (eHealth Infrastructure)"
 }
