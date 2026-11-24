@@ -1,7 +1,7 @@
 {
   "package-id": "dk.ehealth.sundhed.fhir.ig.testdata",
   "version": "0.1.0",
-  "path": "http://ehealth.sundhed.dk/fhir/testdata/0.1.0",
+  "path": "http://ehealth.sundhed.dk/testdata/0.1.0",
   "status": "release",
   "sequence": "Releases",
   "mode": "milestone",

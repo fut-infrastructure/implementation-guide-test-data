@@ -5,7 +5,7 @@
 # The id is also the ehealth-environment identifier carried by ehealth-base and
 # ehealth-base-environment on every definitional resource here — keep the two in step.
 id: dk.ehealth.sundhed.fhir.ig.testdata
-canonical: http://ehealth.sundhed.dk/fhir/testdata
+canonical: http://ehealth.sundhed.dk/testdata
 name: FUTTestData
 title: FUT test data
 status: draft # draft | active | retired | unknown
