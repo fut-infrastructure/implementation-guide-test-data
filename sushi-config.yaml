@@ -9,7 +9,7 @@ canonical: http://ehealth.sundhed.dk/testdata
 name: FUTTestData
 title: FUT test data
 status: draft # draft | active | retired | unknown
-version: 0.1.0
+version: 0.2.0
 fhirVersion: 4.0.1
 copyrightYear: 2026+
 
