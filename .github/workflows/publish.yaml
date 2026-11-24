@@ -1,0 +1,98 @@
+name: FUT test data IG publish pipeline
+
+on:
+  workflow_dispatch: # Enable manual run
+  push:
+    branches: [ main ]
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet
+    tags: [ '[0-9]+.[0-9]+.[0-9]+' ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  WEB_APP_LOCATION: "web/"
+  WEB_REPO: "fut-ig-website"
+  REGISTRY_REPO: "ig-registry"
+  HISTORY_REPO: "fhir-ig-history-template"
+  APP_AUTHOR_NAME: "fut-ig-publisher[bot]"
+  APP_AUTHOR_EMAIL: "fut-ig-publisher[bot]@users.noreply.github.com"
+
+jobs:
+  # Check if the IG transpiles without errors
+  check-transpile:
+    name: Transpile IG
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    container: ghcr.io/trifork/ig-publisher:2.3.4
+
+    steps:
+      # Checkout the repos needed
+      - uses: actions/checkout@v5
+
+        # https://confluence.hl7.org/display/FHIR/IG+Publisher+CLI
+      - name: IG transpile check
+        uses: trifork/ig-publisher/.github/actions/ig-transpile@v1
+        # uses: ../../trifork/ig-publisher/.github/actions/ig-transpile # Test local action
+
+  # Transpile and publish the IG, if it was pushed to main with a tag
+  release:
+    name: Transpile and publish to the IG release
+    # A release is defined as a tag pushed to main
+    if: ${{ github.event_name == 'push' && github.ref_type == 'tag' }}
+    runs-on: ubuntu-latest-larger-disk
+    container: ghcr.io/trifork/ig-publisher:2.3.4
+
+    steps:
+      # Checkout the repos needed
+      - uses: actions/checkout@v5
+        with:
+          path: ig
+
+      - name: Set Sushi config release YAML properties
+        uses: fjogeleit/yaml-update-action@v0.16.1
+        with:
+          valueFile: ig/sushi-config.yaml
+          commitChange: false
+          createPR: false
+          changes: |
+            {
+              "version": "${{ github.ref_name }}",
+              "releaseLabel": "release"
+            }
+
+      - name: Update publication-request.json with the release version
+        run: |
+          echo "$(jq '
+            .version = env.GITHUB_REF_NAME |
+            .path |= sub("/[0-9\\.]+$"; "/" + env.GITHUB_REF_NAME) |
+            .desc |= sub(" [0-9\\.]+$"; " " + env.GITHUB_REF_NAME)
+          ' ig/publication-request.json)" > ig/publication-request.json
+
+      - name: Print edited config files
+        run: |
+          echo "======================== sushi-config.yaml        ========================"
+          cat ig/sushi-config.yaml
+          echo -n "\n\n======================== publication-request.json ========================\n"
+          cat ig/publication-request.json
+
+
+      - name: Generate app token
+        id: token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: "${{ env.WEB_REPO }},${{ env.REGISTRY_REPO }}"
+
+      - name: Publish the implementation guide
+        uses: trifork/ig-publisher/.github/actions/ig-publish@v1
+        # uses: ../../trifork/ig-publisher/.github/actions/ig-publish # Test local action
+        with:
+          app-token: ${{ steps.token.outputs.token }}
+          app-author-name: ${{ env.APP_AUTHOR_NAME }}
+          app-author-email: ${{ env.APP_AUTHOR_EMAIL }}
+          registry-repo: ${{ github.repository_owner }}/${{ env.REGISTRY_REPO }}
+          history-repo: ${{ github.repository_owner }}/${{ env.HISTORY_REPO }}
+          web-repo: ${{ github.repository_owner }}/${{ env.WEB_REPO }}
+          web-source: ${{ env.WEB_APP_LOCATION }}
