@@ -1,0 +1,14 @@
+{
+  "package-id": "dk.ehealth.sundhed.fhir.ig.testdata",
+  "version": "0.1.0",
+  "path": "http://ehealth.sundhed.dk/fhir/testdata/0.1.0",
+  "status": "release",
+  "sequence": "Releases",
+  "mode": "milestone",
+  "title": "FUT test data",
+  "category": "Test data",
+  "introduction": "Test data for FUT-in-a-box, as a FHIR Implementation Guide",
+  "desc": "FUT test data version 0.1.0",
+  "first": true,
+  "ci-build": "https://build.fhir.org/ig/fut-infrastructure/implementation-guide-test-data/"
+}
