@@ -13,7 +13,7 @@ template carrying `${…}` placeholders, which the test data loader copies once 
 | Topic | Where |
 |---|---|
 | **Core IG** (every profile used here) | [eHealth Infrastructure IG](http://ehealth.sundhed.dk/fhir), repo `fut-infrastructure/implementation-guide` |
-| **Published test data** | `https://ehealth.sundhed.dk/fhir/testdata/<version>`, e.g. the examples the loader reads at `…/testdata/1.0.0/examples.json.zip` |
+| **Published test data** | `https://ehealth.sundhed.dk/testdata/<version>`, e.g. the examples the loader reads at `…/testdata/1.0.0/examples.json.zip` |
 | **Where the data is loaded** | The development test environment (DEVENVCGI), by the `test-data-loader` CronJob. See the Loading page of this guide |
 | **IG authoring** | [FHIR IG Guidance](http://build.fhir.org/ig/FHIR/ig-guidance/index.html), [FSH School](https://fshschool.org/docs/sushi/) |
 
@@ -129,7 +129,7 @@ this guide:
 3. Publish locally and check `output/qa.html`: the data must still validate against the new profiles.
 4. Publish the new version.
 
-Not set up yet: publishing the guide to `https://ehealth.sundhed.dk/fhir/testdata/<version>` is
+Not set up yet: publishing the guide to `https://ehealth.sundhed.dk/testdata/<version>` is
 left for a separate task.
 
 ## Gotchas

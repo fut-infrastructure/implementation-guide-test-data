@@ -37,7 +37,7 @@ out.push('Instance: loader-codesystems', 'InstanceOf: Bundle', 'Usage: #example'
   `Description: "Read by the loader, never loaded. The ehealth-system and ehealth-program CodeSystems of ${CORE}: the loader checks the coexistence tags against them, and adds any codes the terminology service lacks."`,
   '* type = #collection');
 for (const id of IDS) {
-  out.push(`* entry[+].fullUrl = "http://ehealth.sundhed.dk/fhir/testdata/CodeSystem/${id}"`,
+  out.push(`* entry[+].fullUrl = "http://ehealth.sundhed.dk/testdata/CodeSystem/${id}"`,
     `* entry[=].resource = cs-${id}`);
 }
 const dir = path.join(REPO, 'input', 'fsh', 'generated');

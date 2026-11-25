@@ -18,7 +18,7 @@ the same as the resources as loadable. A special loader component is used to sub
   team's UUID, the practitioner's identifier and the identifier on every submitted Observation and
   QuestionnaireResponse have to be substituted for the target environment. The
   submission identifiers take a different value in each resource, unlike the rest.
-* Canonical references point at this guide, as `http://ehealth.sundhed.dk/fhir/testdata/<Type>/<id>`.
+* Canonical references point at this guide, as `http://ehealth.sundhed.dk/testdata/<Type>/<id>`.
   They have to be rewritten to the target, and they are plain strings rather than `reference`
   objects.
 * The ClinicalImpressions and Tasks are expected results, not input. Automated processing creates
