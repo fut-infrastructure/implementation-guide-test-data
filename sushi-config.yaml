@@ -9,7 +9,7 @@ canonical: http://ehealth.sundhed.dk/testdata
 name: eHealth Infrastructure Test Data
 title: eHealth Infrastructure Test Data
 status: draft # draft | active | retired | unknown
-version: 0.2.0
+version: 1.0.0
 fhirVersion: 4.0.1
 copyrightYear: 2026+
 
@@ -35,7 +35,7 @@ publisher:
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 dependencies:
   dk.ehealth.sundhed.fhir.ig.core:
-    version: 11.0.1
+    version: 11.0.4
     uri: http://ehealth.sundhed.dk/fhir/ImplementationGuide/dk.ehealth.sundhed.fhir.ig.core
   # The core IG's own dependencies. SUSHI does not resolve a dependency's dependencies, so
   # profiles the core IG slices against (e.g. dk-core-sor-identifier on Organization.identifier)
