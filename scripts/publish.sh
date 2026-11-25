@@ -83,9 +83,13 @@ if docker ps --format '{{.Image}}' | grep -q 'ig-publisher'; then
 fi
 
 start=$(date +%s)
+# The entrypoint runs as the owner of MAP_NODE_UID (default: the workdir). A Windows bind mount
+# reports root there, so the remap fails and the image's default uid 1000 cannot touch files the
+# publisher wrote earlier as 1001. Take the uid from the cache volume instead, which is 1001.
 docker run --rm \
   -v "//$(echo "$REPO" | sed 's|^/||')://ig" \
   -v "$CACHE_VOLUME:/home/publisher/.fhir" \
+  -e MAP_NODE_UID=//home/publisher/.fhir \
   -w //ig \
   hl7fhir/ig-publisher-base:latest \
   java -jar input-cache/publisher.jar "${ARGS[@]}" > "$LOG" 2>&1 && rc=0 || rc=$?
