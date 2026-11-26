@@ -7,6 +7,12 @@ Thumbs.db
 /template
 node_modules
 .index.json
+# The publisher writes .index.db alongside .index.json, including inside ig-template/
+.index.db
+# Written by scripts/publish.sh
+/publisher-run.log
+# Emitted into the repo root by the IG Publisher, not authored here
+/Requirements-fromNarrative.json
 /.idea
 .vscode/settings.json
 .gokid.*
