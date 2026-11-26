@@ -16,5 +16,3 @@ node_modules
 /.idea
 .vscode/settings.json
 .gokid.*
-# Written by scripts/make-codesystems.js before every build, from the core IG version in sushi-config.yaml
-/input/fsh/generated/loader-codesystems.fsh

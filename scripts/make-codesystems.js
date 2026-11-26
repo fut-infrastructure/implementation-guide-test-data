@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 // Writes input/fsh/generated/loader-codesystems.fsh: the core IG's ehealth-system and
 // ehealth-program CodeSystems, at the version sushi-config.yaml depends on, in a Bundle the loader reads.
-// Usage: node scripts/make-codesystems.js [repo]
-// Run by scripts/publish.sh and the GitHub workflow before every build; the output is gitignored.
+// Usage: node scripts/make-codesystems.js [--check] [repo]
+// The output is committed, because the build.fhir.org auto-build runs no scripts. scripts/publish.sh
+// regenerates it before every build; the GitHub PR check runs --check, which fails if it is stale.
 // Reads the package from the FHIR cache, or downloads it from the registry when it is not cached.
 const fs = require('fs');
 const path = require('path');
@@ -10,7 +11,8 @@ const os = require('os');
 const zlib = require('zlib');
 const crypto = require('crypto');
 
-const REPO = process.argv[2] || '.';
+const CHECK = process.argv.includes('--check');
+const REPO = process.argv.slice(2).find(a => a !== '--check') || '.';
 const CORE = 'dk.ehealth.sundhed.fhir.ig.core';
 const IDS = ['ehealth-system', 'ehealth-program'];
 const REGISTRY = 'https://packages.fhir.org';
@@ -93,7 +95,15 @@ function render(version, json) {
   const cached = fromCache(version);
   const json = cached || await fromRegistry(version);
   const dir = path.join(REPO, 'input', 'fsh', 'generated');
+  const file = path.join(dir, 'loader-codesystems.fsh');
+  const fsh = render(version, json);
+  if (CHECK) {
+    const current = fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : '';
+    if (current !== fsh) throw new Error(`${file} is stale for ${CORE}#${version}: run node scripts/make-codesystems.js and commit it`);
+    console.log(`${file} is up to date for ${CORE}#${version}`);
+    return;
+  }
   fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, 'loader-codesystems.fsh'), render(version, json));
+  fs.writeFileSync(file, fsh);
   console.log(`Wrote ${IDS.length} CodeSystems from ${CORE}#${version} (${cached ? 'package cache' : REGISTRY})`);
 })().catch(e => { console.error(e.message); process.exit(1); });

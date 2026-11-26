@@ -46,8 +46,10 @@ On a branch named after the Jira issue (`FUT1-xxxx-short-slug`), in `sushi-confi
 validate against the new profiles, with no new errors or warnings. If it does not, the data has to
 change first: see [Modifying the test data](#modifying-the-test-data).
 
-Commit `sushi-config.yaml` and `publication-request.json`, plus `sushi-config.yaml`'s generated
-blocks if the build changed them.
+Commit `sushi-config.yaml`, `publication-request.json` and whatever the run regenerated: always
+`input/fsh/generated/loader-codesystems.fsh` (the publisher run rewrites it for the new core
+version), and `sushi-config.yaml`'s generated blocks if they changed. The pull request check fails
+if `loader-codesystems.fsh` does not match the core version.
 
 ### 3. Initiate the publication
 
@@ -74,7 +76,7 @@ and `ig-registry` repos. The tag must have the form `X.Y.Z`; other tags do not s
 input/fsh/
   aliases.fsh             aliases, and what each ${PLACEHOLDER} means
   loader-settings.fsh     the anchor date, and the vendor table (coexistence tag + programme)
-  generated/              written by scripts/make-codesystems.js before every build, gitignored
+  generated/              written by scripts/make-codesystems.js, committed, not hand-edited
   shared/                 instances every patient and vendor shares
   types/                  per resource type: the documentation and the rule sets
   vendor/<code>/          one care team and one practitioner per coexistence tag
@@ -92,7 +94,7 @@ the script (or the FSH it reads) instead, and commit the regenerated output with
 | Script | Writes | Run when |
 |---|---|---|
 | `scripts/make-groups.js` | the `groups:`, `pages:` and `menu:` blocks of `sushi-config.yaml`; `shared.md`, `vendors.md`, `vendor-<code>.md`, `patients.md`, `patient-NN.md` | every build |
-| `scripts/make-codesystems.js` | `input/fsh/generated/loader-codesystems.fsh`: the core IG's `ehealth-system` and `ehealth-program` CodeSystems, at the version `sushi-config.yaml` depends on. Gitignored | automatically, by `publish.sh` and the GitHub workflow; by hand only for a bare `sushi` build |
+| `scripts/make-codesystems.js` | `input/fsh/generated/loader-codesystems.fsh`: the core IG's `ehealth-system` and `ehealth-program` CodeSystems, at the version `sushi-config.yaml` depends on | automatically, by `publish.sh`; by hand for a bare `sushi` build. Committed, because the build.fhir.org auto-build runs no scripts; the GitHub workflow only checks it with `--check` |
 
 Hand-written: `index.md`, `loading.md`, `downloads.md`, and the FSH not marked `GENERATED`.
 
@@ -106,9 +108,9 @@ description in the resource's FSH `Description:`.
 node scripts/make-codesystems.js . ; sushi . ; node scripts/make-groups.js . ; sushi .
 ```
 
-`make-codesystems.js` comes first because `sushi-config.yaml` lists the Bundle it writes; without
-it SUSHI fails with "configured with nonexistent resource". It reads the core package from the FHIR
-cache, or downloads it from `packages.fhir.org`.
+`make-codesystems.js` comes first so that the Bundle it writes matches the core version in
+`sushi-config.yaml`. It reads the core package from the FHIR cache, or downloads it from
+`packages.fhir.org`.
 
 Then `sushi` twice, in that order and separated by `;` rather than `&&`: `make-groups.js` reads the built output
 to regenerate the `groups:`, `pages:` and `menu:` blocks of `sushi-config.yaml` and the generated
