@@ -92,7 +92,8 @@ docker run --rm \
   -e MAP_NODE_UID=//home/publisher/.fhir \
   -w //ig \
   hl7fhir/ig-publisher-base:latest \
-  java -jar input-cache/publisher.jar "${ARGS[@]}" > "$LOG" 2>&1 && rc=0 || rc=$?
+  sh -c 'node scripts/make-codesystems.js . && exec java -jar input-cache/publisher.jar "$@"' sh "${ARGS[@]}" \
+  > "$LOG" 2>&1 && rc=0 || rc=$?
 
 echo "exit=$rc  elapsed=$(( ($(date +%s) - start) / 60 ))min"
 sed -e 's/\x1b\[[0-9;]*m//g' "$LOG" | grep -aE "^ *(Errors|Warnings)|Publishing Content Failed" | tail -3 || true

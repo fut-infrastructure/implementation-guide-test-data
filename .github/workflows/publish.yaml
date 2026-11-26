@@ -29,6 +29,9 @@ jobs:
       # Checkout the repos needed
       - uses: actions/checkout@v5
 
+      - name: Generate the loader code systems from the core IG
+        run: node scripts/make-codesystems.js .
+
         # https://confluence.hl7.org/display/FHIR/IG+Publisher+CLI
       - name: IG transpile check
         uses: trifork/ig-publisher/.github/actions/ig-transpile@3.0.5
@@ -47,6 +50,9 @@ jobs:
       - uses: actions/checkout@v5
         with:
           path: ig
+
+      - name: Generate the loader code systems from the core IG
+        run: node ig/scripts/make-codesystems.js ig
 
       - name: Set Sushi config release YAML properties
         uses: fjogeleit/yaml-update-action@v0.16.1
