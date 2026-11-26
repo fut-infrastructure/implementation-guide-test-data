@@ -35,7 +35,7 @@ publisher:
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 dependencies:
   dk.ehealth.sundhed.fhir.ig.core:
-    version: 11.0.4
+    version: 11.0.5
     uri: http://ehealth.sundhed.dk/fhir/ImplementationGuide/dk.ehealth.sundhed.fhir.ig.core
   # The core IG's own dependencies. SUSHI does not resolve a dependency's dependencies, so
   # profiles the core IG slices against (e.g. dk-core-sor-identifier on Organization.identifier)
